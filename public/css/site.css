@@ -1,0 +1,135 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+       background-color: rgba(238, 249, 198, 0.5);
+    color: black;
+}
+.navbar {
+    text-shadow: 0.2px 0.3px 0px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(rgba(253, 255, 225, 0.81),rgba(208, 210, 140, 0.81));
+}
+#LayoutLogo:hover {
+  
+   opacity:0.6;
+}
+#SouvenirLogo {
+   
+    color: rgb(168, 18,18);
+    font-size: 16px;
+    font-weight: 600;
+}
+    #SouvenirLogo:hover {
+        color: rgb(218, 58,58);
+       
+    }
+.thumbnail {
+    background: linear-gradient(rgba(243, 245, 245, 0.91),rgba(223, 225, 225, 0.91));
+    background-color: #FFFFFF;
+    padding: 0;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    box-shadow: 0 5px 6px 0 rgba(0,0,0,0.14), 0 2px 12px 0 rgba(0,0,0,0.12), 0 5px 8px -3px rgba(0,0,0,0.3);
+}
+
+
+    .thumbnail:hover {
+        box-shadow: 0 24px 36px 3px rgba(0,0,0,0.14), 0 9px 45px 8px rgba(0,0,0,0.12), 0 12px 15px -8px rgba(0,0,0,0.3);
+        color: black;
+    }
+
+a {
+    color: rgba(23, 67, 135, 0.91);
+}
+
+.btn-default,
+.btn-primary,
+.btn-success,
+.btn-info,
+.btn-warning,
+.btn-danger {
+    -webkit-box-shadow: 1px 3px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 3px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 3px 0px rgba(0, 0, 0, 0.3);
+}
+
+
+
+.btn-default {
+    border: thin solid;
+    border-color:gray;
+    color: #2b2b38;
+    background: linear-gradient(rgba(243, 245, 225, 0.91),rgba(213, 215, 165, 0.91));
+    margin: auto;
+    border-radius: 30%;
+    text-shadow: 0.3px 0.3px 0px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+    .btn-default:active,
+    .btn-primary:active,
+    .btn-success:active,
+    .btn-info:active,
+    .btn-warning:active,
+    .btn-danger:active {
+        margin-top: 3px;
+        margin-bottom: -3px;
+    }
+.navbar-default .navbar-nav > li > a:hover {
+    color: white;
+}
+.navbar-default .navbar-nav > li > a {
+    color: rgba(43, 45, 45, 0.98);
+}
+.nav-pills > li.active > a {
+    background: linear-gradient(rgba(163, 165, 165, 0.91),rgba(123, 125, 125, 0.91));
+    text-shadow: 0.2px 0.3px 0px rgba(0, 0, 0, 0.3);
+}
+    .nav-pills > li.active > a:hover {
+        background: linear-gradient(rgba(163, 165, 165, 0.91),rgba(123, 125, 125, 0.91));
+       
+        text-shadow: 0.2px 0.3px 0px rgba(0, 0, 0, 0.3);
+    }
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    text-shadow: 0.2px 0.3px 0px rgba(0, 0, 0, 0.3);
+    padding-left: 15px;
+    padding-right: 15px;
+    color: rgba(56, 15, 7, 0.92)
+}
+.btn {
+    border-radius:6px;
+}
+button {
+border:thin;
+}
+
+footer {
+    font-size: 17px;
+   
+    width: 100%
+}
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}

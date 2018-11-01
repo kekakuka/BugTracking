@@ -1,0 +1,59 @@
+@extends('Shared._layout')
+@section('title', 'Usecases Index')
+@section('content')
+
+    <h2>Index</h2>
+
+    <p>
+        @if(Session::has('user')&&Session::get('user')->title==='manager')
+        <a href="{{url('Usecases/Create')}}">Create New</a>
+            @endif
+    </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+               ID
+            </th>
+            <th>
+          Usecase  Name
+            </th>
+            <th style="width: 47%">
+             Description
+            </th>
+            <th>Subsystem Name
+            </th><th>Project Name
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($Usecases as $Usecase)
+        <tr>
+            <td>
+                {{ $Usecase->id}}
+            </td>
+            <td>
+                {{ $Usecase->name}}
+            </td>
+
+            <td>
+                {{ $Usecase->description}}
+            </td>
+            <td>
+                {{ $Usecase->Subsystem->name}}
+            </td>
+            <td>
+                {{ $Usecase->Subsystem->project->name}}
+            </td>
+            <td>
+                @if($Usecase->Subsystem->project->status==='testing'&&Session::get('user')->title==='manager')
+                <a href="{{url('Usecases/Edit/'.$Usecase->id)}}">Edit</a> |
+                @endif
+                <a href="{{url('Usecases/Details/'.$Usecase->id)}}">Details</a>
+            </td>
+        </tr>
+       @endforeach
+        </tbody>
+    </table>
+@endsection

@@ -11,6 +11,11 @@
                     139 Carrington Road
                     Mt Albert, Auckland
                 </dd>
+                <dt>Lecturer:</dt>
+                <dd>
+                    Natalia
+                </dd>
+
 
             </dl>
         </div>
@@ -18,12 +23,12 @@
             <dl class="dl-horizontal">
 
 
-                <dt>Designer/Tester</dt>
+                <dt>Designer/Tester:</dt>
                 <dd>
                     Lihui Jiang
                 </dd>
 
-                <dt> Developer</dt>
+                <dt>Developer/Tester:</dt>
                 <dd>Lei Li</dd>
 
 
@@ -36,11 +41,7 @@
          <div style="height: 500px" class="jumbotron" id="map"></div>
         </div>
     </div>
-    <div>
-        <img class="center-block " STYLE="width: 95%"  src="{{URL::asset('images/PS1.png')}}" alt="Bug Tracking">
-        <img class="center-block " STYLE="width: 95%"  src="{{URL::asset('images/AS2.png')}}" alt="Bug Tracking">
-        <img class="center-block "   STYLE="width: 95%" src="{{URL::asset('images/AS1.png')}}" alt="Bug Tracking">
-    </div>
+
     <script>
 
         function initMap() {

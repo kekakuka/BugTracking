@@ -12,6 +12,10 @@ class Bug extends Model
     {
         return $this->hasMany('App\Bugassign');
     }
+    public function bugcomments()
+    {
+        return $this->hasMany('App\BugComment');
+    }
 
     public function test()
     {

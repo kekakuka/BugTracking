@@ -50,11 +50,9 @@
             </td>
             <td>
                 <a href="{{url('Bugs/Details/'.$Bug->id)}}">Details</a> |
-                @if($Bug->Test->testcase->Usecase->subsystem->project->status==='testing'&&$Bug->state!=='closed'&&$Bug->state!=='deferred'&&Session::get('user')->title==='manager')
+                @if($Bug->Test->testcase->Usecase->subsystem->project->status==='testing'&&$Bug->state!=='closed'&&$Bug->state!=='deferred'&&Session::has('user')&&Session::get('user')->title==='manager')
                 <a href="{{url('Bugs/Edit/'.$Bug->id)}}">Defer</a>
-
                 @endif
-
             </td>
         </tr>
        @endforeach

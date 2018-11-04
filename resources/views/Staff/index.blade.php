@@ -52,10 +52,10 @@
                 {{ $staff->workLoad($staff->bugassigns) }}
             </td>
             <td>
-                @if(Session::get('user')->title==='manager')
+                @if(Session::has('user')&&Session::get('user')->title==='manager')
                 <a href="{{url('Staff/Edit/'.$staff->id)}}">Edit</a> |
                 @endif
-                    @if(Session::get('user')->title==='manager')
+                    @if(Session::has('user')&&Session::get('user')->title==='manager')
                 <a href="{{url('Staff/Details/'.$staff->id)}}">Reassign work</a> |
                         @else
                         <a href="{{url('Staff/Details/'.$staff->id)}}">Details</a> |

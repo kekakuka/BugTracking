@@ -48,7 +48,7 @@
                 {{ $Testcase->Usecase->subsystem->project->name}}
             </td>
             <td>
-                @if($Testcase->Usecase->Subsystem->project->status==='testing'&&Session::get('user')->title==='manager')
+                @if($Testcase->Usecase->Subsystem->project->status==='testing'&&Session::has('user')&&Session::get('user')->title==='manager')
                 <a href="{{url('Testcases/Edit/'.$Testcase->id)}}">Edit</a> |
                 @endif
                 <a href="{{url('Testcases/Details/'.$Testcase->id)}}">Details</a>

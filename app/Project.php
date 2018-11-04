@@ -14,7 +14,10 @@ class Project extends Model
     {
         return $this->hasMany('App\Subsystem');
     }
-
+    public function testsuites(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany('App\Testsuite');
+    }
     public function bugsOpenClosed($moreThanDate, $lessThanDate)
     {
         $bugsOpenClosed = new Collection();

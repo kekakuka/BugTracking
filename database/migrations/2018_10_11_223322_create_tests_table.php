@@ -16,9 +16,16 @@ class CreateTestsTable extends Migration
         Schema::create('tests', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->enum('status', ['waiting','pass','failed','closed'])->default('waiting');
+            $table->enum('classification', ['manual','automatic'])->default('manual');
+            $table->double('planTime',4,1)->default(0);
+            $table->double('costTime',4,1)->nullable();
+            $table->string('description',500)->nullable();
             $table->unsignedInteger('testcase_id');
             $table->unsignedInteger('setting_id');
-            $table->unsignedInteger('staff_id');
+            $table->unsignedInteger('staff_id')->nullable();
+            $table->unsignedInteger('testsuite_id');
+            $table->foreign('testsuite_id')->references('id')->on('testsuites');
             $table->foreign('testcase_id')->references('id')->on('testcases');
             $table->foreign('staff_id')->references('id')->on('staff');
             $table->foreign('setting_id')->references('id')->on('settings');

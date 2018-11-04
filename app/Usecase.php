@@ -16,4 +16,7 @@ class Usecase extends Model
     {
         return $this->hasMany('App\Testcase');
     }
+
+
+
 }

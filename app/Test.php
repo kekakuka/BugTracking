@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Test extends Model
 {
-    protected $fillable=['staff_id','setting_id','testcase_id'];
+    protected $fillable=['staff_id','setting_id','testcase_id','status','planTime','costTime','description','testsuite_id'];
+
+    public function testsuite()
+    {
+        return $this->belongsTo('App\TestSuite', 'testsuite_id','id');
+    }
 
     public function testcase()
     {

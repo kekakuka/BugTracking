@@ -4,11 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bugassign extends Model
+class Bugcomment extends Model
 {
-    protected $fillable=['staff_id','bug_id','status','updated_at','costTime'];
 
-
+    protected $fillable=['staff_id','bug_id','comment'];
     public function bug()
     {
         return $this->belongsTo('App\Bug', 'bug_id','id');
@@ -17,4 +16,5 @@ class Bugassign extends Model
     {
         return $this->belongsTo('App\Staff', 'staff_id','id');
     }
+
 }

@@ -5,7 +5,7 @@
     <h2>Index</h2>
 
     <p>
-        @if(Session::get('user')->title==='manager')
+        @if(Session::has('user')&&Session::get('user')->title==='manager')
 
         <a href="{{url('Projects/Create')}}">Create New</a>
             @endif
@@ -45,7 +45,7 @@
                 {{ $Project->status}}
             </td>
             <td>
-                @if(Session::get('user')->title==='manager')
+                @if(Session::has('user')&&Session::get('user')->title==='manager')
                 <a href="{{url('Projects/Edit/'.$Project->id)}}">Edit</a> |
 
                 @endif

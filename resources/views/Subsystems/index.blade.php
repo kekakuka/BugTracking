@@ -5,7 +5,7 @@
     <h2>Index</h2>
 
     <p>
-        @if(Session::get('user')->title==='manager')
+        @if(Session::has('user')&&Session::get('user')->title==='manager')
         <a href="{{url('Subsystems/Create')}}">Create New</a>
             @endif
     </p>
@@ -44,7 +44,7 @@
             </td>
             <td>
 
-                @if($Subsystem->project->status==='testing'&&Session::get('user')->title==='manager')
+                @if($Subsystem->project->status==='testing'&&Session::has('user')&&Session::get('user')->title==='manager')
                 <a href="{{url('Subsystems/Edit/'.$Subsystem->id)}}">Edit</a> |
                 @endif
                 <a href="{{url('Subsystems/Details/'.$Subsystem->id)}}">Details</a>

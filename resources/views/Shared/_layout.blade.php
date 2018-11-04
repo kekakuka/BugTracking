@@ -35,6 +35,7 @@
             <li><a href="{{url('/Usecases')}}">Usecase Management</a></li>
             <li><a href="{{url('/Testcases')}}">Testcase Management</a></li>
             <li><a href="{{url('/Bugs')}}">Bug Management</a></li>
+            <li><a href="{{url('/Settings')}}">Setting Management</a></li>
         </ul>
     </div>
         @elseif(Session::has('user'))
@@ -44,12 +45,12 @@
             </a>
             <ul class="dropdown-menu">
                 <li><a href="{{url('/Bugs')}}">Bugs</a></li>
-
                 <li><a href="{{url('/Projects')}}">Projects</a></li>
                 <li><a href="{{url('/Subsystems')}}">Subsystems</a></li>
                 <li><a href="{{url('/Usecases')}}">Usecases</a></li>
                 <li><a href="{{url('/Testcases')}}">Testcases</a></li>
                 <li><a href="{{url('/Staff')}}">Staff</a></li>
+                <li><a href="{{url('/Settings')}}">Setting</a></li>
             </ul>
         </div>
 @endif
@@ -66,6 +67,9 @@
                 @if(Session::has('user'))
 
                     <li><a href="{{url('/Reports')}}">Reports</a></li>
+                    @if(Session::get('user')->title!=='developer')
+                        <li><a href="{{url('/Testsuites')}}">Test Suite</a></li>
+                    @endif
                     @if(Session::get('user')->title!=='developer')
                     <li><a href="{{url('/Bugs/Create')}}">Bug/Test Enter</a></li>
                     @endif

@@ -44,6 +44,28 @@ Route::prefix('Subsystems')->group(function () {
     Route::post('/EditPost/{id}', 'SubsystemController@EditPost');
 });
 
+
+Route::prefix('Testsuites')->group(function () {
+    Route::get('/', 'TestsuiteController@index');
+    Route::post('/Create', 'TestsuiteController@CreatePost');
+    Route::get('/Details/{id}', 'TestsuiteController@Details');
+    Route::get('/Create', 'TestsuiteController@Create');
+    Route::get('/Edit/{id}', 'TestsuiteController@Edit');
+    Route::post('/EditPost/{id}', 'TestsuiteController@EditPost');
+    Route::get('/Set/{id}', 'TestsuiteController@Set');
+    Route::post('/SetPost/{id}', 'TestsuiteController@SetPost');
+});
+
+
+Route::prefix('Settings')->group(function () {
+    Route::get('/', 'SettingController@index');
+    Route::post('/Create', 'SettingController@CreatePost');
+    Route::get('/Create', 'SettingController@Create');
+    Route::get('/Edit/{id}', 'SettingController@Edit');
+    Route::post('/EditPost/{id}', 'SettingController@EditPost');
+});
+
+
 Route::prefix('Usecases')->group(function () {
     Route::get('/', 'UsecaseController@index');
     Route::post('/Create', 'UsecaseController@CreatePost');

@@ -52,6 +52,11 @@ class Staff extends Model
 
         return $bugsassigns;
     }
+    public function bugcomments()
+    {
+        return $this->hasMany('App\BugComment');
+    }
+
     public function myTests($moreThanDate,$lessThanDate,$project_id)
     {
         $myTests=new Collection();

@@ -16,7 +16,6 @@ class CreateBugassignsTable extends Migration
         Schema::create('bugassigns', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->double('runTime',4,1);
             $table->unsignedInteger('bug_id');
             $table->unsignedInteger('staff_id');
             $table->foreign('bug_id')->references('id')->on('bugs');

@@ -17,4 +17,24 @@ class Testsuite extends Model
     {
         return $this->belongsTo('App\Project', 'project_id','id');
     }
+    public function testsTime()
+    {
+         $testsTime=0;
+        foreach ($this->tests as $test){
+
+            $testsTime+=$test->planTime;
+        }
+        return $testsTime;
+    }
+    public function waitingNumber()
+    {
+        $waiting=0;
+
+        foreach ($this->tests as $test){
+           if($test->status==='waiting')
+           {$waiting++;}
+        }
+        return $waiting.'/'.$this->tests->count();
+    }
+
 }

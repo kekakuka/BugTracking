@@ -24,18 +24,21 @@
                         </ul>
                     </div>
                 @endif
-                <div style="width: 70%;" class="form-group">
+                <div class="row">
+                <div  style="width: 50%;"  class="form-group col-md-3">
                     <label  class="control-label" >Classification</label>
-                    <select  id="classification"  name="classification"   >
+                    <select onchange="select()" id="classification"  name="classification"   >
                         <option  value="manual">Manual</option>
                         <option  value="automatic">Automatic </option>
                     </select>
-
-
-                     <label  class="control-label">  Plan Time</label>
-                    </span>  <input type="number" name="planTime" value="{{ old('planTime') }}"  />
                 </div>
 
+                <div style="width: 50%; height: 80%"  id="planTime" class="col-md-3 col-md-pull-2 form-group">
+
+                     <label  class="control-label">  Plan Time</label>
+                    <input  id="planTime1" style="width: 20%;" type="text" name="planTime" value="1"  /> Hours
+                </div>
+                </div>
                 <div  id="newT">
                     <div  class="form-group">
                         <label class="control-label">Test Case</label>
@@ -69,53 +72,100 @@
 
         <a href="{{url('Testsuites/')}}">Back to List</a>
     </div>
-    <table class="table">
+    <table class="table" >
         <tbody>
         <tr >
-            <td colspan="2">
+            <td colspan="4">
                 Testsuite Summay: {{ $Testsuite->summary}}
             </td>
+
+        </tr>
+        <tr >
+
             <td colspan="2">
                 Project: {{ $Testsuite->project->name}}
             </td>
-            <td   colspan="2">
-               Tests Number: {{  $Testsuite->summary}}
+            <td   >
+                Tests Number: {{  $Testsuite->tests->count()}}
             </td>
-            <td   colspan="2">
-                Plan Time: {{  $Testsuite->summary}}
+            <td  >
+                Plan Time: {{  $Testsuite->testsTime()}}
             </td>
         </tr>
 
-        @if($Testsuite->tests->count()>0)
-            <tr style="font-size: 120%">
-                <td colspan="8">Tests list:</td>
-            </tr>@endif
-        @foreach($Testsuite->tests as $test)
+        </tbody>
+    </table>
+    @if($Testsuite->tests->count()>0)
+            <div style="font-size: 22px;">Tests list:</div>
+   @endif
+        @foreach($Testsuite->tests->reverse() as $test)
+            <table class="table table-bordered" >
+                <tbody>
             <tr>
                 <td>
                     Test ID: {{ $test->id}}
                 </td>
+                @if(($test->status!=='waiting'&&$test->status!=='testing')&&$test->classification==='manual')
+                    <td>
+                        Status: {!! $test->testStatusTd() !!}
+                    </td>
+                    @if($test->costTime>$test->planTime )
+                    <td style="color: red">
+                        Cost time: {{ $test->costTime}} hours
+                    </td>
+@else
+                        <td>
+                            Cost time: {{ $test->costTime}} hours
+                        </td>
+                    @endif
+                @else
+                    <td colspan="2">
+                        Status: {!! $test->testStatusTd() !!}
+                    </td>
+                    @endif
+                @if($test->classification==='manual')
+                    <td>
+                        Classification: {{$test->classification }}
+                    </td>
 
-                <td>
-                    Status: {{ $test->status}}
-                </td>
-                <td>
-                  Test classification: {{$test->classification }}
-                </td>
+                    <td>
+                        Plan time: {{ $test->planTime }} hours
+                    </td>
 
-                <td>
-                   Plan time: {{ $test->planTime }} hours
-                </td>
+
+                @else
+                    <td colspan="2">
+                        Classification: {{$test->classification }}
+                    </td>
+                @endif
+
             </tr>
             <tr>
-                <td>
-                    Cost time: {{ $test->planTime}} hours
+                <td colspan="2">
+                    Testcase: {{$test->testcase->name }}
                 </td>
 
-
+                <td colspan="3">
+                   Setting: {{ $test->setting->description}}
+                </td>
             </tr>
+            </tbody>
+            </table>
+
             @endforeach
-        </tbody>
-    </table>
-    
+
+    <script>
+        function  select() {
+            var classification=  document.getElementById('classification');
+            var planTime=  document.getElementById('planTime');
+
+if (classification.value==='manual'){
+    planTime.style.display='block';
+}
+else {
+    planTime.style.display='none';
+}
+
+        }
+    </script>
 @endsection

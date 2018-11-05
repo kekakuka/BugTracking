@@ -16,7 +16,7 @@ class CreateTestsTable extends Migration
         Schema::create('tests', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->enum('status', ['waiting','pass','failed','closed'])->default('waiting');
+            $table->enum('status', ['waiting','pass','failed','testing','closed'])->default('waiting');
             $table->enum('classification', ['manual','automatic'])->default('manual');
             $table->double('planTime',4,1)->default(0);
             $table->double('costTime',4,1)->nullable();

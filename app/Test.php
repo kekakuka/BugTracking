@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Test extends Model
 {
-    protected $fillable=['staff_id','setting_id','testcase_id','status','planTime','costTime','description','testsuite_id'];
+    protected $fillable=['staff_id','setting_id','testcase_id','status','planTime','costTime','description','classification','testsuite_id'];
 
     public function testsuite()
     {
@@ -28,5 +28,16 @@ class Test extends Model
     public function bugs()
     {
         return $this->hasMany('App\Bug');
+    }
+
+    public function testStatusTd()
+    {
+        switch ($this->status){
+            case 'failed': return '<span style="color:red;font-weight: bolder;font-size: 110%"> '.$this->status.'</span>';
+            case 'waiting': return '<span style="color: darkorange;font-weight: bolder;font-size: 110%"> '.$this->status.'</span>';
+            case 'closed': return '<span style="color: blue;font-weight: bolder;font-size: 110%"> '.$this->status.'</span>';
+            case 'pass': return '<span style="color: darkgreen;font-weight: bolder;font-size: 110%"> '.$this->status.'</span>';
+            case 'testing': return '<span style="color: darkslategray;font-weight: bolder;font-size: 110%"> '.$this->status.'</span>';
+        }
     }
 }

@@ -14,7 +14,7 @@
                 @csrf
                 <div class="form-group">
                     <label  class="control-label">Test Suite Summary</label>
-                   </span>  <input name="name" value="{{$Testsuite->summary}}" class="form-control" />
+                   </span>  <input name="summary" value="{{$Testsuite->summary}}" class="form-control" />
                 </div>
 
                 @if ($errors->any())

@@ -49,10 +49,12 @@ Route::prefix('Testsuites')->group(function () {
     Route::get('/', 'TestsuiteController@index');
     Route::post('/Create', 'TestsuiteController@CreatePost');
     Route::get('/Details/{id}', 'TestsuiteController@Details');
+    Route::get('/Take/{id}', 'TestsuiteController@Take');
+    Route::get('/TakeTest/{id}', 'TestsuiteController@TakeTest');
     Route::get('/Create', 'TestsuiteController@Create');
     Route::get('/Edit/{id}', 'TestsuiteController@Edit');
     Route::post('/EditPost/{id}', 'TestsuiteController@EditPost');
-    Route::get('/Set/{id}', 'TestsuiteController@Set');
+    Route::get('/Set/{id}', 'TestsuiteController@Set')->name('testsuiteSet');
     Route::post('/SetPost/{id}', 'TestsuiteController@SetPost');
 });
 
@@ -85,11 +87,12 @@ Route::prefix('Testcases')->group(function () {
 Route::prefix('Bugs')->group(function () {
     Route::get('/', 'BugController@index');
     Route::post('/Create', 'BugController@CreatePost');
+    Route::get('/Run', 'BugController@Run');
     Route::get('/Details/{id}', 'BugController@Details');
     Route::get('/Create', 'BugController@Create')->name('BugCreate');
     Route::get('/Edit/{id}', 'BugController@Edit');
     Route::get('/Assign/{id}', 'BugController@Assign');
-    Route::get('/StaffAssign/{id}', 'BugController@StaffAssign');
+    Route::get('/StaffAssign/{id}', 'BugController@StaffAssign')->name('StaffAssign');
     Route::post('/Assign/{id}', 'BugController@AssignPost');
     Route::get('/Reject/{id}', 'BugController@Reject')->name('BugReject');
     Route::post('/EditPost/{id}', 'BugController@EditPost');

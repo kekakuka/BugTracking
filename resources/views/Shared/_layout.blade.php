@@ -24,7 +24,7 @@
         <a   href="{{url('/')}}"><img class="img-rounded" style="width:50px;" src="{{URL::asset('images/Logo1.png')}}" alt="Bug Tracking"></a>
     </div>
     @if(Session::has('user')&&Session::get('user')->title==='manager')
-    <div style="padding-top:5px;margin-left:10px" class="col-md-3 dropdown">
+    <div style="padding-top:5px;margin-left:10px" class="col-md-2 dropdown">
         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
             Management<span class="caret"></span>
         </a>
@@ -36,10 +36,13 @@
             <li><a href="{{url('/Testcases')}}">Testcase Management</a></li>
             <li><a href="{{url('/Bugs')}}">Bug Management</a></li>
             <li><a href="{{url('/Settings')}}">Setting Management</a></li>
+            @if(Session::get('user')->title!=='developer')
+                <li><a href="{{url('/Testsuites')}}">Test Suite Management</a></li>
+            @endif
         </ul>
     </div>
         @elseif(Session::has('user'))
-        <div style="padding-top:5px;margin-left:10px" class="col-md-3 dropdown">
+        <div style="padding-top:5px;margin-left:10px" class="col-md-2 dropdown">
             <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 Information<span class="caret"></span>
             </a>
@@ -51,6 +54,9 @@
                 <li><a href="{{url('/Testcases')}}">Testcases</a></li>
                 <li><a href="{{url('/Staff')}}">Staff</a></li>
                 <li><a href="{{url('/Settings')}}">Setting</a></li>
+                @if(Session::get('user')->title!=='developer')
+                    <li><a href="{{url('/Testsuites')}}">Test Suite Management</a></li>
+                @endif
             </ul>
         </div>
 @endif
@@ -67,11 +73,9 @@
                 @if(Session::has('user'))
 
                     <li><a href="{{url('/Reports')}}">Reports</a></li>
+
                     @if(Session::get('user')->title!=='developer')
-                        <li><a href="{{url('/Testsuites')}}">Test Suite</a></li>
-                    @endif
-                    @if(Session::get('user')->title!=='developer')
-                    <li><a href="{{url('/Bugs/Create')}}">Bug/Test Enter</a></li>
+                    <li><a href="{{url('/Bugs/Run')}}">Take Tests/Enter Bugs</a></li>
                     @endif
                     @if(Session::get('user')->title==='manager')
                     <li><a href="{{url('/Bugs/AssignIndex')}}">Bug Assign</a></li>

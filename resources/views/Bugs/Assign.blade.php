@@ -54,11 +54,13 @@
                         <label>Bug RPN:  </label>
                         <label id="BUGRPN">  </label>
                         <br>
+                        @if($bug->state==='open')
                         <label class="control-label">Estimated Fix Date</label>
                         @if($bug->estimatedFixDate!==null&&$bug->estimatedFixDate!=='')
                             <input type="date" name="estimatedFixDate" value="{{ $bug->estimatedFixDate }}"/>
                         @else
                             <input type="date" name="estimatedFixDate" value="{{$date}}"/>
+                        @endif
                         @endif
                     </div>
                     <div class="form-group">
@@ -104,13 +106,18 @@
                             <option value="unknown">Unknown</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label  class="control-label">Bug Comments</label>
+                        </span>  <input name="comment" value="{{ old('comment') }}" class="form-control" />
+                    </div>
                     <hr>
                     <div class="form-group">
                         <input type="submit" value="Assign The Bug" class="btn btn-default"/>
+                        @if($bug->state==='open')
                         <a style="margin-left: 40px" class="btn btn-default" href="{{route('BugReject',$bug->id)}}">
                             Reject The Bug
                         </a>
-
+@endif
                             <a class="col-lg-offset-1" href="{{url('Bugs/AssignIndex')}}">Back to List</a>
 
                     </div>
@@ -164,7 +171,26 @@
         </div>
 
     </div>
-    @if($bug->bugassigns!==null&&$bug->bugassigns->count()>0)
+    @if($bug->bugcomments->count()>0)
+        <hr/>
+        <div >
+            <dl class="dl-horizontal">
+                <dt>
+                    Bug Comments:
+                </dt>
+                <dd>
+                    <table class="table">
+                        <tr><th>Staff Name</th><th>Comment Date</th><th colspan="3">Comment</th></tr>
+                        @foreach($bug->bugcomments as $bugcomment)
+                            <tr><td>{{ $bugcomment->staff->fullName}}</td><td>{{date_format($bugcomment->created_at,'Y-m-d') }}</td><td colspan="3">{{ $bugcomment->comment}}</td>
+
+                        @endforeach
+                    </table>
+                </dd>
+            </dl>
+        </div>
+    @endif
+    @if($bug->bugassigns->count()>0)
     <hr/>
     <div >
         <dl class="dl-horizontal">

@@ -1,12 +1,12 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-       background-color: rgba(238, 249, 198, 0.5);
+       background-color: rgba(248, 255, 218, 0.5);
     color: black;
 }
 .navbar {
     text-shadow: 0.2px 0.3px 0px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(rgba(253, 255, 225, 0.81),rgba(208, 210, 140, 0.81));
+    background: linear-gradient(rgba(253, 255, 225, 0.81),rgba(228, 230, 150, 0.81));
 }
 #LayoutLogo:hover {
   

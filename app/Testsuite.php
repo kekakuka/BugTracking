@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Session;
 
 class Testsuite extends Model
 {
@@ -36,5 +37,28 @@ class Testsuite extends Model
         }
         return $waiting.'/'.$this->tests->count();
     }
+    public function myTesting()
+    {
+        $myTesting=0;
+if(Session::has('user')){
+        foreach ($this->tests as $test){
+            if($test->status==='testing'&&$test->staff_id===Session::get('user')->id)
+            {$myTesting++;}
+        }
+        return  $myTesting;
+    }}
+    public function hasWaiting()
+    {
+        $has=false;
+        foreach ($this->tests as $test){
+            if($test->status==='testing'||$test->status==='waiting'){
+
+                $has=true;
+                break;
+            }
+        }
+        return $has;
+      }
+
 
 }

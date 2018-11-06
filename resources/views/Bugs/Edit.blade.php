@@ -100,7 +100,7 @@
                     <tr><th>Staff Name</th><th>Title</th><th>Status</th><th>Assign Date</th><th>Submit Date</th></tr>
                     @foreach($Bug->bugassigns as $bugassign)
                         <tr><td>{{ $bugassign->staff->fullName}}</td><td>{{ $bugassign->staff->title}}</td><td>{{ $bugassign->status}}</td><td>{{date_format($bugassign->created_at,'Y-m-d') }}</td>
-                            <td>@if($bugassign->status==='finished'){{date_format($bugassign->updated_at,'Y-m-d') }}@endif</td></tr>
+                            <td>@if($bugassign->status!=='assigned'){{date_format($bugassign->updated_at,'Y-m-d') }}@endif</td></tr>
                     @endforeach
                 </table>
             </dd>

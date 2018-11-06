@@ -79,17 +79,19 @@ class BugController extends Controller
             , 'staff_id' => Bug::find($id)->test->staff_id
         ]);
         $bugAssign->save();
+
         if(isset($_POST['comment'])&&$_POST['comment']!==''){
+
+
             $validatorComments = Validator::make($request->all(), [
                 'comment'=>'max:500',
             ]);
             if ($validatorComments->fails()) {
                 return redirect(route('BugAssignIndex'));
-
             }
             $BugComment = new Bugcomment([
                 'staff_id' => Session::get('user')->id
-                , 'bug_id' => $id
+                , 'bug_id' => Bug::find($id)->id
                 , 'comment' => $_POST['comment']
             ]);
             $BugComment->save();
@@ -97,11 +99,12 @@ class BugController extends Controller
         return redirect()->route('BugAssignIndex');
     }
 
-    public function Create()
+    public function Create($id)
     {
         AuthController::IsNotDeveloper();
-        $tests = Test::all();
-        return view('Bugs.Create', compact('tests'));
+        $testsuite=Testsuite::find($id);
+        $tests = $testsuite->tests;
+        return view('Bugs.Create', compact('tests','testsuite'));
     }
 
     public function ReAssign(Request $request, $id)
@@ -123,32 +126,63 @@ class BugController extends Controller
 
     public function MyWorkPost(Request $request, $id)
     {
-
         if (isset($_POST['costTime'])){
             $validatorTest1 = Validator::make($request->all(), [
-
-                'costTime' => 'required|between:0.1,999|numeric'
-
+                'costTime' => 'required|between:0,999|numeric'
             ]);
-
             if ($validatorTest1->fails()) {
                 return redirect(route('StaffAssign', ['id' => $id]))
                     ->withErrors($validatorTest1)
                     ->withInput();
             }
         }
-        if (Session::get('user')->title === 'developer') {
+        if (Session::get('user')->title ==='developer') {
+            if(Staff::find($_POST['staff_id'])->title==='developer'){
             DB::table('Bugassigns')
                 ->where('id', $id)
-                ->update(['status' => 'finished', 'costTime'=>$_POST['costTime'],
+                ->update(['status' => 'notFixed', 'costTime'=>$_POST['costTime'],
                     'updated_at' => date_format(Carbon::now(), 'Y-m-d H:m:s')]);
+            }
+            else{ DB::table('Bugassigns')
+                ->where('id', $id)
+                ->update(['status' => 'fixed', 'costTime'=>$_POST['costTime'],
+                    'updated_at' => date_format(Carbon::now(), 'Y-m-d H:m:s')]);}
         }
         else{
+            if(Bugassign::find($id)->bug->state==='test'){
+               if($_POST['state'] === 'closed'){
         DB::table('Bugassigns')
             ->where('id', $id)
-            ->update(['status' => 'finished',
-                'costTime'=>isset($_POST['costTime'])?:0,
+            ->update(['status' => 'pass',
+                'costTime'=>isset($_POST['costTime'])?$_POST['costTime']:0,
                 'updated_at' => date_format(Carbon::now(), 'Y-m-d H:m:s')]);
+               }
+               else{
+                   DB::table('Bugassigns')
+                       ->where('id', $id)
+                       ->update(['status' => 'failed',
+                           'costTime'=>isset($_POST['costTime'])?$_POST['costTime']:0,
+                           'updated_at' => date_format(Carbon::now(), 'Y-m-d H:m:s')]);
+               }
+
+            }
+            else{
+                if($_POST['state'] === 'closed'){
+                    DB::table('Bugassigns')
+                        ->where('id', $id)
+                        ->update(['status' => 'notBug',
+                            'costTime'=>isset($_POST['costTime'])?$_POST['costTime']:0,
+                            'updated_at' => date_format(Carbon::now(), 'Y-m-d H:m:s')]);
+                }
+                else{
+                    DB::table('Bugassigns')
+                        ->where('id', $id)
+                        ->update(['status' => 'isBug',
+                            'costTime'=>isset($_POST['costTime'])?$_POST['costTime']:0,
+                            'updated_at' => date_format(Carbon::now(), 'Y-m-d H:m:s')]);
+                }
+
+            }
         }
 
         Session::forget('MyNumber');
@@ -282,14 +316,15 @@ class BugController extends Controller
         return redirect(route('BugAssignIndex'));
     }
 
-    public function CreatePost(Request $request)
+    public function CreatePost(Request $request,$id)
     {
+
         AuthController::IsNotDeveloper();
         $validatorTest = Validator::make($request->all(), [
             'test_id'=>'required',
         ]);
         if ($validatorTest->fails()) {
-            return redirect('Bugs/Create')
+            return redirect('Bugs/Create/'.$id)
                 ->withErrors($validatorTest)
                 ->withInput();
         }
@@ -301,7 +336,7 @@ class BugController extends Controller
         ]);
 
         if ($validatorTest1->fails()) {
-            return redirect('Bugs/Create')
+            return redirect('Bugs/Create/'.$id)
                 ->withErrors($validatorTest1)
                 ->withInput();
         }
@@ -310,7 +345,7 @@ class BugController extends Controller
 
             DB::table('tests')
                 ->where('id', $test->id)
-                ->update(['status' => 'pass', 'costTime' => $test->classification === 'manual' ? $_POST['costTime'] : 0]);
+                ->update(['status' => 'pass','updated_at' => date_format(Carbon::now(), 'Y-m-d H:m:s'), 'costTime' => $test->classification === 'manual' ? $_POST['costTime'] : 0]);
             $csuccess = 'Successfully Record the Test!';
         } else {
 
@@ -320,14 +355,14 @@ class BugController extends Controller
                 ]);
 
             if ($validator->fails()) {
-                return redirect('Bugs/Create')
+           return redirect('Bugs/Create/'.$id)
                     ->withErrors($validator)
                     ->withInput();
             }
 
             DB::table('tests')
                 ->where('id', $test->id)
-                ->update(['status' => 'failed', 'costTime' => $test->classification === 'manual' ? $_POST['costTime'] : 0]);
+                ->update(['status' => 'failed','updated_at' => date_format(Carbon::now(), 'Y-m-d H:m:s'), 'costTime' => $test->classification === 'manual' ? $_POST['costTime'] : 0]);
 
                 $Bug = new Bug([
                     'priority' => $_POST['priority']
@@ -344,7 +379,7 @@ class BugController extends Controller
                     'comment'=>'max:500',
                 ]);
                 if ($validatorComments->fails()) {
-                    return redirect(route('BugCreate'))->with('csuccess', $csuccess);
+                    return redirect('Bugs/Create/'.$id)->with('csuccess', $csuccess);
                 }
                 $BugComment = new Bugcomment([
                     'staff_id' => Session::get('user')->id
@@ -355,7 +390,7 @@ class BugController extends Controller
             }
 
         }
-        return redirect(route('BugCreate'))->with('csuccess', $csuccess);
+        return redirect('Bugs/Create/'.$id)->with('csuccess', $csuccess);
     }
 
     public function Edit($id)
@@ -373,7 +408,7 @@ class BugController extends Controller
             if ($bugassign->status === 'assigned') {
                 DB::table('Bugassigns')
                     ->where('id', $bugassign->id)
-                    ->update(['status' => 'finished', 'updated_at' => date_format(Carbon::now(), 'Y-m-d H:m:s')]);
+                    ->update(['status' => 'deferred', 'updated_at' => date_format(Carbon::now(), 'Y-m-d H:m:s')]);
             }
 
         }

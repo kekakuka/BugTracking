@@ -108,15 +108,16 @@
                     </div>
                     <div class="form-group">
                         <label  class="control-label">Bug Comments</label>
-                        </span>  <input name="comment" value="{{ old('comment') }}" class="form-control" />
+                        </span>  <input id="bugComment" name="comment" value="{{ old('comment') }}" class="form-control" />
                     </div>
                     <hr>
                     <div class="form-group">
                         <input type="submit" value="Assign The Bug" class="btn btn-default"/>
                         @if($bug->state==='open')
-                        <a style="margin-left: 40px" class="btn btn-default" href="{{route('BugReject',$bug->id)}}">
+                        <a   style="margin-left: 40px" class="btn btn-default" href="{{url('Bugs/Reject/'.$bug->id.'/')}}">
                             Reject The Bug
                         </a>
+
 @endif
                             <a class="col-lg-offset-1" href="{{url('Bugs/AssignIndex')}}">Back to List</a>
 
@@ -125,6 +126,9 @@
 
                     </div>
                 </div>
+                <script>
+
+                </script>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="col-lg-offset-1">Test Information:</label>
@@ -202,7 +206,7 @@
                     <tr><th>Staff Name</th><th>Title</th><th>Status</th><th>Assign Date</th><th>Submit Date</th></tr>
                     @foreach($bug->bugassigns as $bugassign)
                         <tr><td>{{ $bugassign->staff->fullName}}</td><td>{{ $bugassign->staff->title}}</td><td>{{ $bugassign->status}}</td><td>{{date_format($bugassign->created_at,'Y-m-d') }}</td>
-                            <td>@if($bugassign->status==='finished'){{date_format($bugassign->updated_at,'Y-m-d') }}@endif</td></tr>
+                            <td>@if($bugassign->status!=='assigned'){{date_format($bugassign->updated_at,'Y-m-d') }}@endif</td></tr>
                     @endforeach
                 </table>
             </dd>

@@ -1,8 +1,8 @@
 @extends('Shared._layout')
-@section('title', 'Staff Index')
+@section('title', 'Developer Report')
 @section('content')
 
-    <h2>Staff Bug Assign Report</h2>
+    <h2>Developer Report Index</h2>
     <img id="img1" src="{{url('images/OpenClosed.jpg')}}" style="display:none;">
     <img id="img2" src="{{url('images/Numbers.jpg')}}" style="display:none;">
     <hr>
@@ -20,13 +20,15 @@
                     <label style="margin-left: 2%"> Staff </label>   <select name="staff_id">
 
 
-                        <option value="">All Staff</option>
+                        <option value="">All Developer</option>
                         @foreach($staffs as  $staff )
+                           @if($staff->title==='developer')
                             @if(isset($_GET['staff_id'])&&($_GET['staff_id']!=='')&&($_GET['staff_id']==$staff->id))
                                 <option selected value="{{$staff->id}}">ID: {{$staff->id}} ; {{$staff->fullName}}</option>
                             @else
                                 <option value="{{$staff->id}}">ID: {{$staff->id}} ; {{$staff->fullName}}</option>
                             @endif
+                          @endif
                         @endforeach
                     </select>
 
@@ -34,8 +36,11 @@
                 </p>
             </div>
         </form>
+        <div>
 
-
+            <span style="font-size: 19px">Note : Unfinished bug assign are not affected by the filter </span>
+        </div>
+<br>
         <div>
 
             <a href="{{url('Reports')}}">Back to List</a>
@@ -43,8 +48,8 @@
     </div>
     <hr>
     <div id="print">
-        <div style="background-color:white;width:744px; border: 1px solid">
-            <div style="margin-left: 22px; width:700px;font-family: 'Times New Roman'">
+        <div style="background-color:white;width:1044px; border: 1px solid">
+            <div style="margin-left: 22px; width:1000px;font-family: 'Times New Roman'">
                 <div><P class="text-center" style="font-size: 26px">Summary</P></div>
 
                             <table class="table table-striped">
@@ -68,11 +73,14 @@
                                     <th>
                                         Finished Work
                                     </th>
+                                    <th>
+                                        Work Time
+                                    </th>
                                 </tr>
 
                                 </thead>  <tbody>
                                 @foreach($staffs as $staff)
-
+@if($staff->title==='developer')
                                     <tr>
                                         <td>
                                           {{$staff->id}}
@@ -91,10 +99,12 @@
                                         <td>
                                            {{$staff->finishedWork($staff->bugassigns,$moreThanDate,$lessThanDate) }}
                                         </td>
-
+                                        <td>
+                                            {{$staff->developerTime($moreThanDate,$lessThanDate) }}
+                                        </td>
                                     </tr>
 
-
+@endif
                                 @endforeach    </tbody>
                             </table>
 
@@ -102,7 +112,7 @@
                 <div><P class="text-center" style="font-size: 26px">Bug Assigns List</P></div>
                 @if(isset($_GET['staff_id'])&&($_GET['staff_id']!==''))
                     @foreach($staffs as $staff)
-                        @if($_GET['staff_id']==$staff->id)
+                        @if($_GET['staff_id']==$staff->id&&$staff->title==='developer')
             <hr>
                     <table class="table table-striped">
             <thead>
@@ -112,17 +122,17 @@
             </th>
 
             <th>
-                Full Name: {{$staff->fullName}}
+                Name: {{$staff->fullName}}
             </th>
 
             <th>
                 Title: {{$staff->title}}
             </th>
             <th>
-                Unfinished Work:  @if($staff->workLoad($staff->bugassigns)>0)<span style="color: red">{{ $staff->workLoad($staff->bugassigns) }}</span>@else {{ $staff->workLoad($staff->bugassigns) }} @endif
+                Unfinished:  @if($staff->workLoad($staff->bugassigns)>0)<span style="color: red">{{ $staff->workLoad($staff->bugassigns) }}</span>@else {{ $staff->workLoad($staff->bugassigns) }} @endif
             </th>
             <th>
-                Finished Work:{{$staff->finishedWork($staff->bugassigns,$moreThanDate,$lessThanDate) }}
+                Finished:{{$staff->finishedWork($staff->bugassigns,$moreThanDate,$lessThanDate) }}
             </th>
         </tr>
 
@@ -130,13 +140,11 @@
             <tbody>
             @foreach($staff->bugsAssigns($moreThanDate,$lessThanDate) as $bugassign)
                 <tr>
-                    <td colspan="1">Bug ID: {{$bugassign->bug->id}}</td>   <td colspan="4">Bug Description: {{$bugassign->bug->description}}</td></tr>
+                    <td colspan="1">Bug ID: {{$bugassign->bug->id}}</td> @if($bugassign->status!=='assigned')   <td colspan="4">Bug Description: {{$bugassign->bug->description}}</td><td colspan="1">Cost Time: {{$bugassign->costTime}} Hours</td>@else<td colspan="5">Bug Description: {{$bugassign->bug->description}}</td>@endif</tr>
                 <tr><td colspan="1">Bug RPN: {{$bugassign->bug->bugRPN }} </td><td colspan="2">  Assigned Date: {{date_format($bugassign->created_at,'Y-m-d') }}</td>
-                    <td colspan="2">Finished Date: @if($bugassign->status==='finished'){{date_format($bugassign->updated_at,'Y-m-d')}} @else <span style="color: red"> {{'Not Finished'}}</span>@endif</td>
+                    @if($bugassign->status!=='assigned')  <td colspan="2">Finished Date:{{date_format($bugassign->updated_at,'Y-m-d')}} </td><td>Status: {{$bugassign->status}}</td>@else <td colspan="3">Finished Date:<span style="color: red">Not Finished</span></td>@endif
                 </tr>
-                <tr>
-                    <td style="background-color: white;" colspan="5"></td>
-                <tr>
+
             @endforeach
             </tbody>
     </table>
@@ -144,6 +152,7 @@
                     @endforeach
                 @else
                     @foreach($staffs as $staff)
+                        @if($staff->title==='developer')
                         <hr>
                         <table class="table table-striped">
                             <thead>
@@ -174,16 +183,16 @@
                             <tbody>
                             @foreach($staff->bugsAssigns($moreThanDate,$lessThanDate) as $bugassign)
                                 <tr>
-                                    <td colspan="1">Bug ID: {{$bugassign->bug->id}}</td>   <td colspan="3">Bug Description: {{$bugassign->bug->description}}</td><td colspan="2">Bug RPN: {{$bugassign->bug->bugRPN }} </td></tr>
-                                <tr><td colspan="2">  Assigned Date: {{date_format($bugassign->created_at,'Y-m-d') }}</td>
-                                    <td colspan="2">Finished Date: @if($bugassign->status==='finished'){{date_format($bugassign->updated_at,'Y-m-d')}} @else <span style="color: red"> {{'Not Finished'}}</span>@endif</td><td colspan="2">Project: {{$bugassign->bug->test->testcase->usecase->subsystem->project->name}}</td>
+                                    <td colspan="1">Bug ID: {{$bugassign->bug->id}}</td> @if($bugassign->status!=='assigned')   <td colspan="4">Bug Description: {{$bugassign->bug->description}}</td><td colspan="1">Cost Time: {{$bugassign->costTime}} Hours</td>@else<td colspan="5">Bug Description: {{$bugassign->bug->description}}</td>@endif</tr>
+                                <tr><td colspan="1">Bug RPN: {{$bugassign->bug->bugRPN }} </td><td colspan="2">  Assigned Date: {{date_format($bugassign->created_at,'Y-m-d') }}</td>
+                                    @if($bugassign->status!=='assigned')  <td colspan="2">Finished Date:{{date_format($bugassign->updated_at,'Y-m-d')}} </td><td>Status: {{$bugassign->status}}</td>@else <td colspan="3">Finished Date:<span style="color: red">Not Finished</span></td>@endif
                                 </tr>
-                                <tr>
-                                    <td style="background-color: white;" colspan="5"></td>
-                                <tr>
+
                             @endforeach
                             </tbody>
+
                         </table>
+                        @endif
                     @endforeach
                 @endif
 

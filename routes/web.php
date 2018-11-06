@@ -86,10 +86,10 @@ Route::prefix('Testcases')->group(function () {
 });
 Route::prefix('Bugs')->group(function () {
     Route::get('/', 'BugController@index');
-    Route::post('/Create', 'BugController@CreatePost');
+    Route::post('/Create/{id}', 'BugController@CreatePost');
     Route::get('/Run', 'BugController@Run');
     Route::get('/Details/{id}', 'BugController@Details');
-    Route::get('/Create', 'BugController@Create')->name('BugCreate');
+    Route::get('/Create/{id}', 'BugController@Create')->name('BugCreate');
     Route::get('/Edit/{id}', 'BugController@Edit');
     Route::get('/Assign/{id}', 'BugController@Assign');
     Route::get('/StaffAssign/{id}', 'BugController@StaffAssign')->name('StaffAssign');

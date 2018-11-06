@@ -20,7 +20,7 @@ class CreateBugassignsTable extends Migration
             $table->unsignedInteger('staff_id');
             $table->foreign('bug_id')->references('id')->on('bugs');
             $table->foreign('staff_id')->references('id')->on('staff');
-            $table->enum('status', ['assigned','finished'])->default('assigned');
+            $table->enum('status', ['assigned','pass','failed','deferred','notFixed','fixed','isBug','notBug'])->default('assigned');
             $table->double('costTime',4,1)->default(0);
         });
     }

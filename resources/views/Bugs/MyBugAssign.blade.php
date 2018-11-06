@@ -202,12 +202,12 @@
                                 <td>{{ $bugassign->staff->title}}</td>
                                 <td>{{ $bugassign->status}} </td>
                                 <td>
-                                @if($bugassign->status==='finished')
+                                @if($bugassign->status!=='assigned')
                                         {{ $bugassign->costTime}}
                                 @endif
                                 </td>
                                 <td>{{date_format($bugassign->created_at,'Y-m-d') }}</td>
-                                <td>@if($bugassign->status==='finished'){{date_format($bugassign->updated_at,'Y-m-d') }}@endif</td>
+                                <td>@if($bugassign->status!=='assigned'){{date_format($bugassign->updated_at,'Y-m-d') }}@endif</td>
                             </tr>
                         @endforeach
                     </table>

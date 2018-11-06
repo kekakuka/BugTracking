@@ -8,7 +8,7 @@
     <hr>
     <br>
     <div>
-        <a class="btn btn-default " href="{{url('Reports/StaffReport')}}"> Staff Bug Assign Report</a> <a style="margin-left: 5%" class="btn btn-default " href="{{url('Reports/TesterReport')}}">Tester Report</a>
+        <a class="btn btn-default " href="{{url('Reports/StaffReport')}}"> Developer Report</a> <a style="margin-left: 5%" class="btn btn-default " href="{{url('Reports/TesterReport')}}">Tester Report</a>
     </div>
     <div>
 

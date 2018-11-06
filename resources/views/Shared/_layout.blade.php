@@ -76,6 +76,7 @@
 
                     @if(Session::get('user')->title!=='developer')
                     <li><a href="{{url('/Bugs/Run')}}">Take Tests/Enter Bugs</a></li>
+
                     @endif
                     @if(Session::get('user')->title==='manager')
                     <li><a href="{{url('/Bugs/AssignIndex')}}">Bug Assign</a></li>

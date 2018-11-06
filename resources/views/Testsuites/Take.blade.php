@@ -26,7 +26,7 @@
         <a href="{{url('/Bugs/Run')}}">Back to List</a>
     </div>
 
-    @if($Testsuite->tests->count()>0)
+    @if($Testsuite->waitingNumber()>0)
             <div style="font-size: 22px;">Waiting Tests list:</div>
    @endif
         @foreach($Testsuite->tests->reverse() as $test)
@@ -37,7 +37,7 @@
                 <tbody>
             <tr>
                 <td>
-                    <a class="btn btn-default" href="{{url('Testsuites/TakeTest/'.$test->id)}}">Take the Test</a>
+                    <a class="btn btn-default" href="{{url('Testsuites/TakeTest/'.$test->id)}}">Take the Test {{$test->id}}</a>
                 </td>
                 @if(($test->status!=='waiting'&&$test->status!=='testing')&&$test->classification==='manual')
                     <td>
@@ -76,7 +76,14 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    Testcase: {{$test->testcase->name }}
+
+                    <div class="box">
+                        Testcase: {{$test->testcase->name }}
+                        <div class="overbox">
+
+                            <div class="tagline overtext">Description: {{$test->testcase->description }}<br>  Usecase: {{$test->testcase->usecase->name }}<br> Subsystem: {{$test->testcase->usecase->subsystem->name }}</div>
+                        </div>
+                    </div>
                 </td>
 
                 <td colspan="3">

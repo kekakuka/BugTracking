@@ -146,6 +146,15 @@
                         @endif
 
                     @endforeach
+                        @foreach($project->testsuites as $testsuite)
+
+                            @if($testsuite->hasWaiting())
+                                <li style="font-size: 24px">Test Suite: {{$testsuite->summary}}:<span style="color: red">Tests need to run</span>
+                                </li>
+
+                            @endif
+
+                        @endforeach
                     @foreach($project->subsystems as $subsystem)
 
                         <ul>

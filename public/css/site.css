@@ -133,3 +133,52 @@ footer {
         display: none;
     }
 }
+.box {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    max-width: 700px;
+}
+
+.box .overbox {
+    background-color: rgba(248, 255, 218, 0.5);
+    top: 30px;
+    left: 0;
+    color: black;
+    z-index: 100;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.box:hover .overbox { display: block ;opacity: 1}
+
+.box .overtext {
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    transform: translateY(40px);
+    -webkit-transform: translateY(40px);
+}
+
+.box .tagline {
+    font-size: 1em;
+    opacity: 0;
+    transition-delay: 0.2s;
+    transition-duration: 0.2s;
+}
+
+.box:hover .tagline,
+.box:focus .tagline {
+    opacity: 1;
+    transform: translateX(0px);
+    -webkit-transform: translateX(0px);
+}

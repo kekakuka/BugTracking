@@ -16,7 +16,7 @@
     <div class="row">
 
         <div class="col-md-9">
-            <form method="post" action="{{url('Bugs/Create')}}">
+            <form method="post" action="{{url('Bugs/Create/'.$testsuite->id)}}">
                 @csrf
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -31,15 +31,16 @@
                     <label>Test Failed(Enter Bug) /Test Pass</label>
                     <select id="ifPassTest" onchange="check()" style="width:60%;" name="ifPassTest"
                             class="form-control">
+
                         <option value="1">The Test Failed(Enter Bug)</option>
                         <option value="2">The Test Pass(No Bugs)</option>
-
+                        <option value="3">Enter more Bugs under Failed Test</option>
                     </select>
                 </div>
                 <hr>
                 <div style="width: 100%; height: 80%" id="costTime" class="form-group">
 
-                    <label class="control-label"> Cost Time (Ignore the field with Automatic Test )</label>
+                    <label class="control-label">Test Cost Time (Ignore the field with Automatic Test )</label>
                     <input id="costTime1" style="border-radius: 1px; width: 8%;" type="text" name="costTime" value="1"/>Hours
                 </div>
 
@@ -55,6 +56,7 @@
                             @endif
                         @endforeach
                     </select>
+                    <p id="noTesta" style="color: red;">You have No tests</p>
                 </div>
 
 
@@ -103,7 +105,7 @@
                         <label> </label>
                         <label> </label>
                         <label>Taxonomy</label>
-                        <select  name="taxonomy">
+                        <select name="taxonomy">
                             <option value="">-----Select Taxonomy------</option>
                             <option value="functional">Functional</option>
                             <option value="system">System</option>
@@ -122,8 +124,8 @@
 
                     </div>
                     <div class="form-group">
-                        <label  class="control-label">Bug Comments</label>
-                        </span>  <input name="comment" value="{{ old('comment') }}" class="form-control" />
+                        <label class="control-label">Bug Comments</label>
+                        </span>  <input name="comment" value="{{ old('comment') }}" class="form-control"/>
                     </div>
                 </div>
 
@@ -137,6 +139,8 @@
     </div>
     <script>
 
+        window.onload=function() {check()};
+        var noTesta = document.getElementById("noTesta");
         var testId = document.getElementById("testId");
         var enterBug = document.getElementById("enterBug");
         var ifPassTest = document.getElementById("ifPassTest");
@@ -144,11 +148,10 @@
         var options = document.getElementsByClassName('options');
 
         function check() {
-
+            var index = -1;
+            noTesta.style.display = 'none';
             if (ifPassTest.value === '2') {
-
                 enterBug.style.display = 'none';
-                var index = -1;
 
                 for (i = options.length - 1; i >= 0; i--) {
                     if (options[i].childNodes[0].nodeValue.split('Status:')[1] === 'failed') {
@@ -161,22 +164,50 @@
                 }
                 if (index === -1) {
                     testId.style.display = 'none';
+                    noTesta.style.display = 'block';
                     submitTest.disabled = true;
-
                 } else {
                     testId.selectedIndex = index;
-
                 }
             }
 
             else {
                 enterBug.style.display = 'block';
-                for (i = 0; i < options.length; i++) {
-                    options[i].style.display = 'block';
+                if (ifPassTest.value === '1') {
+                    for (i = 0; i < options.length; i++) {
+                        if (options[i].childNodes[0].nodeValue.split('Status:')[1] === 'failed') {
+                            options[i].style.display = 'none';
+                            options[i].selected = options[i].defaultSelected;
+                        }
+                        else {
+                            index = i
+                        }
+                    }
+                    if (index === -1) {
+                        testId.style.display = 'none';
+                        noTesta.style.display = 'block';
+                        submitTest.disabled = true;
+                    } else {
+                        testId.selectedIndex = index;
+                    }
                 }
-                testId.selectedIndex = 0;
-                testId.style.display = 'block';
-                submitTest.disabled = false;
+                else {
+                    for (i = 0; i < options.length; i++) {
+                        if (options[i].childNodes[0].nodeValue.split('Status:')[1] === 'testing') {
+                            options[i].style.display = 'none';
+                            options[i].selected = options[i].defaultSelected;
+                        }
+                        else {
+                            options[i].style.display = 'block';
+                            options[i].selected = options[i].defaultSelected;
+                        }
+                    }
+                    testId.selectedIndex = 0;
+                    testId.style.display = 'block';
+                    noTesta.style.display = 'none';
+                    submitTest.disabled = false;
+                }
+
             }
         }
 

@@ -37,7 +37,7 @@ class Test extends Model
             case 'waiting': return '<span style="color: darkorange;font-weight: bolder;font-size: 110%"> '.$this->status.'</span>';
             case 'closed': return '<span style="color: blue;font-weight: bolder;font-size: 110%"> '.$this->status.'</span>';
             case 'pass': return '<span style="color: darkgreen;font-weight: bolder;font-size: 110%"> '.$this->status.'</span>';
-            case 'testing': return '<span style="color: darkslategray;font-weight: bolder;font-size: 110%"> '.$this->status.'</span>';
+            case 'testing': return '<span style="color: darkred;font-weight: bolder;font-size: 110%"> '.$this->status.'</span>';
         }
     }
 }

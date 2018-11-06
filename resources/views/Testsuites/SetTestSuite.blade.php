@@ -68,9 +68,15 @@
 
     </div>
 
+
+
+
+
+
+
     <div>
 
-        <a href="{{url('Testsuites/')}}">Back to List</a>
+        <a   href="{{url('/Bugs/Run')}}">Back to List</a>
     </div>
     <table class="table" >
         <tbody>

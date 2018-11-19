@@ -18,6 +18,8 @@ class CreateTestsuitesTable extends Migration
             $table->string('summary',1000);
             $table->unsignedInteger('project_id');
             $table->foreign('project_id')->references('id')->on('projects');
+            $table->unsignedInteger('setting_id');
+            $table->foreign('setting_id')->references('id')->on('settings');
             $table->timestamps();
         });
     }

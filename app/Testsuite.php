@@ -7,13 +7,16 @@ use Session;
 
 class Testsuite extends Model
 {
-    protected $fillable=['summary','project_id'];
+    protected $fillable=['summary','project_id','setting_id'];
 
     public function tests()
     {
         return $this->hasMany('App\Test');
     }
-
+    public function setting()
+    {
+        return $this->belongsTo('App\Setting', 'setting_id','id');
+    }
     public function project()
     {
         return $this->belongsTo('App\Project', 'project_id','id');

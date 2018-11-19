@@ -15,8 +15,10 @@
             <th>ID
             </th>
 
-            <th style="width: 55%">
+            <th style="width: 35%">
                 Test Suite Summary
+            </th>
+            <th>Setting
             </th>
             <th>Project Name
             </th>
@@ -32,6 +34,9 @@
 
             <td>
                 {{ $Testsuite->summary}}
+            </td>
+            <td>
+                {{ $Testsuite->setting->description}}
             </td>
             <td>
                 {{ $Testsuite->project->name}}

@@ -99,13 +99,6 @@ class BugController extends Controller
         return redirect()->route('BugAssignIndex');
     }
 
-    public function Create($id)
-    {
-        AuthController::IsNotDeveloper();
-        $testsuite=Testsuite::find($id);
-        $tests = $testsuite->tests;
-        return view('Bugs.Create', compact('tests','testsuite'));
-    }
 
     public function ReAssign(Request $request, $id)
     {
@@ -315,6 +308,13 @@ class BugController extends Controller
 
         return redirect(route('BugAssignIndex'));
     }
+    public function Create($id)
+    {
+        AuthController::IsNotDeveloper();
+        $testsuite=Testsuite::find($id);
+        $tests = $testsuite->tests;
+        return view('Bugs.Create', compact('tests','testsuite'));
+    }
 
     public function CreatePost(Request $request,$id)
     {
@@ -349,13 +349,13 @@ class BugController extends Controller
             $csuccess = 'Successfully Record the Test!';
         } else {
 
-                $validator = Validator::make($request->all(), [
-                    'description' => 'required|max:1000',
-                    'estimatedFixDate' =>(isset($_POST['estimatedFixDate']) && $_POST['estimatedFixDate'] !== '')?'after:yesterday':'',
-                ]);
+            $validator = Validator::make($request->all(), [
+                'description' => 'required|max:1000',
+                'estimatedFixDate' =>(isset($_POST['estimatedFixDate']) && $_POST['estimatedFixDate'] !== '')?'after:yesterday':'',
+            ]);
 
             if ($validator->fails()) {
-           return redirect('Bugs/Create/'.$id)
+                return redirect('Bugs/Create/'.$id)
                     ->withErrors($validator)
                     ->withInput();
             }
@@ -364,14 +364,14 @@ class BugController extends Controller
                 ->where('id', $test->id)
                 ->update(['status' => 'failed','updated_at' => date_format(Carbon::now(), 'Y-m-d H:m:s'), 'costTime' => $test->classification === 'manual' ? $_POST['costTime'] : 0]);
 
-                $Bug = new Bug([
-                    'priority' => $_POST['priority']
-                    , 'severity' => $_POST['severity']
-                    , 'test_id' => $_POST['test_id']
-                    , 'description' => $_POST['description'],
-                    'estimatedFixDate'=>(isset($_POST['estimatedFixDate']) && $_POST['estimatedFixDate'] !== '')?$_POST['estimatedFixDate']:null,
-                    'taxonomy'    =>    (isset($_POST['taxonomy']) && $_POST['taxonomy'] !== '')?$_POST['taxonomy']:null
-                ]);
+            $Bug = new Bug([
+                'priority' => $_POST['priority']
+                , 'severity' => $_POST['severity']
+                , 'test_id' => $_POST['test_id']
+                , 'description' => $_POST['description'],
+                'estimatedFixDate'=>(isset($_POST['estimatedFixDate']) && $_POST['estimatedFixDate'] !== '')?$_POST['estimatedFixDate']:null,
+                'taxonomy'    =>    (isset($_POST['taxonomy']) && $_POST['taxonomy'] !== '')?$_POST['taxonomy']:null
+            ]);
             $Bug->save();
             $csuccess = 'Successfully enter the new Bug!';
             if(isset($_POST['comment'])&&$_POST['comment']!==''){

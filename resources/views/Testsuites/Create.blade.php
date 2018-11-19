@@ -19,6 +19,14 @@
                                        class="form-control">{{ old('summary') }}</textarea>
                 </div>
                 <div class="form-group">
+                    <label class="control-label">Setting</label>
+                    <select  style="width:140%;" name="setting_id" class="form-control">
+                        @foreach($settings as $setting)
+                            <option value="{{$setting->id}}">Setting: {{$setting->id}}:{{$setting->description}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <label class="control-label">Project</label>
                     <select name="project_id" class="form-control">
                         @foreach($projects as $project)

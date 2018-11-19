@@ -94,19 +94,4 @@
             </table>
             @endif
             @endforeach
-
-    <script>
-        function  select() {
-            var classification=  document.getElementById('classification');
-            var planTime=  document.getElementById('planTime');
-
-if (classification.value==='manual'){
-    planTime.style.display='block';
-}
-else {
-    planTime.style.display='none';
-}
-
-        }
-    </script>
 @endsection

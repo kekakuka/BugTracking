@@ -3,7 +3,11 @@
 @section('content')
 
     <h2>Take Tests</h2>
-
+    <hr>
+    <a style="margin-top: -3px" class="btn btn-default" href="{{url('Testsuites/CreateSingle')}}">Create Single Tests </a>  |
+    <a style="margin-top: -3px" class="btn btn-default" href="{{url('Testsuites/TakeSingle')}}"> Take Single Tests </a>  |
+    <a style="margin-top: -3px" class="btn btn-default" href="{{url('Testsuites/EnterSingle')}}"> Enter Single Tests/Bugs </a>
+    <hr>
     <table class="table">
         <thead>
         <tr>

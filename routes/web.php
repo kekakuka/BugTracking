@@ -56,6 +56,12 @@ Route::prefix('Testsuites')->group(function () {
     Route::post('/EditPost/{id}', 'TestsuiteController@EditPost');
     Route::get('/Set/{id}', 'TestsuiteController@Set')->name('testsuiteSet');
     Route::post('/SetPost/{id}', 'TestsuiteController@SetPost');
+    Route::get('/TakeSingle', 'TestsuiteController@TakeSingle')->name('testsuiteTakeSingle');
+    Route::get('/CreateSingle', 'TestsuiteController@CreateSingle')->name('testsuiteCreateSingle');
+    Route::get('/TakeSingle/{id}', 'TestsuiteController@TakeSinglePost');
+    Route::post('/CreateSingle', 'TestsuiteController@CreateSinglePost');
+    Route::get('/EnterSingle', 'TestsuiteController@EnterSingle');
+    Route::post('/EnterSingle', 'TestsuiteController@EnterSinglePost');
 });
 
 

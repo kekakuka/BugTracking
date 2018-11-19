@@ -1,27 +1,27 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-       background-color: rgba(248, 255, 218, 0.5);
+    background-color: rgba(238, 249, 238, 0.5);
     color: black;
 }
 .navbar {
     text-shadow: 0.2px 0.3px 0px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(rgba(253, 255, 225, 0.81),rgba(228, 230, 150, 0.81));
+    background: linear-gradient(rgba(233, 235, 235, 0.81),rgba(158, 160, 160, 0.81));
 }
 #LayoutLogo:hover {
-  
-   opacity:0.6;
+
+    opacity:0.6;
 }
 #SouvenirLogo {
-   
+
     color: rgb(168, 18,18);
     font-size: 16px;
     font-weight: 600;
 }
-    #SouvenirLogo:hover {
-        color: rgb(218, 58,58);
-       
-    }
+#SouvenirLogo:hover {
+    color: rgb(218, 58,58);
+
+}
 .thumbnail {
     background: linear-gradient(rgba(243, 245, 245, 0.91),rgba(223, 225, 225, 0.91));
     background-color: #FFFFFF;
@@ -33,10 +33,10 @@
 }
 
 
-    .thumbnail:hover {
-        box-shadow: 0 24px 36px 3px rgba(0,0,0,0.14), 0 9px 45px 8px rgba(0,0,0,0.12), 0 12px 15px -8px rgba(0,0,0,0.3);
-        color: black;
-    }
+.thumbnail:hover {
+    box-shadow: 0 24px 36px 3px rgba(0,0,0,0.14), 0 9px 45px 8px rgba(0,0,0,0.12), 0 12px 15px -8px rgba(0,0,0,0.3);
+    color: black;
+}
 
 a {
     color: rgba(23, 67, 135, 0.91);
@@ -59,21 +59,21 @@ a {
     border: thin solid;
     border-color:gray;
     color: #2b2b38;
-    background: linear-gradient(rgba(243, 245, 225, 0.91),rgba(213, 215, 165, 0.91));
+    background: linear-gradient(rgba(243, 245, 245, 0.91),rgba(193, 185, 185, 0.91));
     margin: auto;
     border-radius: 30%;
     text-shadow: 0.3px 0.3px 0px rgba(0, 0, 0, 0.3);
     position: relative;
 }
-    .btn-default:active,
-    .btn-primary:active,
-    .btn-success:active,
-    .btn-info:active,
-    .btn-warning:active,
-    .btn-danger:active {
-        margin-top: 3px;
-        margin-bottom: -3px;
-    }
+.btn-default:active,
+.btn-primary:active,
+.btn-success:active,
+.btn-info:active,
+.btn-warning:active,
+.btn-danger:active {
+    margin-top: 3px;
+    margin-bottom: -3px;
+}
 .navbar-default .navbar-nav > li > a:hover {
     color: white;
 }
@@ -84,11 +84,11 @@ a {
     background: linear-gradient(rgba(163, 165, 165, 0.91),rgba(123, 125, 125, 0.91));
     text-shadow: 0.2px 0.3px 0px rgba(0, 0, 0, 0.3);
 }
-    .nav-pills > li.active > a:hover {
-        background: linear-gradient(rgba(163, 165, 165, 0.91),rgba(123, 125, 125, 0.91));
-       
-        text-shadow: 0.2px 0.3px 0px rgba(0, 0, 0, 0.3);
-    }
+.nav-pills > li.active > a:hover {
+    background: linear-gradient(rgba(163, 165, 165, 0.91),rgba(123, 125, 125, 0.91));
+
+    text-shadow: 0.2px 0.3px 0px rgba(0, 0, 0, 0.3);
+}
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
@@ -102,12 +102,12 @@ a {
     border-radius:6px;
 }
 button {
-border:thin;
+    border:thin;
 }
 
 footer {
     font-size: 17px;
-   
+
     width: 100%
 }
 /* Carousel */
@@ -141,7 +141,7 @@ footer {
 }
 
 .box .overbox {
-    background-color: rgba(248, 255, 218, 0.5);
+    background-color: rgba(248, 255, 248, 0.5);
     top: 30px;
     left: 0;
     color: black;

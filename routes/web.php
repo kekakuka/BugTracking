@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 
-Route::prefix('admin/Staff')->group(function () {
+Route::prefix('Staff')->group(function () {
     Route::get('/', 'StaffController@index');
     Route::post('/Create', 'StaffController@CreatePost');
     Route::get('/Details/{id}', 'StaffController@Details');
@@ -25,7 +25,7 @@ Route::prefix('admin/Staff')->group(function () {
     Route::post('/EditPost/{id}', 'StaffController@EditPost');
 });
 
-Route::prefix('admin/Projects')->group(function () {
+Route::prefix('Projects')->group(function () {
     Route::get('/', 'ProjectController@index');
     Route::post('/Create', 'ProjectController@CreatePost');
     Route::get('/Details/{id}', 'ProjectController@Details');
@@ -35,7 +35,7 @@ Route::prefix('admin/Projects')->group(function () {
     Route::post('/EditPost/{id}', 'ProjectController@EditPost');
 });
 
-Route::prefix('admin/Subsystems')->group(function () {
+Route::prefix('Subsystems')->group(function () {
     Route::get('/', 'SubsystemController@index');
     Route::post('/Create', 'SubsystemController@CreatePost');
     Route::get('/Details/{id}', 'SubsystemController@Details');
@@ -45,7 +45,7 @@ Route::prefix('admin/Subsystems')->group(function () {
 });
 
 
-Route::prefix('admin/Testsuites')->group(function () {
+Route::prefix('Testsuites')->group(function () {
     Route::get('/', 'TestsuiteController@index');
     Route::post('/Create', 'TestsuiteController@CreatePost');
     Route::get('/Details/{id}', 'TestsuiteController@Details');
@@ -69,7 +69,7 @@ Route::get('admin', 'AdminController@index');
 
 
 
-Route::prefix('admin/Settings')->group(function () {
+Route::prefix('Settings')->group(function () {
     Route::get('/', 'SettingController@index');
     Route::post('/Create', 'SettingController@CreatePost');
     Route::get('/Create', 'SettingController@Create');
@@ -78,7 +78,7 @@ Route::prefix('admin/Settings')->group(function () {
 });
 
 
-Route::prefix('admin/Usecases')->group(function () {
+Route::prefix('Usecases')->group(function () {
     Route::get('/', 'UsecaseController@index');
     Route::post('/Create', 'UsecaseController@CreatePost');
     Route::get('/Details/{id}', 'UsecaseController@Details');
@@ -86,7 +86,7 @@ Route::prefix('admin/Usecases')->group(function () {
     Route::get('/Edit/{id}', 'UsecaseController@Edit');
     Route::post('/EditPost/{id}', 'UsecaseController@EditPost');
 });
-Route::prefix('admin/Testcases')->group(function () {
+Route::prefix('Testcases')->group(function () {
     Route::get('/', 'TestcaseController@index');
     Route::post('/Create', 'TestcaseController@CreatePost');
     Route::get('/Details/{id}', 'TestcaseController@Details');
@@ -94,7 +94,7 @@ Route::prefix('admin/Testcases')->group(function () {
     Route::get('/Edit/{id}', 'TestcaseController@Edit');
     Route::post('/EditPost/{id}', 'TestcaseController@EditPost');
 });
-Route::prefix('admin/Bugs')->group(function () {
+Route::prefix('Bugs')->group(function () {
     Route::get('/', 'BugController@index');
     Route::post('/Create/{id}', 'BugController@CreatePost');
     Route::get('/Run', 'BugController@Run');

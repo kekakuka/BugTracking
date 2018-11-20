@@ -16,14 +16,14 @@
                 Management<span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="{{url('admin/Staff')}}">Staff Management</a></li>
-                <li><a href="{{url('admin/Settings')}}">Setting Management</a></li>
-                <li><a href="{{url('admin/Projects')}}">Project Management</a></li>
-                <li><a href="{{url('admin/Subsystems')}}">=>Subsystem Management</a></li>
-                <li><a href="{{url('admin/Usecases')}}">==>Usecase Management</a></li>
-                <li><a href="{{url('admin/Testcases')}}">===>Testcase Management</a></li>
-                <li><a href="{{url('admin/Testsuites')}}">=>Test Suite Management</a></li>
-                <li><a href="{{url('admin/Bugs')}}">Bug Management</a></li>
+                <li><a href="{{url('Staff')}}">Staff Management</a></li>
+                <li><a href="{{url('Settings')}}">Setting Management</a></li>
+                <li><a href="{{url('Projects')}}">Project Management</a></li>
+                <li><a href="{{url('Subsystems')}}">=>Subsystem Management</a></li>
+                <li><a href="{{url('Usecases')}}">==>Usecase Management</a></li>
+                <li><a href="{{url('Testcases')}}">===>Testcase Management</a></li>
+                <li><a href="{{url('Testsuites')}}">=>Test Suite Management</a></li>
+                <li><a href="{{url('Bugs')}}">Bug Management</a></li>
 
 
             </ul>
@@ -34,15 +34,15 @@
                 Information<span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="{{url('admin/Bugs')}}">Bugs</a></li>
-                <li><a href="{{url('admin/Projects')}}">Projects</a></li>
-                <li><a href="{{url('admin/Subsystems')}}">Subsystems</a></li>
-                <li><a href="{{url('admin/Usecases')}}">Usecases</a></li>
-                <li><a href="{{url('admin/Testcases')}}">Testcases</a></li>
-                <li><a href="{{url('admin/Staff')}}">Staff</a></li>
-                <li><a href="{{url('admin/Settings')}}">Setting</a></li>
+                <li><a href="{{url('Bugs')}}">Bugs</a></li>
+                <li><a href="{{url('Projects')}}">Projects</a></li>
+                <li><a href="{{url('Subsystems')}}">Subsystems</a></li>
+                <li><a href="{{url('Usecases')}}">Usecases</a></li>
+                <li><a href="{{url('Testcases')}}">Testcases</a></li>
+                <li><a href="{{url('Staff')}}">Staff</a></li>
+                <li><a href="{{url('Settings')}}">Setting</a></li>
                 @if(Session::get('user')->title!=='developer')
-                    <li><a href="{{url('admin/Testsuites')}}">Test Suite Management</a></li>
+                    <li><a href="{{url('Testsuites')}}">Test Suite Management</a></li>
                 @endif
             </ul>
         </div>

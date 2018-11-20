@@ -17,7 +17,8 @@
 
 <div class="container-fluid content">
     <div style="min-height: 400px; margin:10px;">
-        @yield('content')</div>
+        @include('dashboard')
+       </div>
 
 </div>
 

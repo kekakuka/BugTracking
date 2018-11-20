@@ -4,32 +4,30 @@
         <div class="container">
         <div class="row">
             <div class="col-md-3 col-xs-6">
-                <div>
-                    <p><span style="font-size:20px" class="glyphicon glyphicon-heart-empty"> </span> ISCG7413 Testing
-                    </p>
 
-                </div>
                 <div>
                     <p><span style="font-size:20px" class="glyphicon glyphicon-user"> </span> Lecturer: Natalia</p>
 
 
                 </div>
+                <div>
+                    <p><span style="font-size:20px" class="glyphicon glyphicon-user"> </span> Developer/Tester:Lei Li
+                    </p>
 
+                </div>
 
 
             </div>
             <div class="col-md-4 col-xs-6">
+
+
                 <div>
-                    <p><span style="font-size:20px" class="glyphicon glyphicon-user"> </span>Student: LiHui Jiang; ID:
-                        1499467</p>
+                    <p><span style="font-size:20px" class="glyphicon glyphicon-user"> </span> UI Designer/Tester: MengXue Zhang</p>
                 </div>
 
                 <div>
-                    <p><span style="font-size:20px" class="glyphicon glyphicon-user"> </span>Student: Lei Li; ID:
-                        1494024</p>
+                    <p><span style="font-size:20px" class="glyphicon glyphicon-user"> </span> Designer/Tester: LiHui Jiang</p>
                 </div>
-
-
 
             </div>
             <div class="col-md-5 col-xs-12">

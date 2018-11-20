@@ -1,47 +1,55 @@
 @extends('Shared._layout')
-@section('title', 'Contact ')
 @section('content')
-    <h2>Contact</h2>
+
    <div class="container">
-        <div class="col-md-6">
+       <br>
+       <hr>
+       <div class="row">
+        <div class="col-md-4 thumbnail" style="height: 500px; font-size: 18px;">
             <dl class="dl-horizontal">
-                <dt> Address:</dt>
+                <h2 class="text-center">Contact us</h2><br><br>
+                <dt class="text-info"> Address:</dt>
+
                 <dd>
                     Building 183
                     139 Carrington Road
                     Mt Albert, Auckland
-                </dd>
-                <dt>Lecturer:</dt>
+                </dd><br>
+                <dt class="text-info">Lecturer:</dt>
+
                 <dd>
                     Natalia
                 </dd>
+                <dt class="text-info">Email:</dt>
 
+                <dd>
+                    natalia@unitec.ac.nz
+                </dd><br>
+                <dt class="text-info">Designer/Tester:</dt>
 
-            </dl>
-        </div>
-        <div class="col-md-6">
-            <dl class="dl-horizontal">
-
-
-                <dt>Designer/Tester:</dt>
                 <dd>
                     Lihui Jiang
                 </dd>
+                <dt class="text-info">Email:</dt>
 
-                <dt>Developer/Tester:</dt>
+                <dd>
+                    natalia@unitec.ac.nz
+                </dd><br>
+
+                <dt class="text-info">Developer/Tester:</dt>
+
                 <dd>Lei Li</dd>
+                <dt class="text-info">Email:</dt>
 
+                <dd>
+                    natalia@unitec.ac.nz
+                </dd><br>
 
             </dl>
         </div>
+           <div class="col-md-8"><div style="height: 500px" class="jumbotron" id="map"></div></div>
     </div>
-    <div></div>
-    <div class="container">
-        <div class="col-md-offset-1 col-md-10">
-         <div style="height: 500px" class="jumbotron" id="map"></div>
-        </div>
-    </div>
-
+   </div>
     <script>
 
         function initMap() {
@@ -63,4 +71,5 @@
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_zok3TctZQOdZzoR1lqs9a1q_mT0DN5c&callback=initMap">
     </script>
+
 @endsection

@@ -1,4 +1,4 @@
-<div style="font-size:15px" class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div style="font-size:15px;" class="navbar navbar-default navbar-fixed-top" role="navigation">
 
 
     <div style="margin-left:5%" class="col-md-1 navbar-header nav-title">

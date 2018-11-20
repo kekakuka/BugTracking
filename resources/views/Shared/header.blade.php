@@ -71,9 +71,7 @@
                             </span></a></li>
 
                     @endif
-                    @if(Session::get('user')->title==='manager')
-                        <li><a href="{{url('/Bugs/AssignIndex')}}">Bug Assign</a></li>
-                    @endif
+
                     <li><a href="{{url('/Bugs/MyWork')}}">My Work
                             <span style="color:white;background-color:rgba(117, 119, 129, 0.83);"
                                   class="badge">

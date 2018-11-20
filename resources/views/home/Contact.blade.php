@@ -5,9 +5,9 @@
        <br>
        <hr>
        <div class="row">
-        <div class="col-md-4 thumbnail" style="height: 500px; font-size: 18px;">
+        <div class="col-md-4 thumbnail" style="height: 500px; font-size: 17px;">
             <dl class="dl-horizontal">
-                <h2 class="text-center">Contact us</h2><br><br>
+                <h2 class="text-center">Contact us</h2><br>
                 <dt class="text-info"> Address:</dt>
 
                 <dd>
@@ -25,16 +25,6 @@
                 <dd>
                     natalia@unitec.ac.nz
                 </dd><br>
-                <dt class="text-info">Designer/Tester:</dt>
-
-                <dd>
-                    Lihui Jiang
-                </dd>
-                <dt class="text-info">Email:</dt>
-
-                <dd>
-                    natalia@unitec.ac.nz
-                </dd><br>
 
                 <dt class="text-info">Developer/Tester:</dt>
 
@@ -43,8 +33,28 @@
 
                 <dd>
                     natalia@unitec.ac.nz
-                </dd><br>
+                </dd><br><dt class="text-info">UIDesigner/Tester:</dt>
 
+                <dd>
+                   MengXue Zhang
+                </dd>
+                <dt class="text-info">Email:</dt>
+
+                <dd>
+                    natalia@unitec.ac.nz
+                </dd>
+                <br>
+                <dt class="text-info">Tester:</dt>
+
+                <dd>
+                    Lihui Jiang
+                </dd>
+                <dt class="text-info">Email:</dt>
+
+                <dd>
+                    natalia@unitec.ac.nz
+                </dd>
+                <br>
             </dl>
         </div>
            <div class="col-md-8"><div style="height: 500px" class="jumbotron" id="map"></div></div>

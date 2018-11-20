@@ -216,3 +216,17 @@ footer {
 .content {
     min-height: calc(100vh - 200px);
 }
+
+
+.mywrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mysidebar {
+    position: fixed;
+    width: 230px;
+
+    top:80px;
+    bottom: 0;
+}

@@ -44,7 +44,7 @@
                     natalia@unitec.ac.nz
                 </dd>
                 <br>
-                <dt class="text-info">Tester:</dt>
+                <dt class="text-info">Designer/Tester:</dt>
 
                 <dd>
                     Lihui Jiang
@@ -57,7 +57,7 @@
                 <br>
             </dl>
         </div>
-           <div class="col-md-8"><div style="height: 500px" class="jumbotron" id="map"></div></div>
+           <div class="col-md-8 "><div style="height: 500px" class="jumbotron" id="map"></div></div>
     </div>
    </div>
     <script>

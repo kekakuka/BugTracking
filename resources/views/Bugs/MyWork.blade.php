@@ -1,8 +1,8 @@
-@extends('Shared.backend')
-@section('title', 'My Work Index')
+@extends('Shared._layout')
+@section('title', 'My Work')
 @section('content')
 
-    <h3>My Work Index</h3>
+    <h2>My Work</h2>
 
     <table class="table">
         <thead>
@@ -53,7 +53,7 @@
                 </td>
 
                 <td>
-                        <a href="{{url('Bugs/StaffAssign/'.$Bug->id)}}">Solve</a> |
+                        <a style="margin-top: -5px" class="btn-default btn" href="{{url('Bugs/StaffAssign/'.$Bug->id)}}">Solve</a> |
 
                 </td>
             </tr>

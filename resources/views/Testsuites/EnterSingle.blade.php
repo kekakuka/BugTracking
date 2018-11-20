@@ -1,4 +1,4 @@
-@extends('Shared.backend')
+@extends('Shared._layout')
 @section('title', 'Bug Create')
 @section('content')
 

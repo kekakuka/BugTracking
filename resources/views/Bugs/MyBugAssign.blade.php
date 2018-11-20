@@ -1,10 +1,15 @@
-@extends('Shared.backend')
+@extends('Shared._layout')
 @section('title', 'Solve My Work')
 @section('content')
 
 
 
-    <h4>Solve My Work</h4>
+    <h3>Solve My Work</h3>
+    <hr/>
+    <div>
+
+        <a href="{{url('/Bugs/MyWork')}}">Back to List</a>
+    </div>
     <hr/>
 
     <div class="row">

@@ -106,8 +106,66 @@ class Project extends Model
 
         return  $overTimeBugsNumbers;
     }
+    public function TestsNumber($moreThanDate, $lessThanDate)
+    {
+        $testsNumber = 0;
+        foreach ($this->subsystems as $subsystem) {
+            foreach ($subsystem->usecases as $usecase) {
+                foreach ($usecase->testcases as $testcase) {
+                    foreach ($testcase->tests as $test) {
+                            if (date(date_format($test->updated_at, 'Y-m-d'))>= $moreThanDate && date(date_format($test->updated_at, 'Y-m-d')) <= $lessThanDate) {
+                                    $testsNumber++;
+                            }
+                    }
+                }
+            }
+        }
+        return  $testsNumber;
+    }
+    public function WaitingTestsNumber($moreThanDate, $lessThanDate)
+    {
+        $testsNumber = 0;
+        foreach ($this->subsystems as $subsystem) {
+            foreach ($subsystem->usecases as $usecase) {
+                foreach ($usecase->testcases as $testcase) {
+                    foreach ($testcase->tests as $test) {
+                        if (date(date_format($test->updated_at, 'Y-m-d'))>= $moreThanDate && date(date_format($test->updated_at, 'Y-m-d')) <= $lessThanDate) {
+                            if ($test->status==='waiting'||$test->status==='testing'){
+                            $testsNumber++;}
+                        }
+                    }
+                }
+            }
+        }
+        return  $testsNumber;
+    }
+    public function PassRunNumber($moreThanDate, $lessThanDate)
+    {
+        $testsNumber = 0;
+        $passNumber = 0;
+        $runNumber = 0;
+        foreach ($this->subsystems as $subsystem) {
+            foreach ($subsystem->usecases as $usecase) {
+                foreach ($usecase->testcases as $testcase) {
+                    foreach ($testcase->tests as $test) {
+                        if (date(date_format($test->updated_at, 'Y-m-d'))>= $moreThanDate && date(date_format($test->updated_at, 'Y-m-d')) <= $lessThanDate) {
+                            $testsNumber++;
+                            if ($test->status!=='waiting'&&$test->status!=='testing'){
+                                $runNumber++;
+                            }
+                            if ($test->status==='pass'){
+                                $passNumber++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+if ($runNumber===0){
+    return 'No run tests';
+}
 
-
-
+        return  (number_format($passNumber/$runNumber,'4')*100).'%';
+    }
 
 }

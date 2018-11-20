@@ -33,50 +33,50 @@
     </div>
     <hr>
     <div id="print">
-        <div style="background-color:white;width:744px; border: 1px solid">
-            <div style="margin-left: 22px; width:680px;font-family: 'Times New Roman'">
+        <div style="background-color:white;width:1044px; border: 1px solid">
+            <div style="margin-left: 22px; width:1000px;font-family: 'Times New Roman'">
                 <br>
                 <div><P class="text-center" style="font-size: 26px">Summary</P></div>
-                <dl style="font-size: 19px;" class="dl-horizontal text-left">
-                    <dt>
-                        Project Name
-                    </dt>
-                    <dd>
-                        {{ $project->name}}
-                    </dd>
-                    <dt>
-                        Description
-                    </dt>
-                    <dd>
-                        {{ $project->description}}
-                    </dd>
-                    <dt>
-                        Status
-                    </dt>
-                    <dd>
-                        {{ $project->status}}
-                    </dd>
-                    <dt>
-                        Bugs Number:
-                    </dt>
-                    <dd id="isBugNumber">
-                        {{ $bugs->count()}}
-                    </dd>
-                    <dt>
-                        Not Assigned Bugs
-                    </dt>
-                    <dd>
-                        {{ (int)($BugStates['open'])+(int)($BugStates['reOpened'])}}
-                    </dd>
-                    <dt>
-                        Not Closed Bugs
-                    </dt>
-                    <dd>
-                        {{ $bugs->count()-$BugStates['closed']-$BugStates['deferred']}}
-                    </dd>
 
-                </dl>
+                <table style="font-size: 20px" class="table table-striped">
+                    <tr>
+                        <td> Project Name</td>
+                        <td> {{ $project->name}}</td>
+                    </tr>
+                    <tr>
+                        <td>   Description</td>
+                        <td> {{ $project->description}}</td>
+                    </tr>
+                    <tr>
+                        <td> Status</td>
+                        <td>{{ $project->status}}</td>
+                    </tr>
+                    <tr>
+                        <td>  Bugs Number</td>
+                        <td id="isBugNumber">{{ $bugs->count()}}</td>
+                    </tr>
+                    <tr>
+                        <td> Not Assigned Bugs</td>
+                        <td >  {{ (int)($BugStates['open'])+(int)($BugStates['reOpened'])}}</td>
+                    </tr>
+                    <tr>
+                        <td> Not Closed Bugs</td>
+                        <td >  {{ (int)($BugStates['open'])+(int)($BugStates['reOpened'])}}</td>
+                    </tr>
 
+
+
+                    <tr>
+                        <td> Waiting/Total Tests</td>
+                        <td> <span style="color: red">{{ $project->WaitingTestsNumber($moreThanDate, $lessThanDate)}}</span>/   {{ $project->TestsNumber($moreThanDate, $lessThanDate)}}</td>
+                    </tr>
+                    <tr>
+                        <td>Tests Pass(%)</td>
+                        <td>{{ $project->PassRunNumber($moreThanDate, $lessThanDate)}} (Pass tests number/Run tests number)</td>
+                    </tr>
+                </table>
+
+<br>
 
                 <dl style="display: none" class="dl-horizontal">
                     <dt>
@@ -146,15 +146,6 @@
                         @endif
 
                     @endforeach
-                        @foreach($project->testsuites as $testsuite)
-
-                            @if($testsuite->hasWaiting())
-                                <li style="font-size: 24px">Test Suite: {{$testsuite->summary}}:<span style="color: red">Tests need to run</span>
-                                </li>
-
-                            @endif
-
-                        @endforeach
                     @foreach($project->subsystems as $subsystem)
 
                         <ul>
@@ -232,12 +223,20 @@
 
                                 <tr>
 
-                                    <td colspan="8">
+                                    <td colspan="4">
                                         Description: {{ $Bug->description}}
                                     </td>
-                                </tr>
+
+                                </tr><tr><td colspan="4">
+                                        <div class="box">
+                                            More  Details:
+                                            <div class="overbox">
+                                                <div class="tagline overtext">Test Description: {{$Bug->test->testcase->description }}<br>  Usecase: {{$Bug->test->testcase->usecase->name }}<br> Subsystem: {{$Bug->test->testcase->usecase->subsystem->name }}</div>
+                                            </div>
+                                        </div>
+                                    </td></tr>
                                 <tr>
-                                    <td style="background-color: white;" colspan="8"></td>
+                                    <td style="background-color: white;" colspan="4"></td>
                                 <tr>
                             @endif
 

@@ -6,10 +6,12 @@ use App\Bug;
 use App\Bugcomment;
 use App\Project;
 use App\Setting;
+use App\Staff;
 use App\Test;
 use App\Testcase;
 use App\Testsuite;
 use DemeterChain\C;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -75,7 +77,9 @@ class TestsuiteController extends Controller
         DB::table('tests')
             ->where('id', $test->id)
             ->update(['staff_id' => Session::get('user')->id, 'status' => 'testing']);
-
+        if (Session::has('user')){
+            $newid=Session::get('user')->id;
+            Session::put('user',Staff::find( $newid));}
         return redirect()->back();
     }
 
@@ -169,6 +173,9 @@ class TestsuiteController extends Controller
             }
 
         }
+        if (Session::has('user')){
+            $newid=Session::get('user')->id;
+            Session::put('user',Staff::find( $newid));}
         return redirect('Testsuites/EnterSingle')->with('csuccess', $csuccess);
     }
 
@@ -183,7 +190,6 @@ class TestsuiteController extends Controller
             if($test->testsuite_id===null){
                 $tests->push($test);
             }
-
         }
         $tests=$tests->reverse();
         return view('Testsuites.TakeSingle', compact('tests'));
@@ -262,7 +268,9 @@ class TestsuiteController extends Controller
         DB::table('tests')
             ->where('id', $test->id)
             ->update(['staff_id' => Session::get('user')->id, 'status' => 'testing']);
-
+        if (Session::has('user')){
+        $newid=Session::get('user')->id;
+Session::put('user',Staff::find( $newid));}
         return redirect()->back();
     }
 

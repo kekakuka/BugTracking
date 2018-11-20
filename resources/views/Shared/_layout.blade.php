@@ -17,7 +17,7 @@
 
 <div class="container body-content content">
     <div style="min-height: 400px; margin:10px;">
-    @yield('content')</div>
+        @yield('content')</div>
 
 </div>
 

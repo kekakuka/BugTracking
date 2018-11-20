@@ -141,7 +141,6 @@ $projectName=Project::find($selectProject)->name;
 
         if (isset($_GET['moreThanDate'])&&($_GET['moreThanDate']!='')){
           $moreThanDate= $_GET['moreThanDate'];
-
         }
         else{
             $moreThanDate=date('2000-1-1');
@@ -174,7 +173,6 @@ $projectName=Project::find($selectProject)->name;
         $allBugs=Bug::all();
         $bugs=new Collection();
         foreach ($allBugs as $bug){
-
             if ($bug->test->testcase->usecase->subsystem->project->id==$id){
               // dd();
                 if ($bug->created_at >= $moreThanDate&&date(date_format($bug->created_at, 'Y-m-d') )<= $lessThanDate) {

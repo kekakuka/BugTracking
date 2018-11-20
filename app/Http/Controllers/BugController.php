@@ -22,7 +22,13 @@ class BugController extends Controller
     public function Run()
     {
         $Testsuites = Testsuite::all()->sortByDesc('id');
-        return view('Bugs.Run', compact('Testsuites'));
+        $SingleTestsNumber=0;
+        foreach (Test::all() as $item) {
+            if ($item->status==='waiting'&&$item->testsuite_id===null){
+                $SingleTestsNumber++;
+            }
+       }
+        return view('Bugs.Run', compact('Testsuites','SingleTestsNumber'));
     }
 
     public function index()
@@ -390,6 +396,9 @@ class BugController extends Controller
             }
 
         }
+        if (Session::has('user')){
+            $newid=Session::get('user')->id;
+            Session::put('user',Staff::find( $newid));}
         return redirect('Bugs/Create/'.$id)->with('csuccess', $csuccess);
     }
 

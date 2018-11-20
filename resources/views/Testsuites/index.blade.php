@@ -44,7 +44,7 @@
             <td>
 
                 @if($Testsuite->project->status==='testing'&&Session::has('user')&&Session::get('user')->title!=='developer')
-                    <a style="margin-top: -3px" class="btn btn-default" href="{{url('Testsuites/Set/'.$Testsuite->id)}}">Set/Create Tests</a>  |
+
                     <a href="{{url('Testsuites/Edit/'.$Testsuite->id)}}">Edit</a>  |
 
                 @endif

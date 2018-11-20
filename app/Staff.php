@@ -13,6 +13,7 @@ class Staff extends Model
     {
         return $this->hasMany('App\Bugassign');
     }
+
     public function workLoad($bugassigns): int
     {
         $workLoad=0;
@@ -51,7 +52,25 @@ class Staff extends Model
         }
         return $bugsassigns;
     }
-
+    public function testsNumber($id)
+    {
+        $result=0;
+        if ($id===0){
+            foreach ($this->tests as $test){
+                if ($test->testsuite_id===null&&$test->status==='testing'){
+                    $result++;
+                }
+            }
+        }
+        else{
+            foreach ($this->tests as $test){
+                if ($test->testsuite_id===$id&&$test->status==='testing'){
+                    $result++;
+                }
+            }
+        }
+       return $result;
+    }
     public function developerTime($moreThanDate,$lessThanDate)
     {
         $time=0;

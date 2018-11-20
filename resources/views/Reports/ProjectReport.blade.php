@@ -32,44 +32,41 @@
     </div>
     <hr>
     <div id="print">
-        <div style="background-color:white;width:744px; border: 1px solid">
-            <div style="margin-left: 22px; width:700px;margin-right: 22px;font-family: 'Times New Roman'">
+        <div style="background-color:white;width:1044px; border: 1px solid">
+            <div style="margin-left: 22px; width:1000px;margin-right: 22px;font-family: 'Times New Roman'">
                 <br>
                 <div><P class="text-center" style="font-size: 26px">Summary</P></div>
-                <dl style="font-size: 22px;" class="dl-horizontal text-left">
-                    <dt>
-                        Project Name
-                    </dt>
-                    <dd>
-                        {{ $project->name}}
-                    </dd>
-                    <dt>
-                        Description
-                    </dt>
-                    <dd>
-                        {{ $project->description}}
-                    </dd>
-                    <dt>
-                        Status
-                    </dt>
-                    <dd>
-                        {{ $project->status}}
-                    </dd>
-                    <dt>
-                       Bugs Number
-                    </dt>
-                    <dd>
-                        {{ $bugs->count()}}
-                    </dd>
-                    <dt>
-                        Over Time Bugs
-                    </dt>
-                    <dd style="color: red">
-                        {{ $project->overTimeBugsNumbers($moreThanDate, $lessThanDate)}}
-                    </dd>
+                <table style="font-size: 20px" class="table table-striped">
+                    <tr>
+                        <td> Project Name</td>
+                        <td> {{ $project->name}}</td>
+                    </tr>
+                    <tr>
+                        <td>   Description</td>
+                        <td> {{ $project->description}}</td>
+                    </tr>
+                    <tr>
+                        <td> Status</td>
+                        <td>{{ $project->status}}</td>
+                    </tr>
+                    <tr>
+                        <td> Bugs Number</td>
+                        <td>{{ $bugs->count()}}</td>
+                    </tr>
+                    <tr>
+                        <td>Over Time Bugs</td>
+                        <td style="color: red">  {{ $project->overTimeBugsNumbers($moreThanDate, $lessThanDate)}}</td>
+                    </tr>
+                    <tr>
+                        <td> Waiting/Total Tests</td>
+                        <td> <span style="color: red">{{ $project->WaitingTestsNumber($moreThanDate, $lessThanDate)}}</span>/   {{ $project->TestsNumber($moreThanDate, $lessThanDate)}}</td>
+                    </tr>
+                    <tr>
+                        <td>Tests Pass(%)</td>
+                        <td>{{ $project->PassRunNumber($moreThanDate, $lessThanDate)}} (Pass tests number/Run tests number)</td>
+                    </tr>
+                </table>
 
-
-                </dl>
                     <dl style="display: none;">
                         @foreach($project->bugsOpenClosed($moreThanDate,$lessThanDate) as $item)
                             <dt>

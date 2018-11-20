@@ -20,16 +20,16 @@
                     <label  class="control-label">Full Name</label>
                    </span>  <input name="fullName" value="{{ $staff->fullName }}" class="form-control" />
                 </div>
-                <div class="form-group">
-                    <label  class="control-label">Title</label>
-                    <select  name="title" class="form-control">
+                {{--<div class="form-group">--}}
+                    {{--<label  class="control-label">Title</label>--}}
+                    {{--<select  name="title" class="form-control">--}}
 
-                        <option {{ $t }} value="tester">Tester</option>
-                        <option {{$d}} value="developer">Developer</option>
-                        <option  {{ $m }} value="manager">Manager</option>
+                        {{--<option {{ $t }} value="tester">Tester</option>--}}
+                        {{--<option {{$d}} value="developer">Developer</option>--}}
+                        {{--<option  {{ $m }} value="manager">Manager</option>--}}
 
-                        </select>
-                </div>
+                        {{--</select>--}}
+                {{--</div>--}}
 
                 @if ($errors->any())
                     <div class="alert alert-danger">

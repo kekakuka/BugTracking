@@ -27,21 +27,21 @@ class StaffController extends Controller
     {
         AuthController::IsManager();
         $staff = Staff::find($id);
-        $t='';
-        $d='';
-        $m='';
-        if ($staff->title==='tester'){
-            $t='selected';
-        }
-        if ($staff->title==='developer'){
-            $d='selected';
+//        $t='';
+//        $d='';
+//        $m='';
+//        if ($staff->title==='tester'){
+//            $t='selected';
+//        }
+//        if ($staff->title==='developer'){
+//            $d='selected';
+//
+//        }
+//        if ($staff->title==='manager'){
+//            $m='selected';
+//        }
 
-        }
-        if ($staff->title==='manager'){
-            $m='selected';
-        }
-
-        return view('Staff.Edit',compact('staff','t','d','m'));
+        return view('Staff.Edit',compact('staff'));
     }
 
     public function EditPost(Request $request,$id)
@@ -58,7 +58,7 @@ class StaffController extends Controller
         }
         DB::table('staff')
             ->where('id', $id)
-            ->update(['fullName' =>$_POST['fullName'],'title' =>$_POST['title']]);
+            ->update(['fullName' =>$_POST['fullName']]);
 
         return redirect('Staff');
     }

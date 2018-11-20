@@ -30,15 +30,15 @@
         </a>
         <ul class="dropdown-menu">
             <li><a href="{{url('/Staff')}}">Staff Management</a></li>
-            <li><a href="{{url('/Projects')}}">Project Management</a></li>
-            <li><a href="{{url('/Subsystems')}}">Subsystem Management</a></li>
-            <li><a href="{{url('/Usecases')}}">Usecase Management</a></li>
-            <li><a href="{{url('/Testcases')}}">Testcase Management</a></li>
-            <li><a href="{{url('/Bugs')}}">Bug Management</a></li>
             <li><a href="{{url('/Settings')}}">Setting Management</a></li>
-            @if(Session::get('user')->title!=='developer')
-                <li><a href="{{url('/Testsuites')}}">Test Suite Management</a></li>
-            @endif
+            <li><a href="{{url('/Projects')}}">Project Management</a></li>
+            <li><a href="{{url('/Subsystems')}}">=>Subsystem Management</a></li>
+            <li><a href="{{url('/Usecases')}}">==>Usecase Management</a></li>
+            <li><a href="{{url('/Testcases')}}">===>Testcase Management</a></li>
+            <li><a href="{{url('/Testsuites')}}">=>Test Suite Management</a></li>
+            <li><a href="{{url('/Bugs')}}">Bug Management</a></li>
+
+
         </ul>
     </div>
         @elseif(Session::has('user'))
@@ -75,7 +75,13 @@
                     <li><a href="{{url('/Reports')}}">Reports</a></li>
 
                     @if(Session::get('user')->title!=='developer')
-                    <li><a href="{{url('/Bugs/Run')}}">Take Tests/Enter Bugs</a></li>
+                    <li><a href="{{url('/Bugs/Run')}}">Take Tests/Enter Bugs
+                            <span style="color:white;background-color:rgba(117, 119, 129, 0.83);"
+                                                                                  class="badge">
+                                @if(Session::has('user'))
+                                    {{Session::get('user')->UnifinishedTestNumber()}}
+                                @endif
+                            </span></a></li>
 
                     @endif
                     @if(Session::get('user')->title==='manager')

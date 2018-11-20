@@ -19,7 +19,7 @@
             <table class="table table-bordered" >
                 <tbody>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         <a class="btn btn-default" href="{{url('Testsuites/TakeSingle/'.$test->id)}}">Take the Test {{$test->id}}</a>
                     </td>
                     @if(($test->status!=='waiting'&&$test->status!=='testing')&&$test->classification==='manual')
@@ -69,8 +69,11 @@
                         </div>
                     </td>
 
-                    <td colspan="3">
+                    <td colspan="2">
                         Setting: {{ $test->setting->description}}
+                    </td>
+                    <td colspan="2">
+                        Project: {{ $test->testcase->usecase->subsystem->project->name}}
                     </td>
                 </tr>
                 </tbody>

@@ -57,10 +57,8 @@ class ProjectController extends Controller
                 Subsystem::destroy($subsystem->id);
             }
             foreach ($project->testsuites as $testsuite) {
-
                 Testsuite::destroy($testsuite->id);
             }
-
             Project::destroy($id);
         }
         $Projects = Project::all()->sortByDesc('id');

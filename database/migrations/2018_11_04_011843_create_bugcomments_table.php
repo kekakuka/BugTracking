@@ -18,8 +18,8 @@ class CreateBugcommentsTable extends Migration
             $table->string('comment',500);
             $table->unsignedInteger('bug_id');
             $table->unsignedInteger('staff_id');
-            $table->foreign('bug_id')->references('id')->on('bugs');
-            $table->foreign('staff_id')->references('id')->on('staff');
+            $table->foreign('bug_id')->references('id')->on('bugs')->onDelete('cascade');
+            $table->foreign('staff_id')->references('id')->on('staff')->onDelete('cascade');
             $table->timestamps();
         });
     }

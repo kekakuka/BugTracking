@@ -108,7 +108,9 @@ button {
 footer {
     font-size: 17px;
 
-    width: 100%
+    width: 100%;
+
+    height: 100px;
 }
 /* Carousel */
 .carousel-caption p {
@@ -181,4 +183,8 @@ footer {
     opacity: 1;
     transform: translateX(0px);
     -webkit-transform: translateX(0px);
+}
+
+.content {
+    min-height: calc(100vh - 200px);
 }

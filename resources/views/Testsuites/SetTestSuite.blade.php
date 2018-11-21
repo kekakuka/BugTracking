@@ -162,7 +162,7 @@
 
 
 
-                        <div class="box"><span style="color: navy">
+                        <div class="box"><span style="font-size: 115%;color: navy">
                      Check More Details</span>
                             <div class="overbox">
 

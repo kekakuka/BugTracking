@@ -3,6 +3,7 @@
 // Pie chart for testingProjectReport
 
 $(document).ready(function() {
+if(document.getElementById("isBugNumber")){
     var isBugNumber = parseInt(document.getElementById("isBugNumber").innerHTML);
     var isReopened = parseInt(document.getElementById("isReopened").innerHTML);
     var isOpen = parseInt(document.getElementById("isOpen").innerHTML);
@@ -61,13 +62,14 @@ $(document).ready(function() {
     json.tooltip = tooltip;
     json.series = series;
     json.plotOptions = plotOptions;
-    $('#testingProjectReport').highcharts(json);
+    $('#testingProjectReport').highcharts(json);}
 });
 
 
 // Bar chart for ProjectReport
 $(document).ready(function() {
 
+if (document.getElementById("isFunctional")) {
     var isFunctional = parseInt(document.getElementById("isFunctional").innerHTML);
     var isSystem = parseInt(document.getElementById("isSystem").innerHTML);
     var isProcess = parseInt(document.getElementById("isProcess").innerHTML);
@@ -175,22 +177,24 @@ $(document).ready(function() {
     json.plotOptions = plotOptions;
     json.credits = credits;
     $('#projectReportBar').highcharts(json);
-
+}
 });
 
 
 // Line chart for ProjectReport
 $(document).ready(function() {
+if (document.getElementsByClassName('oneDay')) {
+    var oneDay = document.getElementsByClassName('oneDay');
+    var oneDayOpens = document.getElementsByClassName('oneDayOpens');
+    var oneDayCloseds = document.getElementsByClassName('oneDayCloseds');
+
     var title = {
         text: 'Bug Open and Close Track'
     };
     var subtitle = {
         text: ' --Project Report Chart '
     };
-    var xAxis = {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    };
+
     var yAxis = {
         title: {
             text: 'Number'
@@ -203,7 +207,7 @@ $(document).ready(function() {
     };
 
     var tooltip = {
-        valueSuffix: '\xB0C'
+        valueSuffix: ''
     }
 
     var legend = {
@@ -213,18 +217,29 @@ $(document).ready(function() {
         borderWidth: 0
     };
 
+
+
+    var xAxis = {
+        categories: []
+    };
+
     var series =  [
         {
             name: 'Open',
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,
-                26.5, 23.3, 18.3, 13.9, 9.6]
+            data: []
         },
         {
             name: 'Closed',
-            data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8,
-                24.1, 20.1, 14.1, 8.6, 2.5]
+            data: []
         }
     ];
+
+    for (i=0;i<oneDay.length;i++){
+        xAxis.categories.push(oneDay[i].innerHTML);
+        series[0].data.push(parseInt(oneDayOpens[i].innerHTML));
+        series[1].data.push(parseInt(oneDayCloseds[i].innerHTML));
+    }
+
 
     var json = {};
 
@@ -236,5 +251,5 @@ $(document).ready(function() {
     json.legend = legend;
     json.series = series;
 
-    $('#projectReportLine').highcharts(json);
+    $('#projectReportLine').highcharts(json);}
 });

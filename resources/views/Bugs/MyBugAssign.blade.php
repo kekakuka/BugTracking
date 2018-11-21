@@ -174,8 +174,7 @@
                             <dd>{{$bug->bug->test->testcase->usecase->subsystem->name}}</dd>
                             <dt> Project:</dt>
                             <dd>{{$bug->bug->test->testcase->usecase->subsystem->project->name}}</dd>
-                            <dt> Test Suite:</dt>
-                            <dd>{{$bug->bug->test->testsuite->summary}}</dd>
+
                         </dl>
                     </div>
                 </div>

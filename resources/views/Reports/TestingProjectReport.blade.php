@@ -128,13 +128,13 @@
                         {{ $BugStates['reOpened']}}
                     </dd>
                 </dl>
-                @if($bugs->count()>0)
+                {{--@if($bugs->count()>0)--}}
 
-                    <div class="row" id="canvasImg" style="width: 700px;height: 500px"></div>
-                @endif
+                    {{--<div class="row" id="canvasImg" style="width: 700px;height: 500px"></div>--}}
+                {{--@endif--}}
 
-                <canvas style="display:none;" id="myCanvas" width="700" height="500"></canvas>
-                <div id="testingProjectReport" style="width: 800px; height: 600px; margin: 0 auto"></div>
+                {{--<canvas style="display:none;" id="myCanvas" width="700" height="500"></canvas>--}}
+                <div id="testingProjectReport" style="width: 950px; height: 800px; margin: 0 auto"></div>
 
                 <br>
 
@@ -229,11 +229,40 @@
                                     </td>
 
                                 </tr><tr><td colspan="4">
-                                        <div class="box">
-                                            More  Details:
+                                        <div  class="box">
+                                        <span style="font-size: 120%;color: navy"> Check More  Details:</span>
                                             <div class="overbox">
                                                 <div class="tagline overtext">Test Description: {{$Bug->test->testcase->description }}<br>  Usecase: {{$Bug->test->testcase->usecase->name }}<br> Subsystem: {{$Bug->test->testcase->usecase->subsystem->name }}</div>
+                                                <div>  @if($Bug->bugcomments->count()>0)
+
+                                                        <div >
+
+                                                                    <table class="table">
+                                                                        <CAPTION> Bug Comments:</CAPTION>
+                                                                        <tr><th>Staff Name</th><th>Comment Date</th><th colspan="3">Comment</th></tr>
+                                                                        @foreach($Bug->bugcomments as $bugcomment)
+                                                                            <tr><td>{{ $bugcomment->staff->fullName}}</td><td>{{date_format($bugcomment->created_at,'Y-m-d') }}</td><td colspan="3">{{ $bugcomment->comment}}</td>
+
+                                                                        @endforeach
+                                                                    </table>
+
+                                                        </div>
+                                                    @endif
+                                                    @if($Bug->bugassigns->count()>0)
+
+                                                        <div>
+                                                                    <table class="table">
+                                                                        <CAPTION> Bug Assign:</CAPTION>
+                                                                        <tr><th>Staff Name</th><th>Title</th><th>Status</th><th>Assign Date</th><th>Submit Date</th></tr>
+                                                                        @foreach($Bug->bugassigns as $bugassign)
+                                                                            <tr><td>{{ $bugassign->staff->fullName}}</td><td>{{ $bugassign->staff->title}}</td><td>{{ $bugassign->status}}</td><td>{{date_format($bugassign->created_at,'Y-m-d') }}</td>
+                                                                                <td>@if($bugassign->status!=='assigned'){{date_format($bugassign->updated_at,'Y-m-d') }}@endif</td></tr>
+                                                                        @endforeach
+                                                                    </table>
+                                                        </div>
+                                                    @endif</div>
                                             </div>
+
                                         </div>
                                     </td></tr>
                                 <tr>
@@ -253,112 +282,112 @@
         </div>
     </div>
     <script>
-        window.onload = drawPieChart();
-
-
-        function drawPieChart() {
-
-            var c = document.getElementById("myCanvas");
-            var context = c.getContext("2d");
-            var isBugNumber = parseInt(document.getElementById("isBugNumber").innerHTML);
-            var isReopened = parseInt(document.getElementById("isReopened").innerHTML);
-            var isOpen = parseInt(document.getElementById("isOpen").innerHTML);
-            var isRejected = parseInt(document.getElementById("isRejected").innerHTML);
-            var isAssigned = parseInt(document.getElementById("isAssigned").innerHTML);
-            var isTest = parseInt(document.getElementById("isTest").innerHTML);
-            var isDeferred = parseInt(document.getElementById("isDeferred").innerHTML);
-            var isClosed = parseInt(document.getElementById("isClosed").innerHTML);
-            var img2 = document.getElementById("img2");
-            context.drawImage(img2, 25, 5);
-            context.font = 'bold 24px cursive';
-            context.fillStyle = "black";
-            context.fillText(isBugNumber, 175, 28);
-            context.fillText(isOpen, 175, 61);
-            context.fillText(isClosed, 175, 94);
-            context.fillText(isAssigned, 175, 127);
-            context.fillText(isTest, 175, 160);
-            context.fillText(isDeferred, 175, 193);
-            context.fillText(isRejected, 175, 226);
-            context.fillText(isReopened, 175, 259);
-            context.beginPath();
-            context.moveTo(440, 210);
-            context.lineTo(440 + 200, 210);
-            context.arc(440, 210, 200, 0, (Math.PI / isBugNumber) * 2 * isReopened);
-            context.lineTo(440, 210);
-            context.fillStyle = "darkred";
-            context.fill();
-            context.stroke();
-            context.closePath();
-            context.beginPath();
-            context.moveTo(440, 210);
-            context.lineTo(440 + 200 * Math.cos(0 + (Math.PI / isBugNumber) * 2 * isReopened), 210 + 200 * Math.sin(0 + (Math.PI / isBugNumber) * 2 * isReopened));
-            context.arc(440, 210, 200, 0 + (Math.PI / isBugNumber) * 2 * isReopened, (Math.PI / isBugNumber) * 2 * isReopened + (Math.PI / isBugNumber) * 2 * isOpen);
-            context.lineTo(440, 210);
-            context.fillStyle = "red";
-            context.fill();
-            context.stroke();
-            context.closePath();
-            isReopened += isOpen;
-
-            context.beginPath();
-            context.moveTo(440, 210);
-            context.lineTo(440 + 200 * Math.cos(0 + (Math.PI / isBugNumber) * 2 * isReopened), 210 + 200 * Math.sin(0 + (Math.PI / isBugNumber) * 2 * isReopened));
-            context.arc(440, 210, 200, 0 + (Math.PI / isBugNumber) * 2 * isReopened, (Math.PI / isBugNumber) * 2 * isReopened + (Math.PI / isBugNumber) * 2 * isRejected);
-            context.lineTo(440, 210);
-            context.fillStyle = "orange";
-            context.fill();
-            context.stroke();
-            context.closePath();
-            isReopened += isRejected;
-            context.beginPath();
-            context.moveTo(440, 210);
-            context.lineTo(440 + 200 * Math.cos(0 + (Math.PI / isBugNumber) * 2 * isReopened), 210 + 200 * Math.sin(0 + (Math.PI / isBugNumber) * 2 * isReopened));
-            context.arc(440, 210, 200, 0 + (Math.PI / isBugNumber) * 2 * isReopened, (Math.PI / isBugNumber) * 2 * isReopened + (Math.PI / isBugNumber) * 2 * isAssigned);
-            context.lineTo(440, 210);
-            context.fillStyle = "yellow";
-            context.fill();
-            context.stroke();
-            context.closePath();
-            isReopened += isAssigned;
-            context.beginPath();
-            context.moveTo(440, 210);
-            context.lineTo(440 + 200 * Math.cos(0 + (Math.PI / isBugNumber) * 2 * isReopened), 210 + 200 * Math.sin(0 + (Math.PI / isBugNumber) * 2 * isReopened));
-            context.arc(440, 210, 200, 0 + (Math.PI / isBugNumber) * 2 * isReopened, (Math.PI / isBugNumber) * 2 * isReopened + (Math.PI / isBugNumber) * 2 * isTest);
-            context.lineTo(440, 210);
-            context.fillStyle = "blue";
-            context.fill();
-            context.stroke();
-            context.closePath();
-            isReopened += isTest;
-            context.beginPath();
-            context.moveTo(440, 210);
-            context.lineTo(440 + 200 * Math.cos(0 + (Math.PI / isBugNumber) * 2 * isReopened), 210 + 200 * Math.sin(0 + (Math.PI / isBugNumber) * 2 * isReopened));
-            context.arc(440, 210, 200, 0 + (Math.PI / isBugNumber) * 2 * isReopened, (Math.PI / isBugNumber) * 2 * isReopened + (Math.PI / isBugNumber) * 2 * isDeferred);
-            context.lineTo(440, 210);
-            context.fillStyle = "green";
-            context.fill();
-            context.stroke();
-            context.closePath();
-            isReopened += isDeferred;
-            context.beginPath();
-            context.moveTo(440, 210);
-            context.lineTo(440 + 200 * Math.cos(0 + (Math.PI / isBugNumber) * 2 * isReopened), 210 + 200 * Math.sin(0 + (Math.PI / isBugNumber) * 2 * isReopened));
-            context.arc(440, 210, 200, 0 + (Math.PI / isBugNumber) * 2 * isReopened, (Math.PI / isBugNumber) * 2 * isReopened + (Math.PI / isBugNumber) * 2 * isClosed);
-            context.lineTo(440, 210);
-            context.fillStyle = "lightgreen";
-            context.fill();
-            context.stroke();
-            context.closePath();
-            context.font = '22px cursive';
-            context.fillStyle ="darkgray";
-            context.fillText('Project Report Chart 1: Bug State', 140 , 430);
-            var img = c.toDataURL("image/png");
-            var elem = document.createElement("img");
-            elem.setAttribute("src", img);
-
-            document.getElementById("canvasImg").appendChild(elem);
-            // c.body.appendChild(img);
-        }
+        // window.onload = drawPieChart();
+        //
+        //
+        // function drawPieChart() {
+        //
+        //     var c = document.getElementById("myCanvas");
+        //     var context = c.getContext("2d");
+        //     var isBugNumber = parseInt(document.getElementById("isBugNumber").innerHTML);
+        //     var isReopened = parseInt(document.getElementById("isReopened").innerHTML);
+        //     var isOpen = parseInt(document.getElementById("isOpen").innerHTML);
+        //     var isRejected = parseInt(document.getElementById("isRejected").innerHTML);
+        //     var isAssigned = parseInt(document.getElementById("isAssigned").innerHTML);
+        //     var isTest = parseInt(document.getElementById("isTest").innerHTML);
+        //     var isDeferred = parseInt(document.getElementById("isDeferred").innerHTML);
+        //     var isClosed = parseInt(document.getElementById("isClosed").innerHTML);
+        //     var img2 = document.getElementById("img2");
+        //     context.drawImage(img2, 25, 5);
+        //     context.font = 'bold 24px cursive';
+        //     context.fillStyle = "black";
+        //     context.fillText(isBugNumber, 175, 28);
+        //     context.fillText(isOpen, 175, 61);
+        //     context.fillText(isClosed, 175, 94);
+        //     context.fillText(isAssigned, 175, 127);
+        //     context.fillText(isTest, 175, 160);
+        //     context.fillText(isDeferred, 175, 193);
+        //     context.fillText(isRejected, 175, 226);
+        //     context.fillText(isReopened, 175, 259);
+        //     context.beginPath();
+        //     context.moveTo(440, 210);
+        //     context.lineTo(440 + 200, 210);
+        //     context.arc(440, 210, 200, 0, (Math.PI / isBugNumber) * 2 * isReopened);
+        //     context.lineTo(440, 210);
+        //     context.fillStyle = "darkred";
+        //     context.fill();
+        //     context.stroke();
+        //     context.closePath();
+        //     context.beginPath();
+        //     context.moveTo(440, 210);
+        //     context.lineTo(440 + 200 * Math.cos(0 + (Math.PI / isBugNumber) * 2 * isReopened), 210 + 200 * Math.sin(0 + (Math.PI / isBugNumber) * 2 * isReopened));
+        //     context.arc(440, 210, 200, 0 + (Math.PI / isBugNumber) * 2 * isReopened, (Math.PI / isBugNumber) * 2 * isReopened + (Math.PI / isBugNumber) * 2 * isOpen);
+        //     context.lineTo(440, 210);
+        //     context.fillStyle = "red";
+        //     context.fill();
+        //     context.stroke();
+        //     context.closePath();
+        //     isReopened += isOpen;
+        //
+        //     context.beginPath();
+        //     context.moveTo(440, 210);
+        //     context.lineTo(440 + 200 * Math.cos(0 + (Math.PI / isBugNumber) * 2 * isReopened), 210 + 200 * Math.sin(0 + (Math.PI / isBugNumber) * 2 * isReopened));
+        //     context.arc(440, 210, 200, 0 + (Math.PI / isBugNumber) * 2 * isReopened, (Math.PI / isBugNumber) * 2 * isReopened + (Math.PI / isBugNumber) * 2 * isRejected);
+        //     context.lineTo(440, 210);
+        //     context.fillStyle = "orange";
+        //     context.fill();
+        //     context.stroke();
+        //     context.closePath();
+        //     isReopened += isRejected;
+        //     context.beginPath();
+        //     context.moveTo(440, 210);
+        //     context.lineTo(440 + 200 * Math.cos(0 + (Math.PI / isBugNumber) * 2 * isReopened), 210 + 200 * Math.sin(0 + (Math.PI / isBugNumber) * 2 * isReopened));
+        //     context.arc(440, 210, 200, 0 + (Math.PI / isBugNumber) * 2 * isReopened, (Math.PI / isBugNumber) * 2 * isReopened + (Math.PI / isBugNumber) * 2 * isAssigned);
+        //     context.lineTo(440, 210);
+        //     context.fillStyle = "yellow";
+        //     context.fill();
+        //     context.stroke();
+        //     context.closePath();
+        //     isReopened += isAssigned;
+        //     context.beginPath();
+        //     context.moveTo(440, 210);
+        //     context.lineTo(440 + 200 * Math.cos(0 + (Math.PI / isBugNumber) * 2 * isReopened), 210 + 200 * Math.sin(0 + (Math.PI / isBugNumber) * 2 * isReopened));
+        //     context.arc(440, 210, 200, 0 + (Math.PI / isBugNumber) * 2 * isReopened, (Math.PI / isBugNumber) * 2 * isReopened + (Math.PI / isBugNumber) * 2 * isTest);
+        //     context.lineTo(440, 210);
+        //     context.fillStyle = "blue";
+        //     context.fill();
+        //     context.stroke();
+        //     context.closePath();
+        //     isReopened += isTest;
+        //     context.beginPath();
+        //     context.moveTo(440, 210);
+        //     context.lineTo(440 + 200 * Math.cos(0 + (Math.PI / isBugNumber) * 2 * isReopened), 210 + 200 * Math.sin(0 + (Math.PI / isBugNumber) * 2 * isReopened));
+        //     context.arc(440, 210, 200, 0 + (Math.PI / isBugNumber) * 2 * isReopened, (Math.PI / isBugNumber) * 2 * isReopened + (Math.PI / isBugNumber) * 2 * isDeferred);
+        //     context.lineTo(440, 210);
+        //     context.fillStyle = "green";
+        //     context.fill();
+        //     context.stroke();
+        //     context.closePath();
+        //     isReopened += isDeferred;
+        //     context.beginPath();
+        //     context.moveTo(440, 210);
+        //     context.lineTo(440 + 200 * Math.cos(0 + (Math.PI / isBugNumber) * 2 * isReopened), 210 + 200 * Math.sin(0 + (Math.PI / isBugNumber) * 2 * isReopened));
+        //     context.arc(440, 210, 200, 0 + (Math.PI / isBugNumber) * 2 * isReopened, (Math.PI / isBugNumber) * 2 * isReopened + (Math.PI / isBugNumber) * 2 * isClosed);
+        //     context.lineTo(440, 210);
+        //     context.fillStyle = "lightgreen";
+        //     context.fill();
+        //     context.stroke();
+        //     context.closePath();
+        //     context.font = '22px cursive';
+        //     context.fillStyle ="darkgray";
+        //     context.fillText('Project Report Chart 1: Bug State', 140 , 430);
+        //     var img = c.toDataURL("image/png");
+        //     var elem = document.createElement("img");
+        //     elem.setAttribute("src", img);
+        //
+        //     document.getElementById("canvasImg").appendChild(elem);
+        //     // c.body.appendChild(img);
+        // }
 
     </script>
 

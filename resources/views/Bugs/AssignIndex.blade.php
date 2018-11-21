@@ -10,7 +10,7 @@
             <th>
                 ID
             </th>
-            <th style="width: 40%">
+            <th style="max-width: 31%">
              Description
             </th>
             <th>
@@ -49,7 +49,7 @@
                 {{ $Bug->Test->testcase->Usecase->subsystem->project->name}}
             </td>
             <td>
-                <a href="{{url('BugsAssign/Assign/'.$Bug->id)}}">Assign</a> |
+                <a href="{{url('BugsAssign/Assign/'.$Bug->id)}}">Assign</a>
 
             </td>
         </tr>

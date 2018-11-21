@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Bug;
 use App\Http\Controllers\Controller;
 use App\Staff;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
@@ -83,8 +85,11 @@ class LoginController extends Controller
         $user1=Staff::find($user->id);
         Session::put('user',$user1);
         Session::put('MyNumber',$user1->workLoad($user1->bugassigns) );
+
+        Session::put('OpenBugNumber', Bug::AllOpenBugNumber());
         return redirect('/');
     }
+
 
     /**
      * Where to redirect users after login.

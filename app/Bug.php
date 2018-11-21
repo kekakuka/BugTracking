@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 class Bug extends Model
@@ -34,4 +35,14 @@ class Bug extends Model
        }
     }
 
+    public static function AllOpenBugNumber(){
+        $AllOpenBugNumber = 0;
+        $AllBugs = Bug::all();
+        foreach ($AllBugs as $bug) {
+            if ($bug->state === 'open' || $bug->state === 'reOpened') {
+                $AllOpenBugNumber++;
+            }
+        }
+        return $AllOpenBugNumber;
+    }
 }

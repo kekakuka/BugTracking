@@ -102,6 +102,7 @@ class BugController extends Controller
             ]);
             $BugComment->save();
         }
+        Session::put('OpenBugNumber', Bug::AllOpenBugNumber());
         return redirect()->route('BugAssignIndex');
     }
 
@@ -311,7 +312,7 @@ class BugController extends Controller
             ]);
             $BugComment->save();
         }
-
+        Session::put('OpenBugNumber', Bug::AllOpenBugNumber());
         return redirect(route('BugAssignIndex'));
     }
     public function Create($id)
@@ -379,6 +380,7 @@ class BugController extends Controller
                 'taxonomy'    =>    (isset($_POST['taxonomy']) && $_POST['taxonomy'] !== '')?$_POST['taxonomy']:null
             ]);
             $Bug->save();
+            Session::put('OpenBugNumber', Bug::AllOpenBugNumber());
             $csuccess = 'Successfully enter the new Bug!';
             if(isset($_POST['comment'])&&$_POST['comment']!==''){
                 $validatorComments = Validator::make($request->all(), [

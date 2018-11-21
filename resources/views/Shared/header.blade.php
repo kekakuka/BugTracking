@@ -57,11 +57,16 @@
 
                 @if(Session::has('user'))
                     @if(Session::has('user')&&Session::get('user')->title==='manager')
-                        <li> <a onclick="setProjectActive()" href="{{url('Projects')}}"  >
-                                Management
+                        <li> <a  href="{{url('BugsAssign')}}"  >
+                                Management <span style="color:white;background-color:rgba(117, 119, 129, 0.83);"
+                                                class="badge">
+                                @if(Session::has('OpenBugNumber'))
+                                        {{Session::get('OpenBugNumber')}}
+                                    @endif
+                            </span>
                             </a></li>
                     @else
-                        <li> <a onclick="setProjectActive()" href="{{url('Projects')}}"  >
+                        <li> <a  href="{{url('Projects')}}"  >
                                Check Information
                             </a></li>
                     @endif
@@ -107,9 +112,7 @@
 </div>
 <script  type="text/javascript">
 
-    function setProjectActive() {
-        localStorage.setItem( 'checkActive','Projects');
-    }
+
 
 
 </script>

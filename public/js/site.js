@@ -39,7 +39,7 @@ if(document.getElementById("isBugNumber")){
     };
     var series= [{
         type: 'pie',
-        name: 'Browser share',
+        name: 'Bugs State',
         data: [
             ['Reopened '+ isReopened,   isReopened/isBugNumber * 100],
             ['Rejected ' + isRejected,   isRejected/isBugNumber * 100],
@@ -156,15 +156,17 @@ if (document.getElementById("isFunctional")) {
         name: 'Unknown',
         data: [isUnknown]
     }, {
-        name: 'NoTaxonomy',
-        data: [isNoTaxonomy]
-    }, {
         name: 'Documente',
         data: [isDocumentation]
     }, {
         name: 'Other',
         data: [isOther]
-    }];
+    },
+        {
+            name: 'NoTaxonomy',
+            data: [isNoTaxonomy]
+        }
+    ];
 
     var json = {};
     json.chart = chart;

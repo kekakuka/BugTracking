@@ -156,6 +156,7 @@ class TestsuiteController extends Controller
                 'taxonomy'    =>    (isset($_POST['taxonomy']) && $_POST['taxonomy'] !== '')?$_POST['taxonomy']:null
             ]);
             $Bug->save();
+            Session::put('OpenBugNumber', Bug::AllOpenBugNumber());
             $csuccess = 'Successfully enter the new Bug!';
             if(isset($_POST['comment'])&&$_POST['comment']!==''){
                 $validatorComments = Validator::make($request->all(), [

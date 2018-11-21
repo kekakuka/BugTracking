@@ -4,19 +4,9 @@
 
     <h2>Create/Take/Enter Tests</h2>
     <hr>
-    <a style="margin-top: -3px" class="btn btn-default" href="{{url('Testsuites/CreateSingle')}}">Create/Review Single Tests </a>  |
-    <a style="margin-top: -3px" class="btn btn-default" href="{{url('Testsuites/TakeSingle')}}"> Take Single Tests<span style="color:white;background-color:rgba(57,59, 219, 0.83);"
-                                                                                                                        class="badge">
-
-                {{$SingleTestsNumber}}
-
-                            </span> </a>  |
-    <a style="margin-top: -3px" class="btn btn-default" href="{{url('Testsuites/EnterSingle')}}"> Enter Single Tests/Bugs <span style="color:white;background-color:rgba(117, 119, 129, 0.83);"
-                                                                                                                                class="badge">
-                                @if(Session::has('user'))
-                {{Session::get('user')->testsNumber(0)}}
-            @endif
-                            </span> </a>
+    <a style="margin-top: -3px" class="btn btn-default btn-lg" href="{{url('Testsuites/CreateSingle')}}">Create/Review Single Tests </a>  |
+    <a style="margin-top: -3px" class="btn btn-default btn-lg" href="{{url('Testsuites/TakeSingle')}}"> Take Single Tests<span style="color:white;background-color:rgba(57,59, 219, 0.83);" class="badge">{{$SingleTestsNumber}}</span> </a>  |
+    <a style="margin-top: -3px" class="btn btn-default btn-lg" href="{{url('Testsuites/EnterSingle')}}"> Enter Single Tests/Bugs <span style="color:white;background-color:rgba(117, 119, 129, 0.83);" class="badge">@if(Session::has('user')){{Session::get('user')->testsNumber(0)}}@endif</span> </a>
     <hr>
     <table class="table">
         <thead>

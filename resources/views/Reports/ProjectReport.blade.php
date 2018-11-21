@@ -36,6 +36,8 @@
             <div style="margin-left: 22px; width:1000px;margin-right: 22px;font-family: 'Times New Roman'">
                 <br>
                 <div><P class="text-center" style="font-size: 26px">Summary</P></div>
+                <div id="projectReportBar" style="width: 800px; height: 400px; margin: 0 auto"></div>
+                <div id="projectReportLine" style="width: 800px; height: 400px; margin: 0 auto"></div>
                 <table style="font-size: 20px" class="table table-striped">
                     <tr>
                         <td> Project Name</td>
@@ -184,6 +186,7 @@
 
                 <div class="row" id="canvasLineImg" style="width: 700px;height: 500px"></div>
                 @endif
+
                 <canvas style="display: none" id="myCanvas" width="700" height="500"></canvas>
                 <canvas style="display:none;" id="myLineCanvas" width="700" height="630"></canvas>
 

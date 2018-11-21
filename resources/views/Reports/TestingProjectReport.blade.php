@@ -134,6 +134,7 @@
                 @endif
 
                 <canvas style="display:none;" id="myCanvas" width="700" height="500"></canvas>
+                <div id="testingProjectReport" style="width: 800px; height: 600px; margin: 0 auto"></div>
 
                 <br>
 

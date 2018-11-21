@@ -5,93 +5,89 @@
 
     <h2>Take Tests </h2>
 
-
+    <hr>
 
     <div>
-        <table class="table" >
-            <tbody>
-            <tr style="font-size: 130%">
-                <td  colspan="3">
-                    Testsuite Summay: {{ $Testsuite->summary}}
-                </td>
-                <td colspan="1">
-                    Project: {{ $Testsuite->project->name}}
-                </td>
 
-            </tr>
+        <dl style="font-size: 130%" class="dl-horizontal">
 
+            <dt>Testsuite: </dt>
+                <dd>
+                    {{ $Testsuite->summary}}
+                </dd>
+            <dt>  Setting:</dt>
+            <dd>
+                {{ $Testsuite->setting->description}}
+            </dd>
+            <dt>  Project: </dt>
+            <dd>
+                {{ $Testsuite->project->name}}
+            </dd>
 
-            </tbody>
-        </table>
-        <a href="{{url('/Bugs/Run')}}">Back to List</a>
+        </dl>
+        <a style="margin-left: 70px" href="{{url('/Bugs/Run')}}">Back to List</a>
     </div>
-
+<hr>
+    <table style="width: 90%" class="table table-condensed" >
+        <tbody>
+    <?php   $myCount=0 ?>
     @if($Testsuite->waitingNumber()>0)
             <div style="font-size: 22px;">Waiting Tests list:</div>
-   @endif
+            <tr>
         @foreach($Testsuite->tests->reverse() as $test)
             @if($test->status==='waiting')
+                        @if ($myCount++% 3 === 0)
 
+            </tr><tr>
 
-            <table class="table table-bordered" >
-                <tbody>
-            <tr>
-                <td>
-                    <a class="btn btn-default" href="{{url('Testsuites/TakeTest/'.$test->id)}}">Take the Test {{$test->id}}</a>
-                </td>
-                @if(($test->status!=='waiting'&&$test->status!=='testing')&&$test->classification==='manual')
-                    <td>
-                        Status: {!! $test->testStatusTd() !!}
-                    </td>
-                    @if($test->costTime>$test->planTime )
-                    <td style="color: red">
-                        Cost time: {{ $test->costTime}} hours
-                    </td>
-@else
-                        <td>
-                            Cost time: {{ $test->costTime}} hours
-                        </td>
-                    @endif
-                @else
-                    <td colspan="2">
-                        Status: {!! $test->testStatusTd() !!}
-                    </td>
-                    @endif
-                @if($test->classification==='manual')
-                    <td>
-                        Classification: {{$test->classification }}
-                    </td>
-
-                    <td>
-                        Plan time: {{ $test->planTime }} hours
-                    </td>
-
-
-                @else
-                    <td colspan="2">
-                        Classification: {{$test->classification }}
-                    </td>
                 @endif
 
-            </tr>
-            <tr>
-                <td colspan="2">
+                <td>
 
-                    <div class="box">
+                    <div style="border-radius:8px;width:270px;min-height:170px;" class="thumbnail text-center">
+                        <br>
+                    <a class="btn btn-default" href="{{url('Testsuites/TakeTest/'.$test->id)}}">Take the Test {{$test->id}}</a>
+<br>
+
+
+                        Status: {!! $test->testStatusTd() !!}
+                        <br>
+                @if($test->classification==='manual')
+
+                        Classification: {{$test->classification }}
+
+                            <br>
+
+                        Plan time: {{ $test->planTime }} hours
+
+                            <br>
+
+                @else
+
+                        Classification: {{$test->classification }}
+                            <br>
+                @endif
+
                         Testcase: {{$test->testcase->name }}
+                        <br>
+                    <div class="box"><span style="color: navy">
+                     Check More Details</span>
                         <div class="overbox">
 
                             <div class="tagline overtext">Description: {{$test->testcase->description }}<br>  Usecase: {{$test->testcase->usecase->name }}<br> Subsystem: {{$test->testcase->usecase->subsystem->name }}</div>
                         </div>
                     </div>
-                </td>
 
-                <td colspan="3">
-                   Setting: {{ $test->setting->description}}
-                </td>
-            </tr>
-            </tbody>
-            </table>
+
+
+
+
+                    </div>
+
             @endif
             @endforeach
+            </tr>
+        </tbody>
+    </table>
+    @endif
 @endsection

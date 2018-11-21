@@ -13,16 +13,7 @@
 
     opacity:0.6;
 }
-#SouvenirLogo {
 
-    color: rgb(168, 18,18);
-    font-size: 16px;
-    font-weight: 600;
-}
-#SouvenirLogo:hover {
-    color: rgb(218, 58,58);
-
-}
 .thumbnail {
     background: linear-gradient(rgba(243, 245, 245, 0.91),rgba(223, 225, 225, 0.91));
     background-color: #FFFFFF;

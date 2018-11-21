@@ -52,8 +52,8 @@
         <div class=" col-md-7 navbar-collapse collapse">
             <ul class="nav navbar-nav">
 
-                <li><a href="{{url('/')}}">Home</a></li>
-                <li><a href="{{url('/Contact')}}">Contact</a></li>
+                <li ><a href="{{url('/')}}">Home</a></li>
+                <li ><a href="{{url('/Contact')}}">Contact</a></li>
 
                 @if(Session::has('user'))
                     @if(Session::has('user')&&Session::get('user')->title==='manager')

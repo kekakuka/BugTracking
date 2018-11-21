@@ -55,7 +55,7 @@
 
                 for(i=0;i<waitForActive.length;i++)
                 {
-                    if (waitForActive[i].firstChild.text===localStorage.getItem('checkActive')){
+                    if (waitForActive[i].firstChild.text.indexOf( localStorage.getItem('checkActive'))>-1){
                         waitForActive[i].className='waitForActive active';
                     }
                 }

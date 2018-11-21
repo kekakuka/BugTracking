@@ -62,6 +62,7 @@ class BugController extends Controller
                 $Bugs->push($bug);
             }
         }
+        Session::put('OpenBugNumber', Bug::AllOpenBugNumber());
         return view('Bugs.AssignIndex', compact('Bugs'));
     }
 

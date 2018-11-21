@@ -26,17 +26,17 @@
                     natalia@unitec.ac.nz
                 </dd><br>
 
-                <dt class="text-info">Developer/Tester:</dt>
+                <dt class="text-info">Developer:</dt>
 
                 <dd>Lei Li</dd>
                 <dt class="text-info">Email:</dt>
 
                 <dd>
                     natalia@unitec.ac.nz
-                </dd><br><dt class="text-info">UIDesigner/Tester:</dt>
+                </dd><br><dt class="text-info">Designer:</dt>
 
                 <dd>
-                   MengXue Zhang
+                   Mengxue Zhang
                 </dd>
                 <dt class="text-info">Email:</dt>
 
@@ -44,7 +44,7 @@
                     natalia@unitec.ac.nz
                 </dd>
                 <br>
-                <dt class="text-info">Designer/Tester:</dt>
+                <dt class="text-info">Tester:</dt>
 
                 <dd>
                     Lihui Jiang

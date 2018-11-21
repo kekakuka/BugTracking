@@ -20,9 +20,9 @@
                         ISCG7413 Testing & QA Management
                     </h5>
                     <p class="footerStyle">Lecturer: Natalia
-                        <br>Developer: Lei li
+                        <br>Developer: Lei Li
                         <br>Designer: Mengxue Zhang
-                        <br>Tester: LiHui Jiang</p>
+                        <br>Tester: Lihui Jiang</p>
                 </div>
 
             </div>

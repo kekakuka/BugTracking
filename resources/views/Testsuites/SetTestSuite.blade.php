@@ -5,13 +5,38 @@
     <h2>Set Test Suite</h2>
 
     <h4>Create Test under Test Suite</h4>
-    <a href="{{url('/Bugs/Run')}}">Back to List</a>
     <hr/>
     @if(isset($tsuccess))<div class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
         {{$tsuccess}}
     </div>
     @endif
+<div>
+    <dl style="font-size: 120%" class="dl-horizontal">
+
+        <dt>Testsuite: </dt>
+        <dd>
+            {{ $Testsuite->summary}}
+        </dd>
+        <dt>  Project: </dt>
+        <dd>
+            {{ $Testsuite->project->name}}
+        </dd>
+        <dt>  Setting:</dt>
+        <dd>
+            {{ $Testsuite->setting->description}}
+        </dd>
+
+        <dt> Tests Number: </dt><dd>   {{  $Testsuite->tests->count()}}</dd>
+        <dt> Plan Time:</dt><dd> {{  $Testsuite->testsTime()}}</dd>
+
+
+
+    </dl>
+    <a style="margin-left: 70px" href="{{url('/Bugs/Run')}}">Back to List</a>
+</div>
+    <hr/>
+
     <div class="row">
         <div class="col-md-9">
             <form method="post" action="{{url('Testsuites/SetPost/'.$Testsuite->id)}}">
@@ -40,7 +65,8 @@
                     <input  id="planTime1" style="width: 20%;" type="text" name="planTime" value="1"  /> Hours
                 </div>
                 </div>
-                <div  id="newT">
+                @if($testcases->count()>0)
+                <div  >
                     <div  class="form-group">
                         <label class="control-label">Test Case</label>
                         <select  style="width:140%;" name="testcase_id" class="form-control">
@@ -52,9 +78,17 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-default"/>
-                </div>
+                    <div class="form-group">
+                        <input style="width: 100px" type="submit" class="btn btn-default"/>
+                    </div>
+                    @else
+                    <div  >
+                        <div style="font-size: 19px; color: red" class="form-group">
+                           All test cases have assembled into this test suite
+                        </div>
+                    </div>
+                @endif
+
 
             </form>
         </div>
@@ -62,96 +96,106 @@
     </div>
 
 
-
-
-
-
-
-    <div>
-
-        <a   href="{{url('/Bugs/Run')}}">Back to List</a>
-    </div>
-    <table class="table" >
+    <table style="width: 90%" class="table table-condensed" >
         <tbody>
-        <tr >
-            <td colspan="4">
-                Testsuite Summay: {{ $Testsuite->summary}}
-            </td>
-
-        </tr>
-        <tr >
-
-            <td colspan="2">
-                Project: {{ $Testsuite->project->name}}
-            </td>
-            <td   >
-                Tests Number: {{  $Testsuite->tests->count()}}
-            </td>
-            <td  >
-                Plan Time: {{  $Testsuite->testsTime()}}
-            </td>
-        </tr>
-
-        </tbody>
-    </table>
-    @if($Testsuite->tests->count()>0)
-            <div style="font-size: 22px;">Tests list:</div>
-   @endif
-        @foreach($Testsuite->tests->reverse() as $test)
-            <table class="table table-bordered" >
-                <tbody>
+        <?php   $myCount=0 ?>
+        @if($Testsuite->tests->count()>0)
+     <div style="font-size: 22px;">Tests list:</div>
             <tr>
-                <td>
-                    Test ID: {{ $test->id}}
-                </td>
-                @if(($test->status!=='waiting'&&$test->status!=='testing')&&$test->classification==='manual')
-                    <td>
-                        Status: {!! $test->testStatusTd() !!}
-                    </td>
-                    @if($test->costTime>$test->planTime )
-                    <td style="color: red">
-                        Cost time: {{ $test->costTime}} hours
-                    </td>
-@else
-                        <td>
-                            Cost time: {{ $test->costTime}} hours
-                        </td>
-                    @endif
-                @else
-                    <td colspan="2">
-                        Status: {!! $test->testStatusTd() !!}
-                    </td>
-                    @endif
-                @if($test->classification==='manual')
-                    <td>
-                        Classification: {{$test->classification }}
-                    </td>
+                @foreach($Testsuite->tests->reverse() as $test)
 
-                    <td>
-                        Plan time: {{ $test->planTime }} hours
-                    </td>
+                        @if ($myCount++% 3 === 0)
 
+            </tr><tr>
 
-                @else
-                    <td colspan="2">
-                        Classification: {{$test->classification }}
-                    </td>
                 @endif
 
-            </tr>
-            <tr>
-                <td colspan="2">
-                    Testcase: {{$test->testcase->name }}
-                </td>
+                <td>
 
-                <td colspan="3">
-                   Setting: {{ $test->setting->description}}
-                </td>
-            </tr>
-            </tbody>
-            </table>
+                    <div style="border-radius:8px;width:270px;min-height:182px;" class="thumbnail text-center">
+                        <br>
 
-            @endforeach
+
+
+             Test ID: {{ $test->id}}
+             <br>
+
+         @if(($test->status!=='waiting'&&$test->status!=='testing')&&$test->classification==='manual')
+
+                 Status: {!! $test->testStatusTd() !!}
+                            <br>
+             @if($test->costTime>$test->planTime )
+
+                     Cost time: {{ $test->costTime}} hours
+                                <br>
+             @else
+
+                     Cost time: {{ $test->costTime}} hours
+                                <br>
+             @endif
+         @else
+
+                 Status: {!! $test->testStatusTd() !!}
+                            <br>
+         @endif
+         @if($test->classification==='manual')
+
+                 Classification: {{$test->classification }}
+                            <br>
+
+
+                 Plan time: {{ $test->planTime }} hours
+                            <br>
+
+
+         @else
+
+                 Classification: {{$test->classification }}
+                            <br>
+         @endif
+
+
+             Testcase: {{$test->testcase->name }}
+                        <br>
+
+
+
+
+
+                        <div class="box"><span style="color: navy">
+                     Check More Details</span>
+                            <div class="overbox">
+
+                                <div class="tagline overtext">Description: {{$test->testcase->description }}<br>  Usecase: {{$test->testcase->usecase->name }}<br> Subsystem: {{$test->testcase->usecase->subsystem->name }}
+                                @if($test->staff_id!==null)
+                                        <br> Tester: {{$test->staff->fullName }}
+                                    @if($test->status!=='testing')
+                                            <br> Test Date: {{date_format($test->updated_at,'Y-m-d') }}
+                                        @endif
+                                    @endif
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+                @endforeach
+
+            </tr>
+        @endif
+        </tbody>
+    </table>
+
+
+
+
+
 
     <script>
         function  select() {

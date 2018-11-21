@@ -8,77 +8,70 @@
     <div>
         <a href="{{url('/Bugs/Run')}}">Back to List</a>
     </div>
-<hr>
-    @if($tests->count()>0)
-        <div style="font-size: 22px;">Waiting Single Tests list:</div>
-    @endif
-    @foreach($tests as $test)
-        @if($test->status==='waiting')
+<hr> @if($tests->count()>0)
+    <table style="width: 90%" class="table table-condensed" >
+        <tbody>
+        <?php   $myCount=0 ?>
+
+            <div style="font-size: 22px;">Waiting Tests list:</div>
+            <tr>
+                @foreach($tests as $test)
+                    @if($test->status==='waiting')
+                        @if ($myCount++% 3 === 0)
+
+            </tr><tr>
+
+                @endif
+
+                <td>
+
+                    <div style="border-radius:8px;width:270px;min-height:170px;" class="thumbnail text-center">
+                        <br>
+                        <a class="btn btn-default" href="{{url('Testsuites/TakeTest/'.$test->id)}}">Take the Test {{$test->id}}</a>
+                        <br>
 
 
-            <table class="table table-bordered" >
-                <tbody>
-                <tr>
-                    <td colspan="2">
-                        <a class="btn btn-default" href="{{url('Testsuites/TakeSingle/'.$test->id)}}">Take the Test {{$test->id}}</a>
-                    </td>
-                    @if(($test->status!=='waiting'&&$test->status!=='testing')&&$test->classification==='manual')
-                        <td>
-                            Status: {!! $test->testStatusTd() !!}
-                        </td>
-                        @if($test->costTime>$test->planTime )
-                            <td style="color: red">
-                                Cost time: {{ $test->costTime}} hours
-                            </td>
-                        @else
-                            <td>
-                                Cost time: {{ $test->costTime}} hours
-                            </td>
-                        @endif
-                    @else
-                        <td colspan="2">
-                            Status: {!! $test->testStatusTd() !!}
-                        </td>
-                    @endif
-                    @if($test->classification==='manual')
-                        <td>
+                        Status: {!! $test->testStatusTd() !!}
+                        <br>
+                        @if($test->classification==='manual')
+
                             Classification: {{$test->classification }}
-                        </td>
 
-                        <td>
+                            <br>
+
                             Plan time: {{ $test->planTime }} hours
-                        </td>
 
+                            <br>
 
-                    @else
-                        <td colspan="2">
+                        @else
+
                             Classification: {{$test->classification }}
-                        </td>
-                    @endif
+                            <br>
+                        @endif
 
-                </tr>
-                <tr>
-                    <td colspan="2">
-
-                        <div class="box">
-                            Testcase: {{$test->testcase->name }}
+                        Testcase: {{$test->testcase->name }}
+                        <br>
+                        <div class="box"><span style="color: navy">
+                     Check More Details</span>
                             <div class="overbox">
 
                                 <div class="tagline overtext">Description: {{$test->testcase->description }}<br>  Usecase: {{$test->testcase->usecase->name }}<br> Subsystem: {{$test->testcase->usecase->subsystem->name }}</div>
                             </div>
                         </div>
-                    </td>
 
-                    <td colspan="2">
-                        Setting: {{ $test->setting->description}}
-                    </td>
-                    <td colspan="2">
-                        Project: {{ $test->testcase->usecase->subsystem->project->name}}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        @endif
-    @endforeach
 
+
+
+
+                    </div>
+
+                @endif
+                @endforeach
+
+            </tr>
+
+        </tbody>
+    </table>
+         @else<div style="font-size: 130%;color: red">No Waiting Single Tests</div>
+    @endif
 @endsection

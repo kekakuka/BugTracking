@@ -2,9 +2,9 @@
 @section('title', 'Create Single Tests')
 @section('content')
 
-    <h2> </h2>
+    <h3>Create/Review Single Tests </h3>
 
-    <h4>Create Single Tests</h4>
+
     <a href="{{url('/Bugs/Run')}}">Back to List</a>
     <hr/>
     @if(Session::has('stsuccess'))<div class="alert alert-success alert-dismissible" role="alert">
@@ -65,71 +65,106 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" class="btn btn-default"/>
+                    <input style="width: 100px" type="submit" class="btn btn-default"/>
                 </div>
 
             </form>
         </div>
 
     </div>
+    <hr>
+
+    <table style="width: 90%" class="table table-condensed" >
+        <tbody>
+        <?php   $myCount=0 ?>
     @if($tests->count()>0)
         <div style="font-size: 22px;">Single Tests List:</div>
-    @endif
+        <tr>
     @foreach($tests as $test)
-        <table class="table table-bordered" >
-            <tbody>
-            <tr>
-                <td>
+                @if ($myCount++% 3 === 0)
+
+        </tr><tr>
+
+    @endif
+            <td>
+
+                <div style="border-radius:8px;width:270px;min-height:205px;" class="thumbnail text-center">
+                    <br>
+
                     Test ID: {{ $test->id}}
-                </td>
-                @if(($test->status!=='waiting'&&$test->status!=='testing')&&$test->classification==='manual')
-                    <td>
+                    <br>
+
+                    @if(($test->status!=='waiting'&&$test->status!=='testing')&&$test->classification==='manual')
+
                         Status: {!! $test->testStatusTd() !!}
-                    </td>
-                    @if($test->costTime>$test->planTime )
-                        <td style="color: red">
+                        <br>
+                        @if($test->costTime>$test->planTime )
+
                             Cost time: {{ $test->costTime}} hours
-                        </td>
+                            <br>
+                        @else
+
+                            Cost time: {{ $test->costTime}} hours
+                            <br>
+                        @endif
                     @else
-                        <td>
-                            Cost time: {{ $test->costTime}} hours
-                        </td>
-                    @endif
-                @else
-                    <td colspan="2">
+
                         Status: {!! $test->testStatusTd() !!}
-                    </td>
-                @endif
-                @if($test->classification==='manual')
-                    <td>
-                        Classification: {{$test->classification }}
-                    </td>
+                        <br>
+                    @endif
+                    @if($test->classification==='manual')
 
-                    <td>
+                        Classification: {{$test->classification }}
+                        <br>
+
+
                         Plan time: {{ $test->planTime }} hours
-                    </td>
+                        <br>
 
 
-                @else
-                    <td colspan="2">
+                    @else
+
                         Classification: {{$test->classification }}
-                    </td>
-                @endif
+                        <br>
+                    @endif
 
-            </tr>
-            <tr>
-                <td colspan="2">
+
                     Testcase: {{$test->testcase->name }}
-                </td>
+                    <br>
 
-                <td colspan="3">
+
                     Setting: {{ $test->setting->description}}
-                </td>
+                    <br>
+
+
+                    <div class="box"><span style="color: navy">
+                     Check More Details</span>
+                        <div class="overbox">
+
+                            <div class="tagline overtext">Description: {{$test->testcase->description }}<br>  Usecase: {{$test->testcase->usecase->name }}<br> Subsystem: {{$test->testcase->usecase->subsystem->name }}
+                                @if($test->staff_id!==null)
+                                    <br> Tester: {{$test->staff->fullName }}
+                                    @if($test->status!=='testing')
+                                        <br> Test Date: {{date_format($test->updated_at,'Y-m-d') }}
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+
+            @endforeach
             </tr>
+    @endif
             </tbody>
         </table>
 
-    @endforeach
 
     <script>
         function  select() {

@@ -9,20 +9,21 @@
 
     <div>
 
-        <dl style="font-size: 130%" class="dl-horizontal">
+        <dl style="font-size: 120%" class="dl-horizontal">
 
             <dt>Testsuite: </dt>
                 <dd>
                     {{ $Testsuite->summary}}
                 </dd>
-            <dt>  Setting:</dt>
-            <dd>
-                {{ $Testsuite->setting->description}}
-            </dd>
             <dt>  Project: </dt>
             <dd>
                 {{ $Testsuite->project->name}}
             </dd>
+            <dt>  Setting:</dt>
+            <dd>
+                {{ $Testsuite->setting->description}}
+            </dd>
+
 
         </dl>
         <a style="margin-left: 70px" href="{{url('/Bugs/Run')}}">Back to List</a>
@@ -86,8 +87,10 @@
 
             @endif
             @endforeach
+
             </tr>
+    @endif
         </tbody>
     </table>
-    @endif
+
 @endsection

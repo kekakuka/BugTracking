@@ -187,7 +187,7 @@ class TestsuiteController extends Controller
         $ALLtests=Test::all();
         $tests=new Collection();
         foreach ($ALLtests as $test){
-            if($test->testsuite_id===null){
+            if($test->testsuite_id===null&&$test->status==='waiting'){
                 $tests->push($test);
             }
         }

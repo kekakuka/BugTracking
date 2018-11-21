@@ -101,16 +101,22 @@ Route::prefix('Bugs')->group(function () {
     Route::get('/Details/{id}', 'BugController@Details');
     Route::get('/Create/{id}', 'BugController@Create')->name('BugCreate');
     Route::get('/Edit/{id}', 'BugController@Edit');
-    Route::get('/Assign/{id}', 'BugController@Assign');
+
     Route::get('/StaffAssign/{id}', 'BugController@StaffAssign')->name('StaffAssign');
-    Route::post('/Assign/{id}', 'BugController@AssignPost');
+
     Route::get('/Reject/{id}', 'BugController@Reject')->name('BugReject');
     Route::post('/EditPost/{id}', 'BugController@EditPost');
-    Route::get('/AssignIndex', 'BugController@AssignIndex')->name('BugAssignIndex');
+
     Route::get('/MyWork', 'BugController@MyWork')->name('MyWork');
     Route::post('/MyWorkPost/{id}', 'BugController@MyWorkPost')->name('MyWorkPost');
     Route::post('/ReAssign/{id}', 'BugController@ReAssign')->name('ReAssign');
 });
+Route::prefix('BugsAssign')->group(function () {
+    Route::get('/', 'BugController@AssignIndex')->name('BugAssignIndex');
+    Route::post('/Assign/{id}', 'BugController@AssignPost');
+    Route::get('/Assign/{id}', 'BugController@Assign');
+});
+
 
 Route::prefix('Reports')->group(function () {
     Route::get('/', 'ReportController@index');

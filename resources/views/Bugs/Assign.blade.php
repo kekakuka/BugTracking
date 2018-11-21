@@ -10,7 +10,7 @@
     <div class="row">
 
         <div class="col-md-12">
-            <form method="post" action="{{url('Bugs/Assign/'.$bug->id)}}">
+            <form method="post" action="{{url('BugsAssign/Assign/'.$bug->id)}}">
                 @csrf
                 <div class="col-md-6">
 

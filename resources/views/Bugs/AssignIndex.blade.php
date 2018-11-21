@@ -49,7 +49,7 @@
                 {{ $Bug->Test->testcase->Usecase->subsystem->project->name}}
             </td>
             <td>
-                <a href="{{url('Bugs/Assign/'.$Bug->id)}}">Assign</a> |
+                <a href="{{url('BugsAssign/Assign/'.$Bug->id)}}">Assign</a> |
 
             </td>
         </tr>

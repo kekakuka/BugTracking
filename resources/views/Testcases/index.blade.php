@@ -18,7 +18,7 @@
             <th>
             Name
             </th>
-            <th style="width: 47%">
+            <th style="width: 43%">
              Description
             </th>
             <th>Usecase Name

@@ -8,36 +8,14 @@
                     <li class="waitForActive"><a  onclick="func(this)"  href="{{url('Subsystems')}}">Subsystems</a></li>
                     <li class="waitForActive"><a  onclick="func(this)"  href="{{url('Usecases')}}">Usecases</a></li>
                     <li class="waitForActive"><a  onclick="func(this)"  href="{{url('Testcases')}}">Testcases</a></li>
-                    <li class="waitForActive"><a  onclick="func(this)"  href="{{url('Settings')}}">Setting</a></li>
-                    <li class="waitForActive"><a  onclick="func(this)"  href="{{url('Testsuites')}}">Test Suite</a></li>
+                    <li class="waitForActive"><a  onclick="func(this)"  href="{{url('Settings')}}">Settings</a></li>
+                    <li class="waitForActive"><a  onclick="func(this)"  href="{{url('Testsuites')}}">Testsuites</a></li>
                     <li class="waitForActive"><a  onclick="func(this)"  href="{{url('Bugs')}}">Bugs</a></li>
                     <li class="waitForActive"><a onclick="func(this)"  href="{{url('Staff')}}">Staff</a></li>
             @if(Session::get('user')->title==='manager')
-                <li class="waitForActive"><a onclick="func(this)"  href="{{url('/Bugs/AssignIndex')}}">Bug Assign</a></li>
+                <li class="waitForActive"><a onclick="func(this)"  href="{{url('/BugsAssign')}}">BugsAssign</a></li>
             @endif
         @endif
     </ul>
 </div>
 </div>
-<script  type="text/javascript">
-
-
-var waitForActive=document.getElementsByClassName('waitForActive')
-function checkActive() {
-
-
-    for(i=0;i<waitForActive.length;i++)
-    {
-        if (waitForActive[i].firstChild.text===localStorage.getItem('checkActive')){
-            waitForActive[i].className='waitForActive active';
-        }
-    }
-
-}
-window.onload=checkActive();
-function func(e) {
-    localStorage.setItem( 'checkActive',$(e).text());
-}
-
-
-</script>

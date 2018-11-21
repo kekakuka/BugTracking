@@ -18,7 +18,7 @@
             <th>
             Subsystem Name
             </th>
-            <th style="width: 55%">
+            <th style="width: 50%">
              Description
             </th>
             <th>Project Name

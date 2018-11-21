@@ -20,9 +20,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading" style="background: linear-gradient(rgba(163, 165, 165, 0.1),rgba(123, 125, 125, 0.1))!important;height: 50px;">
                         <ul class="breadcrumb">
-                            <li><a href="#">Manage</a></li>
-                            <li><a href="#">Projects</a></li>
-                            <li class="active">Edit</li>
+                            <li>Manage</li>
+                            <li id="myMainMenu"></li>
+                            <li id="mySubMenu" class="active"></li>
                         </ul>
                     </div>
                     <div style="padding: 2% 5% 5% 5%;">
@@ -32,3 +32,41 @@
             </div>
              </div>
         </div>
+
+        <script  type="text/javascript">
+
+            var myMainMenu=document.getElementById('myMainMenu');
+            var mySubMenu=document.getElementById('mySubMenu');
+            var waitForActive=document.getElementsByClassName('waitForActive')
+            function checkActive() {
+                var url=window.location.href;
+                var aa=url.indexOf('/public')
+                url=url.substr(aa+8);
+
+                var urlArray=url.split('/');
+
+                localStorage.setItem( 'checkActive',urlArray[0]);
+
+                myMainMenu.innerHTML=localStorage.getItem('checkActive')
+                if (urlArray.length>1){
+                    localStorage.setItem( 'subUrl',urlArray[1]);
+                    mySubMenu.innerHTML=localStorage.getItem('subUrl')
+                }
+
+                for(i=0;i<waitForActive.length;i++)
+                {
+                    if (waitForActive[i].firstChild.text===localStorage.getItem('checkActive')){
+                        waitForActive[i].className='waitForActive active';
+                    }
+                }
+
+
+
+            }
+            window.onload=checkActive();
+            function func(e) {
+                localStorage.setItem( 'checkActive',$(e).text());
+            }
+
+
+        </script>

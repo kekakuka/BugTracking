@@ -19,7 +19,7 @@
             <th>
             Project Name
             </th>
-            <th style="width: 60%">
+            <th style="width:48%">
              Description
             </th>
             <th >

@@ -18,7 +18,7 @@
             <th>
           Usecase  Name
             </th>
-            <th style="width: 47%">
+            <th style="width:40%">
              Description
             </th>
             <th>Subsystem Name

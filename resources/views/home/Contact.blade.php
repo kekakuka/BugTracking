@@ -57,7 +57,7 @@
                 <br>
             </dl>
         </div>
-           <div class="col-md-8 "><div style="height: 500px" class="jumbotron" id="map"></div></div>
+           <div class="col-md-8"><div class="img-rounded" style="height: 500px" id="map"></div></div>
     </div>
    </div>
     <script>

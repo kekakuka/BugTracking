@@ -1,12 +1,17 @@
 @extends('Shared._layout')
 @section('title', 'Project Report')
 @section('content')
-
-    <h2>Project  Report</h2>
-    <img id="img1" src="{{url('images/OpenClosed.jpg')}}" style="display:none;">
-    <img id="img2" src="{{url('images/Numbers.jpg')}}" style="display:none;">
-    <hr>
-    <div>
+<div class="row">
+    <div class="col-md-12">
+        <ul class="breadcrumb" style="font-size: 16px;">
+            <li><a href="{{url('/Reports')}}">Reports</a></li>
+            <li class="active">Testing Project Report</li>
+        </ul>
+        <div class="pull-right">
+            <button class="btn btn-default"><a href="{{url('Reports')}}" >Back to List</a></button>
+        </div>
+         {{--<img id="img1" src="{{url('images/OpenClosed.jpg')}}" style="display:none;">--}}
+        {{--<img id="img2" src="{{url('images/Numbers.jpg')}}" style="display:none;">--}}
         {{--<form action="{{url('Reports/ProjectReport/'.$project->id)}}" method="get">--}}
         {{--<div class="form-actions no-color">--}}
         {{--<p>--}}
@@ -23,22 +28,15 @@
         {{--</form>--}}
 
 
-        <div>
 
-            <a href="{{url('Reports')}}">Back to List</a>
-            {{--<input style="margin-left: 5%" type="button" value="Print the report" class="btn btn-default"--}}
-            {{--onclick="printDiv('print')"/>--}}
-
-        </div>
-    </div>
-    <hr>
+    <hr style="margin-top: 5%;">
     <div id="print">
-        <div style="background-color:white;width:1044px; border: 1px solid">
-            <div style="margin-left: 22px; width:1000px;font-family: 'Times New Roman'">
+        <div style="background-color:white;width: 100%; border: 1px solid darkgray; border-radius: 10px;">
+            <div style="margin: 0 2%; width: 96%;font-family: 'Times New Roman'">
                 <br>
                 <div><P class="text-center" style="font-size: 26px">Summary</P></div>
 
-                <table style="font-size: 20px" class="table table-striped">
+                <table style="font-size: 18px" class="table table-striped table-responsive">
                     <tr>
                         <td> Project Name</td>
                         <td> {{ $project->name}}</td>
@@ -77,64 +75,79 @@
                 </table>
 
 <br>
-
-                <dl style="display: none" class="dl-horizontal">
-                    <dt>
-                        Bug Number:
-                    </dt>
-                    <dd id="isBugNumber">
-                        {{ $bugs->count()}}
-                    </dd>
-                    <dt style="color:red">
-                        Open:
-                    </dt>
-                    <dd id="isOpen">
-                        {{$BugStates['open']}}
-                    </dd>
-                    <dt style="color:lightgreen">
-                        Closed:
-                    </dt>
-                    <dd id="isClosed">
-                        {{ $BugStates['closed']}}
-                    </dd>
-                    <dt style="color: yellow">
-                        Assigned:
-                    </dt>
-                    <dd id="isAssigned">
-                        {{ $BugStates['assigned']}}
-                    </dd>
-                    <dt style="color:blue">
-                        Test:
-                    </dt>
-                    <dd id="isTest">
-                        {{ $BugStates['test']}}
-                    </dd>
-                    <dt style="color:green">
-                        Deferred:
-                    </dt>
-                    <dd id="isDeferred">
-                        {{ $BugStates['deferred']}}
-                    </dd>
-                    <dt style="color:orange">
-                        Rejected:
-                    </dt>
-                    <dd id="isRejected">
-                        {{ $BugStates['rejected']}}
-                    </dd>
-                    <dt style="color:darkred">
-                        Reopened:
-                    </dt>
-                    <dd id="isReopened">
-                        {{ $BugStates['reOpened']}}
-                    </dd>
-                </dl>
                 {{--@if($bugs->count()>0)--}}
 
                     {{--<div class="row" id="canvasImg" style="width: 700px;height: 500px"></div>--}}
                 {{--@endif--}}
 
                 {{--<canvas style="display:none;" id="myCanvas" width="700" height="500"></canvas>--}}
-                <div id="testingProjectReport" style="width: 950px; height: 800px; margin: 0 auto"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        {{--<div id="testingProjectReport" style="width: 950px; height: 800px; margin: 0 auto"></div>--}}
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Bug Information</h3>
+                                </div>
+                                <div class="panel-body p-5">
+                                    <dl style="font-size: 16px;" class="dl-horizontal">
+                                        <dt>
+                                            Bug Number:
+                                        </dt>
+                                        <dd id="isBugNumber">
+                                            {{ $bugs->count()}}
+                                        </dd>
+                                        <dt>
+                                            Open:
+                                        </dt>
+                                        <dd id="isOpen">
+                                            {{$BugStates['open']}}
+                                        </dd>
+                                        <dt >
+                                            Closed:
+                                        </dt>
+                                        <dd id="isClosed">
+                                            {{ $BugStates['closed']}}
+                                        </dd>
+                                        <dt>
+                                            Assigned:
+                                        </dt>
+                                        <dd id="isAssigned">
+                                            {{ $BugStates['assigned']}}
+                                        </dd>
+                                        <dt>
+                                            Test:
+                                        </dt>
+                                        <dd id="isTest">
+                                            {{ $BugStates['test']}}
+                                        </dd>
+                                        <dt>
+                                            Deferred:
+                                        </dt>
+                                        <dd id="isDeferred">
+                                            {{ $BugStates['deferred']}}
+                                        </dd>
+                                        <dt>
+                                            Rejected:
+                                        </dt>
+                                        <dd id="isRejected">
+                                            {{ $BugStates['rejected']}}
+                                        </dd>
+                                        <dt>
+                                            Reopened:
+                                        </dt>
+                                        <dd id="isReopened">
+                                            {{ $BugStates['reOpened']}}
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-9" id="testingProjectReport"></div>
+                    </div>
+                </div>
+
 
                 <br>
 
@@ -183,7 +196,7 @@
                 <div><P class="text-center" style="font-size: 26px">Bugs List</P></div>
                 @foreach($project->subsystems as $subsystem)
                     <br>
-                    <table class="table table-striped">
+                    <table class="table table-striped table-responsive">
                         <tbody>
                         <tr style="font-size: 120%;font-weight: bolder">
                             <td colspan="2">
@@ -281,6 +294,8 @@
             </div>
         </div>
     </div>
+</div>
+</div>
     <script>
         // window.onload = drawPieChart();
         //

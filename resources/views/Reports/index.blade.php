@@ -2,9 +2,8 @@
 @section('title', 'Reports Index')
 @section('content')
 
-    <h2>Reports</h2>
+    <h3>Reports</h3>
 
-    <br>
     <hr>
     <br>
     <div>
@@ -16,7 +15,7 @@
     <br>
     <hr>
     <br>
-    <table class="table">
+    <table class="table table-responsive">
         <thead>
         <tr>
             <th>

@@ -49,12 +49,13 @@
     <div class="col-md-8  collapse navbar-collapse">
 
 
-        <div class=" col-md-7 navbar-collapse collapse">
+        <div class="col-md-pull-1 col-md-7 navbar-collapse collapse">
             <ul class="nav navbar-nav">
 
                 <li ><a href="{{url('/')}}">Home</a></li>
                 <li ><a href="{{url('/Contact')}}">Contact</a></li>
-
+                <li ><a href="{{url('/QA')}}">Q&A</a></li>
+                <li><a href="{{url('/Reports')}}">Reports</a></li>
                 @if(Session::has('user'))
                     @if(Session::has('user')&&Session::get('user')->title==='manager')
                         <li> <a  href="{{url('BugsAssign')}}"  >
@@ -70,7 +71,7 @@
                                Check Information
                             </a></li>
                     @endif
-                    <li><a href="{{url('/Reports')}}">Reports</a></li>
+
 
                     @if(Session::get('user')->title!=='developer')
                         <li><a href="{{url('/Bugs/Run')}}">Take Tests/Enter Bugs
@@ -83,7 +84,7 @@
 
                     @endif
 
-                    <li><a href="{{url('/Bugs/MyWork')}}">My Work
+                    <li><a href="{{url('/Bugs/MyWork')}}">My Bugs
                             <span style="color:white;background-color:rgba(117, 119, 129, 0.83);"
                                   class="badge">
                                 @if(Session::has('MyNumber'))

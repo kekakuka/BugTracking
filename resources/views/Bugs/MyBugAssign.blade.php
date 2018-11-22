@@ -1,10 +1,10 @@
 @extends('Shared._layout')
-@section('title', 'Solve My Work')
+@section('title', 'Solve My Bugs')
 @section('content')
 
 
 
-    <h3>Solve My Work</h3>
+    <h3>Solve My Bugs</h3>
     <hr/>
     <div>
 

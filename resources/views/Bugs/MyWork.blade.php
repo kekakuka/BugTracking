@@ -1,8 +1,8 @@
 @extends('Shared._layout')
-@section('title', 'My Work')
+@section('title', 'My Bugs')
 @section('content')
 
-    <h2>My Work</h2>
+    <h2>My Bugs</h2>
 
     <table class="table">
         <thead>

@@ -25,6 +25,8 @@ Route::prefix('Staff')->group(function () {
     Route::post('/EditPost/{id}', 'StaffController@EditPost');
 });
 
+Route::get('/QA', function (){return view('home.QA');});
+
 Route::prefix('Projects')->group(function () {
     Route::get('/', 'ProjectController@index');
     Route::post('/Create', 'ProjectController@CreatePost');

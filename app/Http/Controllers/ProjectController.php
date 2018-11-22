@@ -19,6 +19,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
+        AuthController::IsUser();
         $Projects = Project::all()->sortByDesc('id');
         return view('Projects.index', compact('Projects'));
     }
@@ -116,6 +117,7 @@ class ProjectController extends Controller
 
     public function Details($id)
     {
+        AuthController::IsUser();
         $Project = DB::table('projects')->where('id', $id)->first();
         return view('Projects.Details', compact('Project'));
     }

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class UsecaseController extends Controller
 {
     public function index()
-    {
+    {  AuthController::IsUser();
         $Usecases = Usecase::all()->sortByDesc('id');
         return view('Usecases.index', compact('Usecases'));
     }
@@ -77,6 +77,7 @@ class UsecaseController extends Controller
     }
     public function Details($id)
     {
+        AuthController::IsUser();
         $Usecase =Usecase::find($id);
 
         return view('Usecases.Details', compact('Usecase'));

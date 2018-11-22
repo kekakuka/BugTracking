@@ -2,7 +2,7 @@
 @section('title', 'Bugs Index')
 @section('content')
 
-    <h2>Index</h2>
+    <h2>Bugs</h2>
 
     <table class="table">
         <thead>

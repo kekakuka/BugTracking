@@ -1,4 +1,4 @@
-<div class="col-md-2">
+<div class="mysidebar col-md-2">
 
 <div class="panel panel-default">
     <div class="panel-heading" style="background: linear-gradient(rgba(163, 165, 165, 0.1),rgba(123, 125, 125, 0.1))!important;height: 50px;">Manage</div>

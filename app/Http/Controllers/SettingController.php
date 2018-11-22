@@ -11,6 +11,7 @@ class SettingController extends Controller
 {
     public function index()
     {
+        AuthController::IsUser();
         $Settings = Setting::all();
         return view('Settings.index', compact('Settings'));
     }

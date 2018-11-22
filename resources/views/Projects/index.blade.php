@@ -2,7 +2,7 @@
 @section('title', 'Projects Index')
 @section('content')
 
-    <h2>Index</h2>
+    <h2>Projects</h2>
 
     <p>
         @if(Session::has('user')&&Session::get('user')->title==='manager')

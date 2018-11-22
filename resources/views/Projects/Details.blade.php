@@ -2,7 +2,7 @@
 @section('title', 'Project Details')
 @section('content')
 
-    <h2>Details</h2>
+    <h2>Details/Delete</h2>
 
     <div>
 
@@ -34,6 +34,8 @@
         </dl>
     </div>
     <div>
+        <a href="{{url('Projects/')}}">Back to List</a>
+        <hr>
         @if(Session::get('user')->title==='manager')
         <form method="post" action="{{url('Projects/Delete/'.$Project->id)}}">
             @csrf
@@ -44,7 +46,7 @@
 
         </form>
         @endif
-        <a href="{{url('Projects/')}}">Back to List</a>
+
     </div>
 
 @endsection

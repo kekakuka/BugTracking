@@ -48,7 +48,7 @@
     <hr>
     @if($unfinishedBugAssign->count()>0)
         @if(Session::get('user')->title==='manager')
-        <div >
+        <div>
 
                     <table class="table">
                         <caption>Assigned</caption>
@@ -68,17 +68,16 @@
 
         </div>
             @else
-            <div class="container">
+            <div>
 
-                <table class="table table-sm">
+                <table class="table">
                     <caption>Assigned Work</caption>
                     <th style="width: 64%">Bug Description</th><th>Bug State</th>  <th>Assign Date</th></tr>
                     @foreach($unfinishedBugAssign as $bugassign)
-                        <form method="post" action="{{url('Bugs/ReAssign/'.$bugassign->id)}}">
-                            @csrf
+
                             <tr><td>{{$bugassign->bug->description}}</td><td>{{$bugassign->bug->state}}</td><td>{{date_format($bugassign->created_at,'Y-m-d') }}</td>
                                 </tr>
-                        </form>
+
                     @endforeach
                 </table>
 

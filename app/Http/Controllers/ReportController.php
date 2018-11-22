@@ -12,12 +12,13 @@ class ReportController extends Controller
 {
     public function index()
     {
-
+        AuthController::IsUser();
 $Projects=Project::all();
         return view('Reports.index',compact('Projects'));
     }
     public function StaffReport(Request $request)
     {
+        AuthController::IsUser();
         if (isset($_GET['moreThanDate'])&&($_GET['moreThanDate']!='')){
             $moreThanDate= $_GET['moreThanDate'];
 
@@ -41,6 +42,7 @@ $Projects=Project::all();
 
     public function TesterReport(Request $request)
     {
+        AuthController::IsUser();
         if (isset($_GET['moreThanDate'])&&($_GET['moreThanDate']!='')){
             $moreThanDate= $_GET['moreThanDate'];
 
@@ -80,7 +82,7 @@ $projectName=Project::find($selectProject)->name;
     public function TestingProjectReport(Request $request,$id)
     {
 
-
+        AuthController::IsUser();
         if (isset($_GET['moreThanDate'])&&($_GET['moreThanDate']!='')){
             $moreThanDate= $_GET['moreThanDate'];
 
@@ -138,7 +140,7 @@ $projectName=Project::find($selectProject)->name;
     public function ProjectReport(Request $request,$id)
     {
 
-
+        AuthController::IsUser();
         if (isset($_GET['moreThanDate'])&&($_GET['moreThanDate']!='')){
           $moreThanDate= $_GET['moreThanDate'];
         }

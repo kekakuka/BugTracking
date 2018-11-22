@@ -15,12 +15,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Stmt\If_;
 use Session;
 
 class BugController extends Controller
 {
     public function Run()
     {
+        AuthController::IsNotDeveloper();
         $Testsuites = Testsuite::all()->sortByDesc('id');
         $SingleTestsNumber=0;
         foreach (Test::all() as $item) {
@@ -39,6 +41,7 @@ class BugController extends Controller
 
     public function MyWork()
     {
+        AuthController::IsUser();
         $myBugs = new Collection();
         $Bugassigns = Bugassign::all();
         $staffs = Staff::all();
@@ -120,13 +123,18 @@ class BugController extends Controller
     public function StaffAssign(Request $request, $id)
     {
 
+        AuthController::IsUser();
+
         $bug = Bugassign::find($id);
+        if($bug->staff_id===Session::get('user')->id&&$bug->status==='assigned'){
         $staffs = Staff::all();
-        return view('Bugs.MyBugAssign', compact('bug', 'staffs'));
+        return view('Bugs.MyBugAssign', compact('bug', 'staffs'));}
+        abort(404,'Sorry, the page you are looking for could not be found.');
     }
 
     public function MyWorkPost(Request $request, $id)
     {
+        AuthController::IsUser();
         if (isset($_POST['costTime'])){
             $validatorTest1 = Validator::make($request->all(), [
                 'costTime' => 'required|between:0,999|numeric'
@@ -415,6 +423,7 @@ class BugController extends Controller
 
     public function EditPost(Request $request, $id)
     {
+        AuthController::IsManager();
         $bug=Bug::find($id);
         foreach ($bug->bugassigns as $bugassign) {
             if ($bugassign->status === 'assigned') {
@@ -456,6 +465,7 @@ class BugController extends Controller
 
     public function Details($id)
     {
+        AuthController::IsUser();
         $Bug = Bug::find($id);
 
         return view('Bugs.Details', compact('Bug'));

@@ -12,6 +12,7 @@ class SubsystemController extends Controller
 {
     public function index()
     {
+        AuthController::IsUser();
         $Subsystems = Subsystem::all()->sortByDesc('id');
         return view('Subsystems.index', compact('Subsystems'));
     }
@@ -75,6 +76,7 @@ class SubsystemController extends Controller
     }
     public function Details($id)
     {
+        AuthController::IsUser();
         $Subsystem =Subsystem::find($id);
 
         return view('Subsystems.Details', compact('Subsystem'));

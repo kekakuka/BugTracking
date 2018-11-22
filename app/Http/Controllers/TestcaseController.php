@@ -12,6 +12,7 @@ class TestcaseController extends Controller
 {
     public function index()
     {
+        AuthController::IsUser();
         $Testcases = Testcase::all()->sortByDesc('id');
         return view('Testcases.index', compact('Testcases'));
     }
@@ -77,6 +78,7 @@ class TestcaseController extends Controller
     }
     public function Details($id)
     {
+        AuthController::IsUser();
         $Testcase =Testcase::find($id);
 
         return view('Testcases.Details', compact('Testcase'));

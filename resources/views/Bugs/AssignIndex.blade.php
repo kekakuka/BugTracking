@@ -1,8 +1,8 @@
 @extends('Shared.backend')
-@section('title', 'Bugs Index')
+@section('title', 'Bugs Assign')
 @section('content')
 
-    <h3>Bug Assign Index</h3>
+    <h3>Bugs Assign</h3>
 
     <table class="table">
         <thead>

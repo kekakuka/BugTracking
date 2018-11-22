@@ -23,6 +23,7 @@ class TestsuiteController extends Controller
 {
     public function index()
     {
+        AuthController::IsUser();
         $Testsuites = Testsuite::all()->sortByDesc('id');
         return view('Testsuites.index', compact('Testsuites'));
     }
@@ -73,6 +74,7 @@ class TestsuiteController extends Controller
 
     public function TakeSinglePost(Request $request, $id)
     {
+        AuthController::IsNotDeveloper();
         $test = Test::find($id);
         DB::table('tests')
             ->where('id', $test->id)
@@ -185,6 +187,7 @@ class TestsuiteController extends Controller
 
     public function TakeSingle()
     {
+        AuthController::IsNotDeveloper();
         $ALLtests=Test::all();
         $tests=new Collection();
         foreach ($ALLtests as $test){
@@ -258,6 +261,7 @@ class TestsuiteController extends Controller
 
     public function Details($id)
     {
+        AuthController::IsUser();
         $Testsuite = Testsuite::find($id);
 
         return view('Testsuites.Details', compact('Testsuite'));
@@ -265,6 +269,7 @@ class TestsuiteController extends Controller
 
     public function TakeTest(Request $request, $id)
     {
+        AuthController::IsNotDeveloper();
         $test = Test::find($id);
         DB::table('tests')
             ->where('id', $test->id)
@@ -277,12 +282,14 @@ Session::put('user',Staff::find( $newid));}
 
     public function Take($id)
     {
+        AuthController::IsNotDeveloper();
         $Testsuite = Testsuite::find($id);
         return view('Testsuites.Take', compact('Testsuite'));
     }
 
     public function Set($id)
     {
+        AuthController::IsNotDeveloper();
         $Testsuite = Testsuite::find($id);
         $testcases = new Collection();
         foreach (Testcase::all() as $testcase) {
@@ -307,7 +314,7 @@ Session::put('user',Staff::find( $newid));}
 
     public function SetPost($id, Request $request)
     {
-
+        AuthController::IsNotDeveloper();
         $validator = Validator::make($request->all(), [
             'planTime' => $_POST['classification'] === 'manual' ? 'between:0.1,999|numeric' : ''
 

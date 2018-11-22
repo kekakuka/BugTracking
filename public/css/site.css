@@ -157,7 +157,7 @@ button {
 }
 
 .box .overbox {
-    background-color: rgba(248, 255, 248, 0.5);
+    background-color: rgba(241, 241, 241, 0.01);
     top: 30px;
     left: 0;
     color: black;
@@ -226,7 +226,7 @@ footer {
     position: fixed;
     width: 230px;
 
-    top:10%;
+    top:8.5%;
     left:5%;
     bottom: 0;
 }

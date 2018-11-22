@@ -2,7 +2,7 @@
 @section('title', 'Test Suite Index')
 @section('content')
 
-    <h2>Index</h2>
+    <h2>Test Suites</h2>
 
     <p>
         @if(Session::has('user')&&Session::get('user')->title==='manager')
@@ -43,7 +43,7 @@
             </td>
             <td>
 
-                @if($Testsuite->project->status==='testing'&&Session::has('user')&&Session::get('user')->title!=='developer')
+                @if($Testsuite->project->status==='testing'&&Session::has('user')&&Session::get('user')->title==='manager')
 
                     <a href="{{url('Testsuites/Edit/'.$Testsuite->id)}}">Edit</a>  |
 

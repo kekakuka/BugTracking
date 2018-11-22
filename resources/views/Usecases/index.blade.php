@@ -2,7 +2,7 @@
 @section('title', 'Usecases Index')
 @section('content')
 
-    <h2>Index</h2>
+    <h2>Usecases</h2>
 
     <p>
         @if(Session::has('user')&&Session::get('user')->title==='manager')
@@ -18,7 +18,7 @@
             <th>
           Usecase  Name
             </th>
-            <th style="width:40%">
+            <th style="max-width:36%">
              Description
             </th>
             <th>Subsystem Name

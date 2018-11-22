@@ -4,7 +4,7 @@
 
     <h2>Edit</h2>
 
-    <h4>Testsuite</h4>
+    <h4>Test Suite</h4>
     <hr />
 
     <div class="row">

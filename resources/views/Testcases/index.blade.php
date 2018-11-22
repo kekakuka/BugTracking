@@ -2,7 +2,7 @@
 @section('title', 'Testcases Index')
 @section('content')
 
-    <h2>Index</h2>
+    <h2>Test Cases</h2>
 
     <p>
         @if(Session::has('user')&&Session::get('user')->title==='manager')
@@ -18,14 +18,14 @@
             <th>
             Name
             </th>
-            <th style="width: 43%">
+            <th style="max-width: 29%">
              Description
             </th>
             <th>Usecase Name
             </th>
             <th>Project Name
             </th>
-            <th></th>
+            <th style="width: 10%"></th>
         </tr>
         </thead>
         <tbody>
@@ -47,7 +47,7 @@
             <td>
                 {{ $Testcase->Usecase->subsystem->project->name}}
             </td>
-            <td>
+            <td >
                 @if($Testcase->Usecase->Subsystem->project->status==='testing'&&Session::has('user')&&Session::get('user')->title==='manager')
                 <a href="{{url('Testcases/Edit/'.$Testcase->id)}}">Edit</a> |
                 @endif

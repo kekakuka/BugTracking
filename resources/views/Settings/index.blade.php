@@ -2,7 +2,7 @@
 @section('title', 'Setting Index')
 @section('content')
 
-    <h2>Index</h2>
+    <h2>Setting</h2>
 
     <p>
         @if(Session::get('user')->title==='manager')

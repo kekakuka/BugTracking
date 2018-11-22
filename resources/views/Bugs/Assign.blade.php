@@ -1,10 +1,10 @@
 @extends('Shared.backend')
-@section('title', 'Bug Assign')
+@section('title', 'Bugs Assign')
 @section('content')
 
 
 
-    <h4>Assign Bug</h4>
+    <h4>Assign Bugs</h4>
     <hr/>
 
     <div class="row">

@@ -12,7 +12,7 @@ class StaffController extends Controller
 {
     public function index()
     {
-
+        AuthController::IsUser();
         $staffs = Staff::all();
         return view('Staff.index', compact('staffs'));
     }
@@ -89,6 +89,7 @@ class StaffController extends Controller
 
     public function Details($id)
     {
+        AuthController::IsUser();
         $staff = Staff::find($id);
         $unfinishedBugAssign=new Collection();
         foreach ($staff->bugassigns as $bugassign) {

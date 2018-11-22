@@ -2,10 +2,11 @@
 @section('title', 'Developer Report')
 @section('content')
 
-    <h2>Developer Report Index</h2>
-    <img id="img1" src="{{url('images/OpenClosed.jpg')}}" style="display:none;">
-    <img id="img2" src="{{url('images/Numbers.jpg')}}" style="display:none;">
-    <hr>
+
+    <ul class="breadcrumb" style="font-size: 16px;">
+        <li><a href="{{url('/Reports')}}">Reports</a></li>
+        <li class="active">Developer Report</li>
+    </ul>
     <div>
         <form action="{{url('Reports/StaffReport')}}" method="get">
             <div class="form-actions no-color">
@@ -36,23 +37,21 @@
                 </p>
             </div>
         </form>
-        <div>
-
-            <span style="font-size: 19px">Note : Unfinished bug assign are not affected by the filter </span>
+        <div class="pull-right">
+            <button class="btn btn-default"><a href="{{url('Reports')}}" >Back to List</a></button>
         </div>
-<br>
         <div>
 
-            <a href="{{url('Reports')}}">Back to List</a>
+            <span style="font-size: 15px" class="text-info">Note : Unfinished bug assign are not affected by the filter</span>
         </div>
     </div>
     <hr>
     <div id="print">
-        <div style="background-color:white;width:1044px; border: 1px solid">
-            <div style="margin-left: 22px; width:1000px;font-family: 'Times New Roman'">
+        <div style="background-color:white;width: 100%; border: 1px solid darkgray; border-radius: 10px;">
+            <div style="margin: 0 2%; width: 96%;font-family: 'Times New Roman'">
                 <div><P class="text-center" style="font-size: 26px">Summary</P></div>
 
-                            <table class="table table-striped">
+                            <table class="table table-striped table-responsive">
 
                                 <thead>
                                 <tr>
@@ -114,7 +113,7 @@
                     @foreach($staffs as $staff)
                         @if($_GET['staff_id']==$staff->id&&$staff->title==='developer')
             <hr>
-                    <table class="table table-striped">
+                    <table class="table table-striped table-responsive">
             <thead>
         <tr>
             <th>
@@ -154,7 +153,7 @@
                     @foreach($staffs as $staff)
                         @if($staff->title==='developer')
                         <hr>
-                        <table class="table table-striped">
+                        <table class="table table-striped table-responsive">
                             <thead>
                             <tr>
                                 <th>

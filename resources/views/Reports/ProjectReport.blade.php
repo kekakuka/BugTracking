@@ -1,11 +1,13 @@
 @extends('Shared._layout')
 @section('title', 'Project Report')
 @section('content')
-
-    <h2>Project Report</h2>
-    <img id="img1" src="{{url('images/OpenClosed.jpg')}}" style="display:none;">
-    <img id="img2" src="{{url('images/Taxonomy.jpg')}}" style="display:none;">
-    <hr>
+    <ul class="breadcrumb" style="font-size: 16px;">
+        <li><a href="{{url('/Reports')}}">Reports</a></li>
+        <li class="active">Finished Project  Report</li>
+    </ul>
+    <div class="pull-right">
+        <button class="btn btn-default"><a href="{{url('Reports')}}" >Back to List</a></button>
+    </div>
     <div>
         <form action="{{url('Reports/ProjectReport/'.$project->id)}}" method="get">
             <div class="form-actions no-color">
@@ -22,22 +24,15 @@
                 </p>
             </div>
         </form>
-
-
-        <div>
-
-            <a href="{{url('Reports')}}">Back to List</a>
-
-        </div>
     </div>
     <hr>
     <div id="print">
-        <div style="background-color:white;width:1044px; border: 1px solid">
-            <div style="margin-left: 22px; width:1000px;margin-right: 22px;font-family: 'Times New Roman'">
+        <div style="background-color:white;width: 100%; border: 1px solid darkgray; border-radius: 10px;">
+            <div style="margin: 0 2%; width: 96%;font-family: 'Times New Roman'">
                 <br>
                 <div><P class="text-center" style="font-size: 26px">Summary</P></div>
 
-                <table style="font-size: 20px" class="table table-striped">
+                <table style="font-size: 20px" class="table table-striped table-responsive">
                     <tr>
                         <td> Project Name</td>
                         <td> {{ $project->name}}</td>
@@ -199,7 +194,7 @@
                     @foreach($project->subsystems as $subsystem)
 
                         <hr>  <br>
-                        <table class="table table-striped">
+                        <table class="table table-striped table-responsive">
                             <tbody>
                             <tr style="font-size: 120%;font-weight: bolder">
                                 <td colspan="2">

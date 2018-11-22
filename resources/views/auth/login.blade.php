@@ -3,54 +3,73 @@
 @section('content')
 
 
-    <h2>Log in</h2>
+    <ul class="breadcrumb" style="font-size: 16px;">
+        <li><a href="{{url('/')}}">Home</a></li>
+        <li class="active">Log in</li>
+    </ul>
     <div class="row">
-        <div class="col-md-12">
-            <section>
-                <form action="{{url('login/LoginPost')}}" method="post">
-                    @if ($errors->any())
-                        <div class="row alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    @csrf
-                <h4>Use a local account to log in.</h4>
-                <hr />
+        <div class="col-md-6 col-md-offset-3">
 
-                    <div class="col-md-6">
-                <div class="form-group">
-                    @if(isset($loginMessage))
-                        <span aria-errormessage="Email" class="text-danger">{{$loginMessage}}</span><br>
-                    @endif
-                    <label for="UserName">User Name</label>
-                    <input name="userName" value="{{ old('userName') }}" class="form-control" />
-                    <span aria-errormessage="Email" class="text-danger"></span>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <p class="panel-title">
+                        Management
+                    </p>
                 </div>
-                <div class="form-group">
-                    <label for="Password">Password</label>
-                    <input type="password" name="password" class="form-control" />
-                    <span aria-errormessage="Password" class="text-danger"></span>
-                </div>
+                <div class="panel-body" style="padding: 5% 10%;">
+                    <section>
+                        <form action="{{url('login/LoginPost')}}" method="post">
+                            @if ($errors->any())
+                                <div class="row alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            @csrf
+                            <p class="text-info text-center">Use a local account to log in.</p>
+                            <hr />
 
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <button type="submit" class="btn btn-default">
-                                   Login
-                                </button>
+                            <div class="form-group row">
+                                @if(isset($loginMessage))
+                                    <span aria-errormessage="Email" class="text-danger">{{$loginMessage}}</span><br>
+                                @endif
+                                <label for="UserName" class="control-label col-md-4 text" style="color: #4e555b; font-size: 20px; font-weight: normal">Username</label>
+                                    <div class="col-md-8"> <input name="userName" value="{{ old('userName') }}" class="form-control" style="height: 40px;"/>
+                                        <span aria-errormessage="Email" class="text-danger"></span></div>
 
                             </div>
-                        </div>
-                    </div>
+                            <div class="form-group row">
+                                <label for="Password" class="control-label col-md-4 text" style="color: #4e555b; font-size: 20px; font-weight: normal">Password</label>
+                                <div class="col-md-8">
+                                <input type="password" name="password" class="form-control" style="height: 40px;"/>
+                                <span aria-errormessage="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <button type="submit" class="btn btn-default" style="width: 60%;margin-top: 10%">
+                                        Login
+                                    </button>
+
+                                </div>
+                            </div>
 
 
 
 
-                </form>
-            </section>
+                        </form>
+                    </section>
+                </div>
+            </div>
+
+
+
+
+
         </div>
     </div>
 {{--<div class="container">--}}

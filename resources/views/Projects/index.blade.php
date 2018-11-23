@@ -7,7 +7,7 @@
     <p>
         @if(Session::has('user')&&Session::get('user')->title==='manager')
 
-        <a href="{{url('Projects/Create')}}">Create New</a>
+        <a href="{{url('Projects/Create')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Create New</a>
             @endif
     </p>
     <table class="table">
@@ -46,10 +46,10 @@
             </td>
             <td>
                 @if(Session::has('user')&&Session::get('user')->title==='manager')
-                <a href="{{url('Projects/Edit/'.$Project->id)}}">Edit</a> |
+                <a href="{{url('Projects/Edit/'.$Project->id)}}" class="btn btn-primary">Edit</a> |
 
                 @endif
-                <a href="{{url('Projects/Details/'.$Project->id)}}">Details</a>
+                <a href="{{url('Projects/Details/'.$Project->id)}}" class="btn btn-info">Details</a>
             </td>
         </tr>
        @endforeach

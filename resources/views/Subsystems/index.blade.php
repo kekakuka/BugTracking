@@ -6,7 +6,7 @@
 
     <p>
         @if(Session::has('user')&&Session::get('user')->title==='manager')
-        <a href="{{url('Subsystems/Create')}}">Create New</a>
+        <a href="{{url('Subsystems/Create')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Create New</a>
             @endif
     </p>
     <table class="table">
@@ -18,7 +18,7 @@
             <th>
             Subsystem Name
             </th>
-            <th style="width: 50%">
+            <th style="width: 30%">
              Description
             </th>
             <th>Project Name
@@ -45,9 +45,9 @@
             <td>
 
                 @if($Subsystem->project->status==='testing'&&Session::has('user')&&Session::get('user')->title==='manager')
-                <a href="{{url('Subsystems/Edit/'.$Subsystem->id)}}">Edit</a> |
+                <a href="{{url('Subsystems/Edit/'.$Subsystem->id)}}" class="btn btn-primary">Edit</a> |
                 @endif
-                <a href="{{url('Subsystems/Details/'.$Subsystem->id)}}">Details</a>
+                <a href="{{url('Subsystems/Details/'.$Subsystem->id)}}" class="btn btn-info">Details</a>
             </td>
         </tr>
        @endforeach

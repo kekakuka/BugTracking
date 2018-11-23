@@ -6,7 +6,7 @@
 
     <p>
         @if(Session::has('user')&&Session::get('user')->title==='manager')
-        <a href="{{url('Usecases/Create')}}">Create New</a>
+        <a href="{{url('Usecases/Create')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Create New</a>
             @endif
     </p>
     <table class="table">
@@ -48,9 +48,9 @@
             </td>
             <td>
                 @if($Usecase->Subsystem->project->status==='testing'&&Session::get('user')->title==='manager')
-                <a href="{{url('Usecases/Edit/'.$Usecase->id)}}">Edit</a> |
+                <a href="{{url('Usecases/Edit/'.$Usecase->id)}}" class="btn btn-primary">Edit</a> |
                 @endif
-                <a href="{{url('Usecases/Details/'.$Usecase->id)}}">Details</a>
+                <a href="{{url('Usecases/Details/'.$Usecase->id)}}" class="btn btn-info">Details</a>
             </td>
         </tr>
        @endforeach

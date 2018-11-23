@@ -6,10 +6,10 @@
 
     <p>
         @if(Session::get('user')->title==='manager')
-        <a href="{{url('Settings/Create')}}">Create New</a>
+        <a href="{{url('Settings/Create')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Create New</a>
             @endif
     </p>
-    <table class="table">
+    <table class="table table-responsive" style="width: 80%;">
         <thead>
         <tr>
             <th>
@@ -38,7 +38,7 @@
             <td>
 
                 @if(Session::has('user')&&Session::get('user')->title==='manager')
-                <a href="{{url('Settings/Edit/'.$Setting->id)}}">Edit</a> |
+                <a href="{{url('Settings/Edit/'.$Setting->id)}}" class="btn btn-primary">Edit</a>
                 @endif
 
             </td>

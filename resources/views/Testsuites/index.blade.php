@@ -6,7 +6,7 @@
 
     <p>
         @if(Session::has('user')&&Session::get('user')->title==='manager')
-        <a href="{{url('Testsuites/Create')}}">Create New</a>
+        <a href="{{url('Testsuites/Create')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Create New</a>
             @endif
     </p>
     <table class="table">
@@ -45,11 +45,11 @@
 
                 @if($Testsuite->project->status==='testing'&&Session::has('user')&&Session::get('user')->title==='manager')
 
-                    <a href="{{url('Testsuites/Edit/'.$Testsuite->id)}}">Edit</a>  |
+                    <a href="{{url('Testsuites/Edit/'.$Testsuite->id)}}" class="btn btn-primary">Edit</a>  |
 
                 @endif
 
-                <a href="{{url('Testsuites/Details/'.$Testsuite->id)}}">Details</a>
+                <a href="{{url('Testsuites/Details/'.$Testsuite->id)}}" class="btn btn-info">Details</a>
             </td>
         </tr>
        @endforeach

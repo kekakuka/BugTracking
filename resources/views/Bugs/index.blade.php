@@ -49,9 +49,9 @@
                 {{ $Bug->Test->testcase->Usecase->subsystem->project->name}}
             </td>
             <td>
-                <a href="{{url('Bugs/Details/'.$Bug->id)}}">Details</a> |
+                <a href="{{url('Bugs/Details/'.$Bug->id)}}" class="btn btn-info">Details</a> |
                 @if($Bug->Test->testcase->Usecase->subsystem->project->status==='testing'&&$Bug->state!=='closed'&&$Bug->state!=='deferred'&&Session::has('user')&&Session::get('user')->title==='manager')
-                <a href="{{url('Bugs/Edit/'.$Bug->id)}}">Defer</a>
+                <a href="{{url('Bugs/Edit/'.$Bug->id)}}" class="btn btn-danger">Defer</a>
                 @endif
             </td>
         </tr>

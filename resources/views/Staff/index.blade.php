@@ -6,7 +6,7 @@
 
     <p>
       @if(Session::get('user')->title==='manager')
-        <a href="{{url('Staff/Create')}}">Create New</a>
+        <a href="{{url('Staff/Create')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Create New</a>
           @endif
     </p>
     <table class="table">
@@ -53,12 +53,12 @@
             </td>
             <td>
                 @if(Session::has('user')&&Session::get('user')->title==='manager')
-                <a href="{{url('Staff/Edit/'.$staff->id)}}">Edit</a> |
+                <a href="{{url('Staff/Edit/'.$staff->id)}}" class="btn btn-primary">Edit</a> |
                 @endif
                     @if(Session::has('user')&&Session::get('user')->title==='manager')
-                <a href="{{url('Staff/Details/'.$staff->id)}}">Reassign work</a> |
+                <a href="{{url('Staff/Details/'.$staff->id)}}" class="btn btn-warning" style="color: #0f0f0f">Reassign work</a>
                         @else
-                        <a href="{{url('Staff/Details/'.$staff->id)}}">Details</a> |
+                        <a href="{{url('Staff/Details/'.$staff->id)}}" class="btn btn-info">Details</a>
                     @endif
             </td>
         </tr>

@@ -1,11 +1,11 @@
 @extends('Shared._layout')
 @section('content')
 
-
-
-        <div class="container">
-    <div class="panel-group col-md-12" id="accordion">
-
+            <ul class="breadcrumb" style="font-size: 16px;">
+                <li><a href="{{url('/')}}">Home</a></li>
+                <li class="active">Instruction</li>
+            </ul>
+    <div class="panel-group col-md-10 col-md-offset-1" id="accordion">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">
@@ -15,20 +15,14 @@
                     </a>
                 </h3>
             </div>
-            <div id="collapse1" class="panel-collapse collapse">
+            <div id="collapse1" class="panel-collapse collapse in" >
                 <div class="panel-body">
-                    <div class="container">
-                        <img  src="{{url('Images/WorkFlow.jpg')}}" style="width:90% ;border-radius:7px;">
-                    </div>
-
-
-
+                        <img  class="img-responsive" src="{{url('Images/WorkFlow.jpg')}}" style="border-radius:7px;">
                 </div>
             </div>
         </div>
     </div>
-        <div class="panel-group col-md-12" id="accordion">
-
+    <div class="panel-group col-md-10 col-md-offset-1" id="accordion">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
@@ -39,13 +33,10 @@
                     </h3>
                 </div>
                 <div id="collapse2" class="panel-collapse collapse">
-                    <div class="container">
-                        <img  src="{{url('Images/Database.jpg')}}" style="width:90% ;border-radius:7px;">
-                    </div>
+                        <img  class="img-responsive" src="{{url('Images/Database.jpg')}}" style="border-radius:7px;"></div>
                 </div>
             </div>
-        </div>
-            <div class="panel-group col-md-12" id="accordion">
+    <div class="panel-group col-md-10 col-md-offset-1" id="accordion">
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -57,13 +48,11 @@
                         </h3>
                     </div>
                     <div id="collapse3" class="panel-collapse collapse">
-                        <div class="container">
-                            <img  src="{{url('Images/BugLifeCycle.jpg')}}" style="width:90% ;border-radius:7px;">
-                        </div>
+                            <img class="img-responsive" src="{{url('Images/BugLifeCycle.jpg')}}" style="border-radius:7px;">
                     </div>
                 </div>
             </div>
-            <div class="panel-group col-md-12" id="accordion">
+    <div class="panel-group col-md-10 col-md-offset-1" id="accordion">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
@@ -74,11 +63,9 @@
                         </h3>
                     </div>
                     <div id="collapse4" class="panel-collapse collapse">
-                        <div class="container">
-                            <img  src="{{url('Images/TestLifeCycle.jpg')}}" style="width:90% ;border-radius:7px;">
-                        </div>
+                          <img class="img-responsive" src="{{url('Images/TestLifeCycle.jpg')}}" style="border-radius:7px;">
                     </div>
                 </div>
             </div>
-    </div>
+
 @endsection

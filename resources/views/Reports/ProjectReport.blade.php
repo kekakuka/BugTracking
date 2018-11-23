@@ -26,13 +26,13 @@
         </form>
     </div>
     <hr>
-    <div id="print">
+    <div id="print" style="padding: 0% 10%;">
         <div style="background-color:white;width: 100%; border: 1px solid darkgray; border-radius: 10px;">
-            <div style="margin: 0 2%; width: 96%;font-family: 'Times New Roman'">
+            <div style="margin: 0 2%; width: 96%;font-family: 'Times New Roman'; padding: 0 5%;">
                 <br>
                 <div><P class="text-center" style="font-size: 26px">Summary</P></div>
 
-                <table style="font-size: 20px" class="table table-striped table-responsive">
+                <table style="font-size: 18px" class="table table-striped table-responsive">
                     <tr>
                         <td> Project Name</td>
                         <td> {{ $project->name}}</td>
@@ -55,7 +55,7 @@
                     </tr>
                     <tr>
                         <td> Waiting/Total Tests</td>
-                        <td> <span style="color: red">{{ $project->WaitingTestsNumber($moreThanDate, $lessThanDate)}}</span>/   {{ $project->TestsNumber($moreThanDate, $lessThanDate)}}</td>
+                        <td> <span style="color: red">{{ $project->WaitingTestsNumber($moreThanDate, $lessThanDate)}}</span>  /   {{ $project->TestsNumber($moreThanDate, $lessThanDate)}}</td>
                     </tr>
                     <tr>
                         <td>Tests Pass(%)</td>
@@ -173,8 +173,9 @@
                     </dd>
 
                 </dl>
-                <div id="projectReportBar" style="width: 950px; height: 600px; margin: 0 auto"></div>
-                <div id="projectReportLine" style="width: 950px; height: 600px; margin: 0 auto"></div>
+                <div id="projectReportBar" style="width: 80%; height: auto; margin: 0 auto"></div>
+                <hr>
+                <div id="projectReportLine" style="width: 80%; height: auto; margin: 0 auto"></div>
            {{--@if( $bugs->count()>0)--}}
                 {{--<div class="row" id="canvasImg" style="width: 700px;height: 500px"></div>--}}
 {{--@endif--}}
@@ -189,7 +190,7 @@
                 <hr>
 
 
-                <div style="margin-top: 5%" class="row">
+                <div style="margin-top: 2%; padding: 0 5%;" class="row">
                     <div><P class="text-center" style="font-size: 26px">Bugs List</P></div>
                     @foreach($project->subsystems as $subsystem)
 

@@ -60,7 +60,7 @@
         </div>
     </div>
     <hr>
-    <div id="print">
+    <div id="print" style="padding: 0% 10%;">
         <div style="background-color:white;width: 100%; border: 1px solid darkgray; border-radius: 10px;">
             <div style="margin: 0 2%; width: 96%;font-family: 'Times New Roman'">
                 <br>

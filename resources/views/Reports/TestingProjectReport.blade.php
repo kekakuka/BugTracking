@@ -30,7 +30,7 @@
 
 
     <hr style="margin-top: 5%;">
-    <div id="print">
+    <div id="print" style="padding: 0% 10%;">
         <div style="background-color:white;width: 100%; border: 1px solid darkgray; border-radius: 10px;">
             <div style="margin: 0 2%; width: 96%;font-family: 'Times New Roman'">
                 <br>
@@ -85,63 +85,62 @@
                     <div class="row">
                         {{--<div id="testingProjectReport" style="width: 950px; height: 800px; margin: 0 auto"></div>--}}
                         <div class="col-md-3">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Bug Information</h3>
-                                </div>
-                                <div class="panel-body p-5">
-                                    <dl style="font-size: 16px;" class="dl-horizontal">
-                                        <dt>
-                                            Bug Number:
-                                        </dt>
-                                        <dd id="isBugNumber">
+                            {{--<div class="panel panel-default">--}}
+                                {{--<div class="panel-heading">--}}
+                                    {{--<h3 class="panel-title">Bug Information</h3>--}}
+                                {{--</div>--}}
+                                {{--<div class="panel-body" style="padding: 0 0;">--}}
+                                    <ul class="list-group" style="margin-top: 10%;">
+                                        <li class="list-group-item">
+                                            Bug Number  :   <span id="isBugNumber">
                                             {{ $bugs->count()}}
-                                        </dd>
-                                        <dt>
-                                            Open:
-                                        </dt>
-                                        <dd id="isOpen">
+                                        </span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            Open  :   <span id="isOpen">
                                             {{$BugStates['open']}}
-                                        </dd>
-                                        <dt >
-                                            Closed:
-                                        </dt>
-                                        <dd id="isClosed">
+                                        </span>
+                                        </li>
+
+                                        <li class="list-group-item">
+                                            Closed  :   <span id="isClosed">
                                             {{ $BugStates['closed']}}
-                                        </dd>
-                                        <dt>
-                                            Assigned:
-                                        </dt>
-                                        <dd id="isAssigned">
+                                        </span>
+                                        </li>
+
+                                        <li class="list-group-item">
+                                            Assigned  :   <span id="isAssigned">
                                             {{ $BugStates['assigned']}}
-                                        </dd>
-                                        <dt>
-                                            Test:
-                                        </dt>
-                                        <dd id="isTest">
+                                        </span>
+                                        </li>
+
+                                        <li class="list-group-item">
+                                            Test  :   <span id="isTest">
                                             {{ $BugStates['test']}}
-                                        </dd>
-                                        <dt>
-                                            Deferred:
-                                        </dt>
-                                        <dd id="isDeferred">
+                                        </span>
+                                        </li>
+
+                                        <li class="list-group-item">
+                                            Deferred  :   <span id="isDeferred">
                                             {{ $BugStates['deferred']}}
-                                        </dd>
-                                        <dt>
-                                            Rejected:
-                                        </dt>
-                                        <dd id="isRejected">
+                                        </span>
+                                        </li>
+
+                                        <li class="list-group-item">
+                                            Rejected  :   <span id="isRejected">
                                             {{ $BugStates['rejected']}}
-                                        </dd>
-                                        <dt>
-                                            Reopened:
-                                        </dt>
-                                        <dd id="isReopened">
+                                        </span>
+                                        </li>
+
+                                        <li class="list-group-item">
+                                            Reopened  :   <span id="isReopened">
                                             {{ $BugStates['reOpened']}}
-                                        </dd>
-                                    </dl>
-                                </div>
-                            </div>
+                                        </span>
+                                        </li>
+
+                                    </ul>
+                                {{--</div>--}}
+                            {{--</div>--}}
 
                         </div>
                         <div class="col-md-9" id="testingProjectReport"></div>

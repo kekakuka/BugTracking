@@ -33,9 +33,10 @@ class BugController extends Controller
         return view('Bugs.Run', compact('Testsuites','SingleTestsNumber'));
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $Bugs = Bug::all()->sortByDesc('id');
+        AuthController::IsUser();
+        $Bugs = Bug::orderbyDesc('id')->paginate(15);
         return view('Bugs.index', compact('Bugs'));
     }
 

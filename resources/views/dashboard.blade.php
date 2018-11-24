@@ -45,7 +45,11 @@
 
                 var urlArray=url.split('/');
 
-                localStorage.setItem( 'checkActive',urlArray[0]);
+                var MainUrl=urlArray[0];
+                if(urlArray[0].indexOf('?')>-1){
+                    MainUrl=urlArray[0].substr(0,urlArray[0].indexOf('?'));
+                }
+                localStorage.setItem( 'checkActive',MainUrl);
 
                 myMainMenu.innerHTML=localStorage.getItem('checkActive')
                 if (urlArray.length>1){

@@ -25,7 +25,7 @@
             </th>
             <th>Project Name
             </th>
-            <th style="width: 20%"></th>
+            <th style="width: 18%"></th>
         </tr>
         </thead>
         <tbody>
@@ -57,4 +57,5 @@
        @endforeach
         </tbody>
     </table>
+    {{$Testcases->links()}}
 @endsection

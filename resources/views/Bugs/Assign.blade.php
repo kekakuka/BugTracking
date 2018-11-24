@@ -5,6 +5,8 @@
 
 
     <h4>Assign Bugs</h4>
+
+
     <hr/>
 
     <div class="row">
@@ -118,8 +120,10 @@
                             Reject The Bug
                         </a>
 
+                                <a style="margin-left: 40px"  href="{{url('BugsAssign')}}">Back to List</a>
+
 @endif
-                            <a class="col-lg-offset-1" href="{{url('Bugs/AssignIndex')}}">Back to List</a>
+
 
                     </div>
                     <div>

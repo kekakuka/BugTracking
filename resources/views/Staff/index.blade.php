@@ -29,7 +29,7 @@
               Assigned Work
             </th>
 
-            <th></th>
+            <th width="21%"></th>
         </tr>
         </thead>
         <tbody>
@@ -65,5 +65,5 @@
        @endforeach
         </tbody>
     </table>
-
+{{$staffs->links()}}
 @endsection

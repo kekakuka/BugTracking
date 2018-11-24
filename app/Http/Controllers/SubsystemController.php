@@ -13,7 +13,7 @@ class SubsystemController extends Controller
     public function index()
     {
         AuthController::IsUser();
-        $Subsystems = Subsystem::all()->sortByDesc('id');
+        $Subsystems = Subsystem::orderbyDesc('id')->paginate(15);;
         return view('Subsystems.index', compact('Subsystems'));
     }
 

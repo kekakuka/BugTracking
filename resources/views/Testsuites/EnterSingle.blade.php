@@ -51,7 +51,7 @@
                             @if(($test->status==='testing'||$test->status==='failed')&&$test->staff_id===Session::get('user')->id)
                                 <option class="options" value="{{$test->id}}">Test Id: {{$test->id}};
                                     Testcase: {{$test->testcase->name}}; Setting: {{$test->setting->description}};
-                                    Classification: {{$test->classification}}; <span
+                                    Classification: {{$test->classification}}@if($test->classification==='manual')(Plan time: {{$test->planTime}} hours)@endif; <span
                                             class="spanss">Status:</span>{{$test->status}}</option>
                             @endif
                         @endforeach
@@ -150,10 +150,12 @@
         var submitTest = document.getElementById("submitTest");
         var options = document.getElementsByClassName('options');
 
+
         function check() {
             var index = -1;
             noTesta.style.display = 'none';
             if (ifPassTest.value === '2') {
+
                 enterBug.style.display = 'none';
 
                 for (i = options.length - 1; i >= 0; i--) {
@@ -162,7 +164,8 @@
                         options[i].selected = options[i].defaultSelected;
                     }
                     else {
-                        index = i
+                        options[i].style.display = 'block';
+                        index = i;
                     }
                 }
                 if (index === -1) {
@@ -170,20 +173,24 @@
                     noTesta.style.display = 'block';
                     submitTest.disabled = true;
                 } else {
+                    testId.style.display = 'block';
+                    noTesta.style.display = 'none';
                     testId.selectedIndex = index;
+                    submitTest.disabled = false;
                 }
             }
 
             else {
                 enterBug.style.display = 'block';
                 if (ifPassTest.value === '1') {
-                    for (i = 0; i < options.length; i++) {
+                    for (i = options.length - 1; i >= 0; i--) {
                         if (options[i].childNodes[0].nodeValue.split('Status:')[1] === 'failed') {
                             options[i].style.display = 'none';
                             options[i].selected = options[i].defaultSelected;
                         }
                         else {
-                            index = i
+                            options[i].style.display = 'block';
+                            index = i;
                         }
                     }
                     if (index === -1) {
@@ -191,11 +198,14 @@
                         noTesta.style.display = 'block';
                         submitTest.disabled = true;
                     } else {
+                        testId.style.display = 'block';
+                        noTesta.style.display = 'none';
                         testId.selectedIndex = index;
+                        submitTest.disabled = false;
                     }
                 }
                 else {
-                    for (i = 0; i < options.length; i++) {
+                    for (i = options.length - 1; i >= 0; i--) {
                         if (options[i].childNodes[0].nodeValue.split('Status:')[1] === 'testing') {
                             options[i].style.display = 'none';
                             options[i].selected = options[i].defaultSelected;
@@ -203,17 +213,25 @@
                         else {
                             options[i].style.display = 'block';
                             options[i].selected = options[i].defaultSelected;
+                            index = i;
                         }
                     }
-                    testId.selectedIndex = 0;
-                    testId.style.display = 'block';
-                    noTesta.style.display = 'none';
-                    submitTest.disabled = false;
+                    if (index === -1) {
+                        testId.style.display = 'none';
+                        noTesta.style.display = 'block';
+                        submitTest.disabled = true;
+                    } else {
+
+                        testId.style.display = 'block';
+                        testId.selectedIndex = index;
+                        noTesta.style.display = 'none';
+                        submitTest.disabled = false;
+                    }
+
                 }
 
             }
         }
-
         function select() {
             var priority = document.getElementById('priority');
             var severity = document.getElementById('severity');

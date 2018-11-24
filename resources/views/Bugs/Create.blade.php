@@ -4,7 +4,7 @@
 
     <h2></h2>
 
-    <h4>Bug/Test Enter</h4>
+    <h4>Bug/Test Enter under test suite</h4>
     <hr/>
     @if(Session::has('csuccess'))
         <div class="alert alert-success alert-dismissible" role="alert">
@@ -13,6 +13,23 @@
             {{Session::get('csuccess')}}
         </div>
     @endif
+    <div>
+        <dl style="font-size: 120%" class="dl-horizontal">
+
+            <dt>Testsuite: </dt>
+            <dd>
+                {{ $testsuite->summary}}
+            </dd>
+
+            <dt>  Setting:</dt>
+            <dd>
+                {{ $testsuite->setting->description}}
+            </dd>
+
+
+
+        </dl>
+        </div>
     <div class="row">
 
         <div class="col-md-9">
@@ -46,17 +63,17 @@
 
                 <div class="form-group">
                     <label class="control-label">Test</label>
-                    <select id="testId" style="width:140%;" name="test_id" class="form-control">
+                    <select id="testId" style=" width:140%;" name="test_id" class="form-control">
                         @foreach($tests as $test)
                             @if(($test->status==='testing'||$test->status==='failed')&&$test->staff_id===Session::get('user')->id)
                                 <option class="options" value="{{$test->id}}">Test Id: {{$test->id}};
-                                    Testcase: {{$test->testcase->name}}; Setting: {{$test->setting->description}};
-                                    Classification: {{$test->classification}}; <span
+                                    Testcase: {{$test->testcase->name}};
+                                    Classification: {{$test->classification}}@if($test->classification==='manual')(Plan time: {{$test->planTime}} hours)@endif; <span
                                             class="spanss">Status:</span>{{$test->status}}</option>
                             @endif
                         @endforeach
                     </select>
-                    <p id="noTesta" style="color: red;">You have No tests</p>
+                    <p id="noTesta" style="color: red;">You have No tests for this selection</p>
                 </div>
 
 
@@ -151,6 +168,7 @@
             var index = -1;
             noTesta.style.display = 'none';
             if (ifPassTest.value === '2') {
+
                 enterBug.style.display = 'none';
 
                 for (i = options.length - 1; i >= 0; i--) {
@@ -159,7 +177,8 @@
                         options[i].selected = options[i].defaultSelected;
                     }
                     else {
-                        index = i
+                        options[i].style.display = 'block';
+                        index = i;
                     }
                 }
                 if (index === -1) {
@@ -167,20 +186,24 @@
                     noTesta.style.display = 'block';
                     submitTest.disabled = true;
                 } else {
+                    testId.style.display = 'block';
+                    noTesta.style.display = 'none';
                     testId.selectedIndex = index;
+                    submitTest.disabled = false;
                 }
             }
 
             else {
                 enterBug.style.display = 'block';
                 if (ifPassTest.value === '1') {
-                    for (i = 0; i < options.length; i++) {
+                    for (i = options.length - 1; i >= 0; i--) {
                         if (options[i].childNodes[0].nodeValue.split('Status:')[1] === 'failed') {
                             options[i].style.display = 'none';
                             options[i].selected = options[i].defaultSelected;
                         }
                         else {
-                            index = i
+                            options[i].style.display = 'block';
+                            index = i;
                         }
                     }
                     if (index === -1) {
@@ -188,11 +211,14 @@
                         noTesta.style.display = 'block';
                         submitTest.disabled = true;
                     } else {
+                        testId.style.display = 'block';
+                        noTesta.style.display = 'none';
                         testId.selectedIndex = index;
+                        submitTest.disabled = false;
                     }
                 }
                 else {
-                    for (i = 0; i < options.length; i++) {
+                    for (i = options.length - 1; i >= 0; i--) {
                         if (options[i].childNodes[0].nodeValue.split('Status:')[1] === 'testing') {
                             options[i].style.display = 'none';
                             options[i].selected = options[i].defaultSelected;
@@ -200,12 +226,21 @@
                         else {
                             options[i].style.display = 'block';
                             options[i].selected = options[i].defaultSelected;
+                            index = i;
                         }
                     }
-                    testId.selectedIndex = 0;
-                    testId.style.display = 'block';
-                    noTesta.style.display = 'none';
-                    submitTest.disabled = false;
+                    if (index === -1) {
+                        testId.style.display = 'none';
+                        noTesta.style.display = 'block';
+                        submitTest.disabled = true;
+                    } else {
+
+                        testId.style.display = 'block';
+                        testId.selectedIndex = index;
+                        noTesta.style.display = 'none';
+                        submitTest.disabled = false;
+                    }
+
                 }
 
             }

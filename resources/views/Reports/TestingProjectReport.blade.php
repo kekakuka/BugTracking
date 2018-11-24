@@ -192,7 +192,7 @@
                     @endforeach
                 </ul>
 <hr>
-                <div><P class="text-center" style="font-size: 26px">Bugs List</P></div>
+                <div><P class="text-center" style="font-size: 26px">Not Closed Bugs List</P></div>
                 @foreach($project->subsystems as $subsystem)
                     <br>
                     <table class="table table-striped table-responsive">

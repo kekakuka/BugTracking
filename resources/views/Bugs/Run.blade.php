@@ -9,6 +9,7 @@
     <a style="margin-top: -3px" class="btn btn-default btn-lg" href="{{url('Testsuites/EnterSingle')}}"> Enter Single Tests/Bugs <span style="color:white;background-color:rgba(117, 119, 129, 0.83);" class="badge">@if(Session::has('user')){{Session::get('user')->testsNumber(0)}}@endif</span> </a>
     <hr>
     <table class="table">
+        <caption>{{$Testsuites->links()}}</caption>
         <thead>
         <tr>
             <th>ID
@@ -22,7 +23,7 @@
 
             <th>Project Name
             </th>
-            <th></th>
+            <th style="width: 42% "></th>
         </tr>
         </thead>
         <tbody>
@@ -47,7 +48,7 @@
                 </td>
                 <td>
                     @if($Testsuite->project->status==='testing'&&Session::has('user')&&Session::get('user')->title!=='developer')
-                        <a style="margin-top: -3px" class="btn btn-default " href="{{url('Testsuites/Set/'.$Testsuite->id)}}">Create/Review Tests</a>  |
+                        <a style="margin-top: -3px" class="btn btn-default " href="{{url('Testsuites/Set/'.$Testsuite->id)}}">Create Tests</a>  |
                         <a style="margin-top: -3px" class="btn btn-default " href="{{url('Testsuites/Take/'.$Testsuite->id)}}">Take Tests
                             <span style="color:white;background-color:rgba(204,114,101,0.98);"
                                   class="badge">

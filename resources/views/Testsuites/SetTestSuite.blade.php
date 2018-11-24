@@ -72,7 +72,7 @@
                         <select  style="width:140%;" name="testcase_id" class="form-control">
                             @foreach($testcases as $testcase)
                                 @if($testcase->usecase->subsystem->project->status==='testing')
-                                    <option value="{{$testcase->id}}">Test Case: {{$testcase->id}}:{{$testcase->name}}| - - |  Usecase: {{$testcase->usecase->name}} | - - |  Project: {{$testcase->usecase->subsystem->project->name}}</option>
+                                    <option value="{{$testcase->id}}">Test Case: {{$testcase->id}}: {{$testcase->name}}: {{$testcase->description}} </option>
                                 @endif
                             @endforeach
                         </select>
@@ -95,14 +95,15 @@
 
     </div>
 
-
+    @if($Testsuite->tests->count()>0)
     <table style="width: 90%" class="table table-condensed" >
+        <caption>{{$tests->links()}}</caption>
         <tbody>
         <?php   $myCount=0 ?>
-        @if($Testsuite->tests->count()>0)
+
      <div style="font-size: 22px;">Tests list:</div>
             <tr>
-                @foreach($Testsuite->tests->reverse() as $test)
+                @foreach( $tests as $test)
 
                         @if ($myCount++% 3 === 0)
 
@@ -188,11 +189,11 @@
                 @endforeach
 
             </tr>
-        @endif
+
         </tbody>
     </table>
 
-
+    @endif
 
 
 

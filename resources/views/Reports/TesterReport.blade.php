@@ -51,12 +51,12 @@
             </div>
         </form>
 <br>
-        <div class="pull-right">
+        <div STYLE="margin-right: 50px" class="pull-right">
             <button class="btn btn-default"><a href="{{url('Reports')}}" >Back to List</a></button>
         </div>
         <div>
 
-            <span style="font-size: 15px" class="text-info">Note : Unfinished tests and Confirmation tests are not affected by the filter </span>
+            <span style="font-size: 15px" class="text-warning">Note : Unfinished tests and Confirmation tests are not affected by the filter </span>
         </div>
     </div>
     <hr>
@@ -215,13 +215,14 @@
                                         </tr>
                                         <tr>
                                             <td style="background-color: white;" colspan="6"></td>
-                                        <tr>
+                                        </tr>
                                     @endif
                                 @endforeach
                                 @foreach($staff->bugassigns as $bugassign)
                                     @if($bugassign->status==='assigned')
                                         <tr>
-                                            <td colspan="1">Bug ID: {{$bugassign->bug->id}}</td>  <td style="color: red">Need Confirmation Testing</td>  <td colspan="3">Bug Description: {{$bugassign->bug->description}}</td><td colspan="1">  Assigned Date: {{date_format($bugassign->created_at,'Y-m-d') }}</td></tr>
+                                            <td colspan="1">Bug ID: {{$bugassign->bug->id}}</td>  <td style="color: red">Need Confirmation Testing</td>  <td colspan="3">Bug Description: {{$bugassign->bug->description}}</td><td colspan="1">  Assigned Date: {{date_format($bugassign->created_at,'Y-m-d') }}</td>
+                                        </tr>
 
 
                                         <tr><td colspan="1">Bug RPN: {{$bugassign->bug->bugRPN }} </td> <td colspan="2">
@@ -236,7 +237,7 @@
                                         </tr>
                                         <tr>
                                             <td style="background-color: white;" colspan="6"></td>
-                                        <tr>
+                                        </tr>
                                     @endif
                                 @endforeach
 
@@ -295,7 +296,7 @@
                                         </tr>
                                         <tr>
                                             <td style="background-color: white;" colspan="6"></td>
-                                        <tr>
+                                        </tr>
                                     @endif
                                 @endforeach
                                 @foreach($staff->tBugsAssigns($moreThanDate,$lessThanDate,$selectProject) as $bugassign)
@@ -353,10 +354,10 @@
 
 
 
-                                    <tr>
+                                    </tr>
                                     <tr>
                                         <td style="background-color: white;" colspan="6"></td>
-                                    <tr>
+                                    </tr>
                                     @endif
                                 @endforeach
                                 </tbody>
@@ -443,7 +444,7 @@
                                 </tr>
                                 <tr>
                                     <td style="background-color: white;" colspan="6"></td>
-                                <tr>
+                                </tr>
                             @endif
                         @endforeach
                         @foreach($staff->bugassigns as $bugassign)
@@ -464,7 +465,7 @@
                             </tr>
                             <tr>
                                 <td style="background-color: white;" colspan="6"></td>
-                            <tr>
+                            </tr>
                             @endif
                         @endforeach
 
@@ -523,7 +524,7 @@
                                 </tr>
                                 <tr>
                                     <td style="background-color: white;" colspan="6"></td>
-                                <tr>
+                                </tr>
                             @endif
                         @endforeach
                         @foreach($staff->tBugsAssigns($moreThanDate,$lessThanDate,$selectProject) as $bugassign)
@@ -582,10 +583,10 @@
 
 
 
-                                <tr>
+                                </tr>
                                 <tr>
                                     <td style="background-color: white;" colspan="6"></td>
-                                <tr>
+                                </tr>
                             @endif
                         @endforeach
                         </tbody>

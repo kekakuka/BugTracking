@@ -24,7 +24,7 @@ class TestsuiteController extends Controller
     public function index()
     {
         AuthController::IsUser();
-        $Testsuites = Testsuite::all()->sortByDesc('id');
+        $Testsuites = Testsuite::orderbyDesc('id')->paginate(15);
         return view('Testsuites.index', compact('Testsuites'));
     }
 
@@ -40,9 +40,9 @@ class TestsuiteController extends Controller
             if($test->testsuite_id===null){
                 $tests->push($test);
             }
-
         }
         $tests=$tests->reverse();
+        $tests=$tests->paginate(15);
         return view('Testsuites.CreateSingle', compact('testcases','settings','tests'));
     }
 
@@ -196,6 +196,7 @@ class TestsuiteController extends Controller
             }
         }
         $tests=$tests->reverse();
+        $tests=$tests->paginate(15);
         return view('Testsuites.TakeSingle', compact('tests'));
     }
 
@@ -263,8 +264,9 @@ class TestsuiteController extends Controller
     {
         AuthController::IsUser();
         $Testsuite = Testsuite::find($id);
-
-        return view('Testsuites.Details', compact('Testsuite'));
+$tests=$Testsuite->tests->reverse();
+$tests=$tests->paginate(15);
+        return view('Testsuites.Details', compact('Testsuite','tests'));
     }
 
     public function TakeTest(Request $request, $id)

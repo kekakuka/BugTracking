@@ -18,13 +18,13 @@
             <th>
           Usecase  Name
             </th>
-            <th style="max-width:36%">
+            <th >
              Description
             </th>
             <th>Subsystem Name
             </th><th>Project Name
             </th>
-            <th></th>
+            <th width="17%"></th>
         </tr>
         </thead>
         <tbody>
@@ -46,7 +46,7 @@
             <td>
                 {{ $Usecase->Subsystem->project->name}}
             </td>
-            <td>
+            <td >
                 @if($Usecase->Subsystem->project->status==='testing'&&Session::get('user')->title==='manager')
                 <a href="{{url('Usecases/Edit/'.$Usecase->id)}}" class="btn btn-primary">Edit</a> |
                 @endif
@@ -56,4 +56,5 @@
        @endforeach
         </tbody>
     </table>
+    {{$Usecases->links()}}
 @endsection

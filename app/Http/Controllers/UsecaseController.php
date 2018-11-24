@@ -12,7 +12,7 @@ class UsecaseController extends Controller
 {
     public function index()
     {  AuthController::IsUser();
-        $Usecases = Usecase::all()->sortByDesc('id');
+        $Usecases = Usecase::orderbyDesc('id')->paginate(15);;
         return view('Usecases.index', compact('Usecases'));
     }
 

@@ -75,6 +75,7 @@
     <hr>
 
     <table style="width: 90%" class="table table-condensed" >
+        <caption>{{$tests->links()}}</caption>
         <tbody>
         <?php   $myCount=0 ?>
     @if($tests->count()>0)

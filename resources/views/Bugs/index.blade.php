@@ -10,7 +10,7 @@
             <th>
                 ID
             </th>
-            <th style="width: 40%">
+            <th style="width: 35%">
              Description
             </th>
             <th>
@@ -23,7 +23,7 @@
                 Open Date
             </th>
             <th>Project Name</th>
-            <th></th>
+            <th width="17%"></th>
         </tr>
         </thead>
         <tbody>
@@ -58,4 +58,5 @@
        @endforeach
         </tbody>
     </table>
+    {{ $Bugs->links() }}
 @endsection

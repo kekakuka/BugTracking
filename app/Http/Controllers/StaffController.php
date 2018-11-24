@@ -13,7 +13,7 @@ class StaffController extends Controller
     public function index()
     {
         AuthController::IsUser();
-        $staffs = Staff::all();
+        $staffs = Staff::paginate(15);
         return view('Staff.index', compact('staffs'));
     }
 

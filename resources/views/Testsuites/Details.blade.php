@@ -34,12 +34,13 @@
 <hr>
 
     <table style="width: 90%" class="table table-condensed" >
+        <caption>   {{$tests->links()}}</caption>
         <tbody>
         <?php   $myCount=0 ?>
         @if($Testsuite->tests->count()>0)
             <div style="font-size: 22px;">Tests list:</div>
             <tr>
-                @foreach($Testsuite->tests->reverse() as $test)
+                @foreach($tests as $test)
 
                     @if ($myCount++% 3 === 0)
 
@@ -126,6 +127,7 @@
             </tr>
         @endif
         </tbody>
+
     </table>
 
 

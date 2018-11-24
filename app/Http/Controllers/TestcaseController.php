@@ -13,7 +13,7 @@ class TestcaseController extends Controller
     public function index()
     {
         AuthController::IsUser();
-        $Testcases = Testcase::all()->sortByDesc('id');
+        $Testcases = Testcase::orderbyDesc('id')->paginate(15);;
         return view('Testcases.index', compact('Testcases'));
     }
 

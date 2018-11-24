@@ -10,6 +10,7 @@
     </div>
 <hr> @if($tests->count()>0)
     <table style="width: 90%" class="table table-condensed" >
+        <caption>{{$tests->links()}}</caption>
         <tbody>
         <?php   $myCount=0 ?>
 

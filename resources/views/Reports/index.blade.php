@@ -24,7 +24,7 @@
             <th>
                 Project Name
             </th>
-            <th style="width: 40%">
+            <th style="width: 29%">
                 Description
             </th>
             <th >
@@ -50,11 +50,12 @@
                     {{ $Project->status}}
                 </td>
                 <td>
-                    <a class="btn btn-default" href="{{url('Reports/ProjectReport/'.$Project->id)}}">Finshed Project Report</a>
-                <td>
-                    <a class="btn btn-default" href="{{url('Reports/TestingProjectReport/'.$Project->id)}}">Testing Project Report</a>
+                    <a class="btn btn-default" href="{{url('Reports/ProjectReport/'.$Project->id)}}">Project Report</a>
+                    @if($Project->status==='testing')
+                  |  <a class="btn btn-default" href="{{url('Reports/TestingProjectReport/'.$Project->id)}}">Testing Project Report</a>
+                        @endif
                 </td>
-                </td>
+
             </tr>
         @endforeach
 

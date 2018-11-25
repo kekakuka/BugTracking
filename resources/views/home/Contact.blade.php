@@ -13,7 +13,7 @@
                        <p class="panel-title">Contact us</p>
                    </div>
                    <div class="panel-body">
-                       <dl class="dl-horizontal">
+                       <dl  class="dl-horizontal">
                            <br>
                            <dt class="text-info"> Address:</dt>
 
@@ -39,7 +39,7 @@
                            <dt class="text-info">Email:</dt>
 
                            <dd>
-                               natalia@unitec.ac.nz
+                               leili10@myunitec.ac.nz
                            </dd><br><dt class="text-info">Designer:</dt>
 
                            <dd>
@@ -48,7 +48,7 @@
                            <dt class="text-info">Email:</dt>
 
                            <dd>
-                               natalia@unitec.ac.nz
+                               Zhangm67@myunitec.ac.nz
                            </dd>
                            <br>
                            <dt class="text-info">Tester:</dt>
@@ -59,7 +59,7 @@
                            <dt class="text-info">Email:</dt>
 
                            <dd>
-                               natalia@unitec.ac.nz
+                               Lihj@unitec.ac.nz
                            </dd>
                            <br>
                        </dl></div>

@@ -26,7 +26,7 @@
         </form>
     </div>
     <hr>
-    <div id="print" style="padding: 0% 10%;">
+    <div id="print" style="width: 100%">
         <div style="background-color:white;width: 100%; border: 1px solid darkgray; border-radius: 10px;">
             <div style="margin: 0 2%; width: 96%;font-family: 'Times New Roman'; padding: 0 5%;">
                 <br>
@@ -50,12 +50,12 @@
                         <td>{{ $bugs->count()}}</td>
                     </tr>
                     <tr>
-                        <td>Over Time Bugs</td>
+                        <td style="min-width: 170px">Over Time Bugs</td>
                         <td style="color: red">  {{ $project->overTimeBugsNumbers($moreThanDate, $lessThanDate)}}</td>
                     </tr>
                     <tr>
-                        <td> Waiting/Total Tests</td>
-                        <td> <span style="color: red">{{ $project->WaitingTestsNumber($moreThanDate, $lessThanDate)}}</span>  /   {{ $project->TestsNumber($moreThanDate, $lessThanDate)}}</td>
+                        <td> Total Tests</td>
+                        <td>  {{ $project->TestsNumber($moreThanDate, $lessThanDate)}}</td>
                     </tr>
                     <tr>
                         <td>Tests Pass(%)</td>
@@ -173,9 +173,9 @@
                     </dd>
 
                 </dl>
-                <div id="projectReportBar" style="width: 80%; height: auto; margin: 0 auto"></div>
+                <div id="projectReportBar" style="width: 100%; height: auto; margin: 0 auto"></div>
                 <hr>
-                <div id="projectReportLine" style="width: 80%; height: auto; margin: 0 auto"></div>
+                <div id="projectReportLine" style="width: 100%; height: auto; margin: 0 auto"></div>
            {{--@if( $bugs->count()>0)--}}
                 {{--<div class="row" id="canvasImg" style="width: 700px;height: 500px"></div>--}}
 {{--@endif--}}

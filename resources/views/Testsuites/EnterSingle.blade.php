@@ -149,12 +149,14 @@
         var ifPassTest = document.getElementById("ifPassTest");
         var submitTest = document.getElementById("submitTest");
         var options = document.getElementsByClassName('options');
+        var costTime=document.getElementById('costTime');
 
 
         function check() {
             var index = -1;
             noTesta.style.display = 'none';
             if (ifPassTest.value === '2') {
+                costTime.style.display='block';
 
                 enterBug.style.display = 'none';
 
@@ -183,6 +185,8 @@
             else {
                 enterBug.style.display = 'block';
                 if (ifPassTest.value === '1') {
+                    costTime.style.display='block';
+
                     for (i = options.length - 1; i >= 0; i--) {
                         if (options[i].childNodes[0].nodeValue.split('Status:')[1] === 'failed') {
                             options[i].style.display = 'none';
@@ -205,7 +209,8 @@
                     }
                 }
                 else {
-                    for (i = options.length - 1; i >= 0; i--) {
+                    costTime.style.display='none';
+                    for (i =0; i < options.length; i++) {
                         if (options[i].childNodes[0].nodeValue.split('Status:')[1] === 'testing') {
                             options[i].style.display = 'none';
                             options[i].selected = options[i].defaultSelected;

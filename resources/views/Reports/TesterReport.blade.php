@@ -167,7 +167,7 @@
                                         </tr>
                                         <tr> <td colspan="4">
                                                 <div class="box">
-                                                    Testcase: {{$test->testcase->name }} (Hover Details)
+                                                    Testcase: {{$test->testcase->name }} <span style="color: navy">(More Details)</span>
                                                     <div class="overbox">
 
                                                         <div class="tagline overtext">Description: {{$test->testcase->description }}<br>  Usecase: {{$test->testcase->usecase->name }}<br> Subsystem: {{$test->testcase->usecase->subsystem->name }}</div>
@@ -227,7 +227,7 @@
 
                                         <tr><td colspan="1">Bug RPN: {{$bugassign->bug->bugRPN }} </td> <td colspan="2">
                                                 <div class="box">
-                                                    Testcase: {{$bugassign->bug->test->testcase->name }} (Hover Details)
+                                                    Testcase: {{$bugassign->bug->test->testcase->name }} <span style="color: navy">(More Details)</span>
                                                     <div class="overbox">
 
                                                         <div class="tagline overtext">Description: {{$bugassign->bug->test->testcase->description }}<br>  Usecase: {{$bugassign->bug->test->testcase->usecase->name }}<br> Subsystem: {{$bugassign->bug->test->testcase->usecase->subsystem->name }}</div>
@@ -248,7 +248,7 @@
                                         </tr>
                                         <tr> <td colspan="4">
                                                 <div class="box">
-                                                    Testcase: {{$test->testcase->name }} (Hover Details)
+                                                    Testcase: {{$test->testcase->name }} <span style="color: navy">(More Details)</span>
                                                     <div class="overbox">
 
                                                         <div class="tagline overtext">Description: {{$test->testcase->description }}<br>  Usecase: {{$test->testcase->usecase->name }}<br> Subsystem: {{$test->testcase->usecase->subsystem->name }}</div>
@@ -307,7 +307,7 @@
 
                                         <tr><td colspan="1">Bug RPN: {{$bugassign->bug->bugRPN }} </td> <td colspan="2">
                                                 <div class="box">
-                                                    Testcase: {{$bugassign->bug->test->testcase->name }} (Hover Details)
+                                                    Testcase: {{$bugassign->bug->test->testcase->name }} <span style="color: navy">(More Details)</span>
                                                     <div class="overbox">
 
                                                         <div class="tagline overtext">Description: {{$bugassign->bug->test->testcase->description }}<br>  Usecase: {{$bugassign->bug->test->testcase->usecase->name }}<br> Subsystem: {{$bugassign->bug->test->testcase->usecase->subsystem->name }}</div>
@@ -396,7 +396,7 @@
                                 </tr>
                                 <tr> <td colspan="4">
                                         <div class="box">
-                                            Testcase: {{$test->testcase->name }} (Hover Details)
+                                            Testcase: {{$test->testcase->name }}<span style="color: navy">(More Details)</span>
                                             <div class="overbox">
 
                                                 <div class="tagline overtext">Description: {{$test->testcase->description }}<br>  Usecase: {{$test->testcase->usecase->name }}<br> Subsystem: {{$test->testcase->usecase->subsystem->name }}</div>
@@ -455,7 +455,7 @@
 
                             <tr><td colspan="1">Bug RPN: {{$bugassign->bug->bugRPN }} </td> <td colspan="2">
                                     <div class="box">
-                                        Testcase: {{$bugassign->bug->test->testcase->name }} (Hover Details)
+                                        Testcase: {{$bugassign->bug->test->testcase->name }} <span style="color: navy">(More Details)</span>
                                         <div class="overbox">
 
                                             <div class="tagline overtext">Description: {{$bugassign->bug->test->testcase->description }}<br>  Usecase: {{$bugassign->bug->test->testcase->usecase->name }}<br> Subsystem: {{$bugassign->bug->test->testcase->usecase->subsystem->name }}</div>
@@ -476,7 +476,7 @@
                                 </tr>
                                 <tr> <td colspan="4">
                                         <div class="box">
-                                            Testcase: {{$test->testcase->name }} (Hover Details)
+                                            Testcase: {{$test->testcase->name }} <span style="color: navy">(More Details)</span>
                                             <div class="overbox">
 
                                                 <div class="tagline overtext">Description: {{$test->testcase->description }}<br>  Usecase: {{$test->testcase->usecase->name }}<br> Subsystem: {{$test->testcase->usecase->subsystem->name }}</div>
@@ -535,7 +535,7 @@
 
                                 <tr><td colspan="1">Bug RPN: {{$bugassign->bug->bugRPN }} </td> <td colspan="2">
                                         <div class="box">
-                                            Testcase: {{$bugassign->bug->test->testcase->name }} (Hover Details)
+                                            Testcase: {{$bugassign->bug->test->testcase->name }}<span style="color: navy">(More Details)</span>
                                             <div class="overbox">
 
                                                 <div class="tagline overtext">Description: {{$bugassign->bug->test->testcase->description }}<br>  Usecase: {{$bugassign->bug->test->testcase->usecase->name }}<br> Subsystem: {{$bugassign->bug->test->testcase->usecase->subsystem->name }}</div>

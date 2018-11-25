@@ -21,8 +21,10 @@
             </dd>
 
             <dt> Tests Number: </dt><dd>   {{  $Testsuite->tests->count()}}</dd>
+            <dt> No Run Tests </dt><dd> {{  $Testsuite->waitingTestingNumber()}}</dd>
             <dt> Plan Time:</dt><dd> {{  $Testsuite->testsTime()}}</dd>
-
+            <dt> Cost Time:</dt><dd> {{  $Testsuite->costTime()}}</dd>
+            <dt> Tests Pass(%): </dt><dd>   {{  $Testsuite->PassRunNumber()}}</dd>
 
 
         </dl>

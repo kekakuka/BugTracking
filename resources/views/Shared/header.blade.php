@@ -50,7 +50,7 @@
 
 
         <div class="col-md-pull-1 col-md-7 navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            <ul style="font-size: 15px" class="nav navbar-nav">
 
                 <li ><a href="{{url('/')}}">Home</a></li>
                 <li ><a href="{{url('/Contact')}}">Contact</a></li>
@@ -76,7 +76,7 @@
 
 
                     @if(Session::get('user')->title!=='developer')
-                        <li><a href="{{url('/Bugs/Run')}}">Take Tests/Enter Bugs
+                        <li><a href="{{url('/Bugs/Run')}}">Create Tests/Enter Bugs
                                 @if(Session::get('user')->UnifinishedTestNumber()!==0)      <span style="color:white;background-color:rgba(117, 119, 129, 0.83);"
                                       class="badge">
 

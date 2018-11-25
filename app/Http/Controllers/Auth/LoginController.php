@@ -38,13 +38,12 @@ class LoginController extends Controller
     public function Login()
     {
 
+        if(Session::has('user')){
+            return redirect('/');
 
-       if(Session::has('user')){
-           return redirect('/');
+        }
 
-       }
-
-           return view('auth.login');
+        return view('auth.login');
 
     }
 

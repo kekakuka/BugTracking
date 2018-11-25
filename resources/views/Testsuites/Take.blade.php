@@ -29,13 +29,15 @@
         <a style="margin-left: 70px" href="{{url('/Bugs/Run')}}">Back to List</a>
     </div>
 <hr>
+    @if($Testsuite->waitingNumber()>0)
     <table style="width: 90%" class="table table-condensed" >
+        <caption>{{$tests->links()}}</caption>
         <tbody>
     <?php   $myCount=0 ?>
-    @if($Testsuite->waitingNumber()>0)
+
             <div style="font-size: 22px;">Waiting Tests list:</div>
             <tr>
-        @foreach($Testsuite->tests->reverse() as $test)
+        @foreach($tests as $test)
             @if($test->status==='waiting')
                         @if ($myCount++% 3 === 0)
 
@@ -89,8 +91,8 @@
             @endforeach
 
             </tr>
-    @endif
+
         </tbody>
     </table>
-
+    @endif
 @endsection

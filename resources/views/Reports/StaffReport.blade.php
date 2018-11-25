@@ -42,7 +42,7 @@
         </div>
         <div>
 
-            <span style="font-size: 15px" class="text-info">Note : Unfinished bug assign are not affected by the filter</span>
+            <span style="font-size: 15px" class="text-warning">Note : Unfinished bug assign are not affected by the filter</span>
         </div>
     </div>
     <hr>

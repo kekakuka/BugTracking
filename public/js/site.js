@@ -99,8 +99,7 @@ if (document.getElementById("isFunctional")) {
         crosshair: true
     };
     var yAxis = {
-        maxPadding:0.5,
-        minPadding:0.5,
+
         min: 0,
         title: {
             text: 'Number'

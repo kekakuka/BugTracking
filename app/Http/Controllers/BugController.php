@@ -30,6 +30,7 @@ class BugController extends Controller
                 $SingleTestsNumber++;
             }
        }
+        $Testsuites= $Testsuites->paginate(15);
         return view('Bugs.Run', compact('Testsuites','SingleTestsNumber'));
     }
 

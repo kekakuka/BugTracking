@@ -1,4 +1,4 @@
-<div style="font-size:15px;" class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div style="font-size:15px; max-height: 80px" class="navbar navbar-default navbar-fixed-top" role="navigation">
 
 
     <div style="margin-left:5%" class="col-md-2 navbar-header nav-title">
@@ -50,7 +50,7 @@
 
 
         <div class="col-md-pull-1 col-md-7 navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            <ul style="font-size: 15px" class="nav navbar-nav">
 
                 <li ><a href="{{url('/')}}">Home</a></li>
                 <li ><a href="{{url('/Contact')}}">Contact</a></li>
@@ -60,12 +60,13 @@
                     <li><a href="{{url('/Reports')}}">Reports</a></li>
                     @if(Session::has('user')&&Session::get('user')->title==='manager')
                         <li> <a  href="{{url('BugsAssign')}}"  >
-                                Management <span style="color:white;background-color:rgba(117, 119, 129, 0.83);"
+                                Management  @if(Session::has('OpenBugNumber')&&Session::get('OpenBugNumber')!==0)<span style="color:white;background-color:rgba(117, 119, 129, 0.83);"
                                                 class="badge">
-                                @if(Session::has('OpenBugNumber'))
+
                                         {{Session::get('OpenBugNumber')}}
-                                    @endif
+
                             </span>
+                                @endif
                             </a></li>
                     @else
                         <li> <a  href="{{url('Projects')}}"  >
@@ -75,24 +76,24 @@
 
 
                     @if(Session::get('user')->title!=='developer')
-                        <li><a href="{{url('/Bugs/Run')}}">Take Tests/Enter Bugs
-                                <span style="color:white;background-color:rgba(117, 119, 129, 0.83);"
+                        <li><a href="{{url('/Bugs/Run')}}">Create Tests/Enter Bugs
+                                @if(Session::get('user')->UnifinishedTestNumber()!==0)      <span style="color:white;background-color:rgba(117, 119, 129, 0.83);"
                                       class="badge">
-                                @if(Session::has('user'))
+
                                         {{Session::get('user')->UnifinishedTestNumber()}}
-                                    @endif
-                            </span></a></li>
+
+                            </span> @endif</a></li>
 
                     @endif
 
                     <li><a href="{{url('/Bugs/MyWork')}}">My Bugs
-                            <span style="color:white;background-color:rgba(117, 119, 129, 0.83);"
+                            @if(Session::has('MyNumber')&&Session::get('MyNumber')!==0) <span style="color:white;background-color:rgba(117, 119, 129, 0.83);"
                                   class="badge">
-                                @if(Session::has('MyNumber'))
+
                                     {{Session::get('MyNumber')}}
-                                @else 0
-                                @endif
-                            </span>
+
+
+                            </span>  @endif
                         </a></li>
                     <li><a href="#" title="Manage">Hi {{Session::get('user')->fullName}}</a></li>
                     <li>

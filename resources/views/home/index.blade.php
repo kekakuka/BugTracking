@@ -24,7 +24,7 @@
                 </div>
                 <div class="item">
                     <a style="border-radius:5px;   box-shadow:5px 7px 0px rgba(0, 0, 0, 0.3);" href="#">
-                        <img class="img-thumbnail" src="{{url('Images/AB.jpg')}}"  style="width:100% ;border-radius:7px;">
+                        <img class="img-thumbnail" src="{{url('Images/CB.jpg')}}"  style="width:100% ;border-radius:7px;">
 
 
 
@@ -38,7 +38,7 @@
                 <div class="item">
                     <a style="border-radius:5px;   box-shadow: 6px 7px 0 rgba(0, 0, 0, 0.3);" href="#">
 
-                        <img class="img-thumbnail img-rounded" src="{{url('Images/CB.jpg')}}" style="width:100% ;border-radius:7px; ">
+                        <img class="img-thumbnail img-rounded" src="{{url('Images/DB.jpg')}}" style="width:100% ;border-radius:7px; ">
 
 
 
@@ -48,7 +48,7 @@
                 <div class="item">
                     <a style="border-radius:5px;   box-shadow: 6px 7px 0 rgba(0, 0, 0, 0.3);" href="#">
 
-                        <img class="img-thumbnail img-rounded" src="{{url('Images/EB.jpg')}}" style="width:100% ;border-radius:7px;  ">
+                        <img class="img-thumbnail img-rounded" src="{{url('Images/AB.jpg')}}" style="width:100% ;border-radius:7px;  ">
 
 
 

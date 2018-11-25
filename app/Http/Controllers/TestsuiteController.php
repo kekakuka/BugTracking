@@ -286,7 +286,15 @@ Session::put('user',Staff::find( $newid));}
     {
         AuthController::IsNotDeveloper();
         $Testsuite = Testsuite::find($id);
-        return view('Testsuites.Take', compact('Testsuite'));
+        $thetests=$Testsuite->tests->reverse();
+        $tests=new Collection();
+        foreach ($thetests as $thetest){
+            if($thetest->status==='waiting'){
+                $tests->push($thetest);
+            }
+        }
+        $tests=$tests->paginate(15);
+        return view('Testsuites.Take', compact('Testsuite','tests'));
     }
 
     public function Set($id)
@@ -310,8 +318,10 @@ Session::put('user',Staff::find( $newid));}
         if (Session::has('tsuccess')) {
             $tsuccess = Session::get('tsuccess');
         }
+       $tests= $Testsuite->tests->reverse();
+        $tests=$tests->paginate(15);
         Session::forget('tsuccess');
-        return view('Testsuites.SetTestSuite', compact('Testsuite', 'testcases', 'tsuccess'));
+        return view('Testsuites.SetTestSuite', compact('Testsuite', 'testcases', 'tsuccess','tests'));
     }
 
     public function SetPost($id, Request $request)

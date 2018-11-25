@@ -158,7 +158,8 @@
                             <dd>{{$bug->bug->test->testcase->name}}</dd>
                             <dt> Setting:</dt>
                             <dd>{{$bug->bug->test->setting->description}}</dd>
-
+                            <dt> Test Plan Time:</dt>
+                            <dd>{{$bug->bug->test->planTime}}</dd>
                             <dt> Date:</dt>
                             <dd>{{date_format($bug->bug->test->created_at,'d/m/Y')}}</dd>
                             <dt> Classification:</dt>
@@ -183,6 +184,7 @@
         </div>
 
     </div>
+
     @if($bug->bug->bugassigns!==null&&$bug->bug->bugassigns->count()>0)
 
         <div>
@@ -240,74 +242,6 @@
     @endif
     <br>
     <hr>
-    <div>Functional<br>
-        Specification. The specification is wrong.<br>
-        Function. The specification is right, but implementation is wrong.<br>
-        Test. The system works correctly, but the test reports a spurious error.<br>
-        <br>
-        <hr>
-        System<br>
-        Internal Interface. The internal system communication failed.<br>
-        Hardware Devices. The hardware failed.<br>
-        Operating System. The operating system failed.<br>
-        Software Architecture. A fundamental design assumption proved invalid.<br>
-        Resource Management. The design assumptions are OK, but some implementation of the assumption is wrong.<br>
-        <br>
-        <hr>
-        Process<br>
-        Arithmetic. The program incorrectly adds, divides, multiplies, factors, integrates numerically, or otherwise
-        fails to perform an arithmetic operation properly.
-        Initialization. An operation fails on its first use.<br>
-        Control or Sequence. An action occurs at the wrong time or for the wrong reason.<br>
-        Static Logic. Boundaries are misdefined, logic is invalid, “can’t happen” events do happen, “won’t matter”
-        events do matter, and so forth.<br>
-        Other. A control-flow or processing error occurs that doesn’t fit in the preceding buckets.<br>
-        <br>
-        <hr>
-        Data<br>
-        Type. An integer should be a float, an unsigned integer stores or retrieves a negative value, an object is
-        improperly defined, and so forth.<br>
-        Structure. A complex data structure is invalid or inappropriate.<br>
-        Initial Value. A data element’s initialized value is incorrect. (This might not result in a process
-        initialization error.)<br>
-        Other. A data-related error occurs that doesn’t fit in the preceding buckets.<br>
-        <br>
-        <hr>
-        Code<br>
-        A typo, misspelling, stylistic error, or other coding error occurs that results in a failure.
-        <br>
-        Documentation<br>
-        The documentation says the system does X on condition Y, but the system does Z—a valid and correct
-        action—instead.
-        <br>
-        Standards<br>
-        The system fails to meet industry or vendor standards, follow code standards, adhere to naming conventions, and
-        so forth.
-        <br>
-        Other<br>
-        The root cause is known, but fits none of the preceding categories.
-        <br>
-        Duplicate<br>
-        Two bug reports describe the same bug. (This can happen when two testers report the same symptom, or when two
-        testers report different symptoms that share the same underlying code problem.)
-        <br>
-        NAP<br>
-        The bug as described in the bug report is “not a problem” because the operation noted is correct. The report
-        arises from a misunderstanding on the part of the tester about correct behavior. This situation is distinct from
-        a test failure (whose root cause is cate- gorized as functional/test) in that this is tester failure; that is,
-        human error.
-        <br>
-        Bad Unit<br>
-        The bug is a real problem, but it arises from a random hardware failure that is unlikely to occur in the field.
-        (If the bug indicates a lack of reliability in some hardware compo- nent, this is not the root cause.)
-        <br>
-        RCN<br>
-        A “root cause needed”; the bug is confirmed as closed by test, but no one in develop- ment has supplied a root
-        cause.
-        <br>
-        Unknown<br>
-        No one knows what is broken. This root cause usually fits best when a sporadic bug doesn’t appear for quite
-        awhile, leading people to conclude that some other change fixed the bug as a side effect.
-    </div>
+
 
 @endsection

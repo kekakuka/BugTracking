@@ -30,6 +30,16 @@ class Testsuite extends Model
         }
         return $testsTime;
     }
+
+    public function costTime()
+    {
+        $costTime=0;
+        foreach ($this->tests as $test){
+if($test->costTime!==null)
+            $costTime+=$test->costTime;
+        }
+        return $costTime;
+    }
     public function waitingNumber()
     {
         $waiting=0;
@@ -40,6 +50,18 @@ class Testsuite extends Model
         }
         return $waiting.'/'.$this->tests->count();
     }
+
+    public function waitingTestingNumber()
+    {
+        $waiting=0;
+
+        foreach ($this->tests as $test){
+            if($test->status==='waiting'||$test->status==='testing')
+            {$waiting++;}
+        }
+        return $waiting;
+    }
+
     public function myTesting()
     {
         $myTesting=0;
@@ -62,6 +84,31 @@ if(Session::has('user')){
         }
         return $has;
       }
+
+    public function PassRunNumber()
+    {
+        $testsNumber = 0;
+        $passNumber = 0;
+        $runNumber = 0;
+
+                    foreach ($this->tests as $test) {
+
+                            $testsNumber++;
+                            if ($test->status!=='waiting'&&$test->status!=='testing'){
+                                $runNumber++;
+                            }
+                            if ($test->status==='pass'){
+                                $passNumber++;
+                            }
+
+
+        }
+        if ($runNumber===0){
+            return 'No run tests';
+        }
+
+        return  (number_format($passNumber/$runNumber,'4')*100).'%';
+    }
 
 
 }

@@ -55,9 +55,9 @@
                 <li ><a href="{{url('/')}}">Home</a></li>
                 <li ><a href="{{url('/Contact')}}">Contact</a></li>
                 <li ><a href="{{url('/QA')}}">Instruction</a></li>
-
+                <li><a href="{{url('/Reports')}}">Reports</a></li>
                 @if(Session::has('user'))
-                    <li><a href="{{url('/Reports')}}">Reports</a></li>
+
                     @if(Session::has('user')&&Session::get('user')->title==='manager')
                         <li> <a  href="{{url('BugsAssign')}}"  >
                                 Management  @if(Session::has('OpenBugNumber')&&Session::get('OpenBugNumber')!==0)<span style="color:white;background-color:rgba(117, 119, 129, 0.83);"

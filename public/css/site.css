@@ -97,14 +97,14 @@ a {
 
 
 .navbar-default .navbar-nav > li > a {
-    color: #444444;
+    color: #000000;
 }
 .nav-pills > li.active > a {
     background: linear-gradient(rgba(183, 185, 185, 0.19),rgba(83, 85, 85, 0.19));
     text-shadow: 0.2px 0.3px 0px rgba(0, 0, 0, 0.3);
     color: #1d2124;
 }
-.nav-pills > li.active > a:hover {
+.nav-pills > li.active > a:hover{
     background: linear-gradient(rgba(183, 185, 185, 0.19),rgba(83, 85, 85, 0.19));
 
     text-shadow: 0.2px 0.3px 0px rgba(0, 0, 0, 0.3);

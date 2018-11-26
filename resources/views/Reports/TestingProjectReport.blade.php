@@ -30,9 +30,9 @@
 
 
     <hr style="margin-top: 5%;">
-    <div id="print" >
+    <div id="print" style="padding: 0% 10%;">
         <div style="background-color:white;width: 100%; border: 1px solid darkgray; border-radius: 10px;">
-            <div style="margin: 0 2%; width: 96%;font-family: 'Times New Roman'">
+            <div style="margin: 0 2%; width: 96%;font-family: 'Times New Roman'" class="row">
                 <br>
                 <div><P class="text-center" style="font-size: 26px">Summary</P></div>
 
@@ -84,7 +84,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         {{--<div id="testingProjectReport" style="width: 950px; height: 800px; margin: 0 auto"></div>--}}
-                        <div class="col-md-3" style="z-index:999">
+                        <div class="col-md-2" style="z-index:999">
                             {{--<div class="panel panel-default">--}}
                                 {{--<div class="panel-heading">--}}
                                     {{--<h3 class="panel-title">Bug Information</h3>--}}
@@ -143,7 +143,7 @@
                             {{--</div>--}}
 
                         </div>
-                        <div class="col-md-9 " style="min-height: 600px;z-index: 1;margin-left: -80px" id="testingProjectReport"></div>
+                        <div class="col-md-10" id="testingProjectReport"></div>
                     </div>
                 </div>
 

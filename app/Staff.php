@@ -98,7 +98,7 @@ class Staff extends Model
                 }
             }
             foreach ($this->tests as $test){
-                if (($test->created_at>=$moreThanDate)&&(date(date_format($test->created_at,'Y-m-d'))<=$lessThanDate)){
+                if (($test->updated_at>=$moreThanDate)&&(date(date_format($test->updated_at,'Y-m-d'))<=$lessThanDate)){
                     $result+=$test->costTime;
                 }
             }
@@ -110,7 +110,7 @@ class Staff extends Model
                 }
             }
             foreach ($this->tests as $test){
-                if (($test->created_at>=$moreThanDate)&&(date(date_format($test->created_at,'Y-m-d'))<=$lessThanDate)&&($test->testcase->usecase->subsystem->project->id==$project_id)){
+                if (($test->updated_at>=$moreThanDate)&&(date(date_format($test->updated_at,'Y-m-d'))<=$lessThanDate)&&($test->testcase->usecase->subsystem->project->id==$project_id)){
                     $result+=$test->costTime;
                 }
             }
@@ -150,14 +150,14 @@ class Staff extends Model
         $myTests=new Collection();
         if ($project_id==0){
         foreach ($this->tests as $test){
-            if (($test->created_at>=$moreThanDate)&&(date(date_format($test->created_at,'Y-m-d'))<=$lessThanDate)){
+            if (($test->updated_at>=$moreThanDate)&&(date(date_format($test->updated_at,'Y-m-d'))<=$lessThanDate)){
                 $myTests->push($test);
             }
         }
         }
         else{
             foreach ($this->tests as $test){
-                if (($test->created_at>=$moreThanDate)&&(date(date_format($test->created_at,'Y-m-d'))<=$lessThanDate)&&($test->testcase->usecase->subsystem->project->id==$project_id)){
+                if (($test->updated_at>=$moreThanDate)&&(date(date_format($test->updated_at,'Y-m-d'))<=$lessThanDate)&&($test->testcase->usecase->subsystem->project->id==$project_id)){
                     $myTests->push($test);
                 }
             }

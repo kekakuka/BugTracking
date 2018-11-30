@@ -26,9 +26,9 @@
         </form>
     </div>
     <hr>
-    <div id="print" style="width: 100%">
+    <div id="print" style="padding: 0% 10%;">
         <div style="background-color:white;width: 100%; border: 1px solid darkgray; border-radius: 10px;">
-            <div style="margin: 0 2%; width: 96%;font-family: 'Times New Roman'; padding: 0 5%;">
+            <div style="margin: 0 2%; width: 96%;font-family: 'Times New Roman'; padding: 0 5%;" class="row">
                 <br>
                 <div><P class="text-center" style="font-size: 26px">Summary</P></div>
 

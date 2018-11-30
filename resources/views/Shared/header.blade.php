@@ -1,7 +1,7 @@
 <div style="font-size:15px; max-height: 80px" class="navbar navbar-default navbar-fixed-top" role="navigation">
 
 
-    <div style="margin-left:5%" class="col-md-2 navbar-header nav-title">
+    <div style="margin-left:5%;" class="col-md-2 navbar-header nav-title">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -46,10 +46,10 @@
         {{--</div>--}}
     {{--@endif--}}
 
-    <div class="col-md-8  collapse navbar-collapse">
+    <div class="col-md-8 collapse navbar-collapse">
 
 
-        <div class="col-md-pull-1 col-md-7 navbar-collapse collapse">
+        <div class="col-md-pull-1 col-md-7 navbar-collapse collapse" style="background: linear-gradient(rgba(233, 235, 235, 0.51),rgba(158, 160, 160, 0.51));">
             <ul style="font-size: 15px" class="nav navbar-nav">
 
                 <li ><a href="{{url('/')}}">Home</a></li>

@@ -40,7 +40,6 @@ class LoginController extends Controller
 
         if(Session::has('user')){
             return redirect('/');
-
         }
 
         return view('auth.login');

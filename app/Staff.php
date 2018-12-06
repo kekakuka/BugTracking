@@ -7,11 +7,79 @@ use Illuminate\Support\Collection;
 
 class Staff extends Model
 {
-    protected $fillable=['userName','fullName','title','password'];
+    protected $fillable=['userName','fullName','title','password','company_id'];
 
     public function bugassigns()
     {
         return $this->hasMany('App\Bugassign');
+    }
+
+
+    public function company()
+    {
+        return $this->belongsTo('App\Company', 'company_id','id');
+    }
+
+
+    public  function BelongMyCompany($itemList){
+        if($this->title==='admin'){
+            return $itemList;
+        }
+
+       $newList=new Collection();
+        if ($itemList->count()===0) {
+            return $newList;
+        }
+        if($itemList[0]->company_id) {
+            foreach ($itemList as $item){
+                if($item->company_id===$this->company_id)
+                {  $newList->push($item);}
+            }
+             return $newList;
+         }
+        if($itemList[0]->project_id) {
+            foreach ($itemList as $item){
+                if($item->project->company_id===$this->company_id){
+                $newList->push($item);}
+            }
+            return $newList;
+        }
+        if($itemList[0]->subsystem_id) {
+            foreach ($itemList as $item){
+                if($item->subsystem->project->company_id===$this->company_id){
+                    $newList->push($item);}
+            }
+            return $newList;
+        }
+        if($itemList[0]->usecase_id) {
+            foreach ($itemList as $item){
+                if($item->usecase->subsystem->project->company_id===$this->company_id){
+                    $newList->push($item);}
+            }
+            return $newList;
+        }
+        if($itemList[0]->testcase_id) {
+            foreach ($itemList as $item){
+                if($item->testcase->usecase->subsystem->project->company_id===$this->company_id){
+                    $newList->push($item);}
+            }
+            return $newList;
+        }
+        if($itemList[0]->test_id) {
+            foreach ($itemList as $item){
+                if($item->test->testcase->usecase->subsystem->project->company_id===$this->company_id){
+                    $newList->push($item);}
+            }
+            return $newList;
+        }
+        if($itemList[0]->bug_id) {
+            foreach ($itemList as $item){
+                if($item->bug->test->testcase->usecase->subsystem->project->company_id===$this->company_id){
+                    $newList->push($item);}
+            }
+            return $newList;
+        }
+        return $newList;
     }
 
     public function workLoad($bugassigns): int

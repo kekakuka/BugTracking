@@ -84,7 +84,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         {{--<div id="testingProjectReport" style="width: 950px; height: 800px; margin: 0 auto"></div>--}}
-                        <div class="col-md-2" style="z-index:999">
+                        <div class="col-md-3" style="z-index:999">
                             {{--<div class="panel panel-default">--}}
                                 {{--<div class="panel-heading">--}}
                                     {{--<h3 class="panel-title">Bug Information</h3>--}}
@@ -143,7 +143,7 @@
                             {{--</div>--}}
 
                         </div>
-                        <div class="col-md-10" id="testingProjectReport"></div>
+                        <div class="col-md-9"  id="testingProjectReport"></div>
                     </div>
                 </div>
 

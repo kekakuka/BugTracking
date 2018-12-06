@@ -14,13 +14,15 @@ use Illuminate\Http\Request;
 use App\Project;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 class ProjectController extends Controller
 {
     public function index()
     {
         AuthController::IsUser();
-        $Projects = Project::all()->sortByDesc('id');
+        $AllProjects = Project::all()->sortByDesc('id');
+        $Projects=  Session::get('user')->BelongMyCompany($AllProjects);
         return view('Projects.index', compact('Projects'));
     }
 
@@ -82,7 +84,7 @@ class ProjectController extends Controller
         $Project = new Project([
             'name' => $_POST['name']
             , 'description' => $_POST['description']
-
+            , 'company_id' => Session::get('user')->company_id
         ]);
         $Project->save();
         return redirect('Projects');

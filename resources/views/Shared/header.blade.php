@@ -8,60 +8,34 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a   href="{{url('/')}}"><img class="img-rounded" style="width:50px;" src="{{URL::asset('images/Logo1.png')}}" alt="Bug Tracking"></a>
+        <a href="{{url('/')}}"><img class="img-rounded" style="width:50px;" src="{{URL::asset('images/Logo1.png')}}"
+                                    alt="Bug Tracking"></a>
     </div>
-    {{--@if(Session::has('user')&&Session::get('user')->title==='manager')--}}
-        {{--<div style="padding-top:5px;margin-left:10px" class="col-md-2 dropdown">--}}
-
-            {{--<ul class="dropdown-menu">--}}
-                {{--<li><a href="{{url('Staff')}}">Staff Management</a></li>--}}
-                {{--<li><a href="{{url('Settings')}}">Setting Management</a></li>--}}
-                {{--<li><a href="{{url('Projects')}}">Project Management</a></li>--}}
-                {{--<li><a href="{{url('Subsystems')}}">=>Subsystem Management</a></li>--}}
-                {{--<li><a href="{{url('Usecases')}}">==>Usecase Management</a></li>--}}
-                {{--<li><a href="{{url('Testcases')}}">===>Testcase Management</a></li>--}}
-                {{--<li><a href="{{url('Testsuites')}}">=>Test Suite Management</a></li>--}}
-                {{--<li><a href="{{url('Bugs')}}">Bug Management</a></li>--}}
-
-
-            {{--</ul>--}}
-        {{--</div>--}}
-
-        {{--<div style="padding-top:5px;margin-left:10px" class="col-md-2 dropdown">--}}
-            {{--<a href="{{url('Projects')}}" class="btn btn-default dropdown-toggle" data-toggle="dropdown">--}}
-               {{--<span class="caret"></span>--}}
-            {{--</a>--}}
-            {{--<ul class="dropdown-menu">--}}
-                {{--<li><a href="{{url('Bugs')}}">Bugs</a></li>--}}
-                {{--<li><a href="{{url('Projects')}}">Projects</a></li>--}}
-                {{--<li><a href="{{url('Subsystems')}}">Subsystems</a></li>--}}
-                {{--<li><a href="{{url('Usecases')}}">Usecases</a></li>--}}
-                {{--<li><a href="{{url('Testcases')}}">Testcases</a></li>--}}
-                {{--<li><a href="{{url('Staff')}}">Staff</a></li>--}}
-                {{--<li><a href="{{url('Settings')}}">Setting</a></li>--}}
-                {{--@if(Session::get('user')->title!=='developer')--}}
-                    {{--<li><a href="{{url('Testsuites')}}">Test Suite Management</a></li>--}}
-                {{--@endif--}}
-            {{--</ul>--}}
-        {{--</div>--}}
-    {{--@endif--}}
 
     <div class="col-md-8 collapse navbar-collapse">
 
 
-        <div class="col-md-pull-1 col-md-7 navbar-collapse collapse" style="background: linear-gradient(rgba(233, 235, 235, 0.51),rgba(158, 160, 160, 0.51));">
+        <div class="col-md-pull-1 col-md-7 navbar-collapse collapse"
+             style="background: linear-gradient(rgba(233, 235, 235, 0.51),rgba(158, 160, 160, 0.51));">
             <ul style="font-size: 15px" class="nav navbar-nav">
 
-                <li ><a href="{{url('/')}}">Home</a></li>
-                <li ><a href="{{url('/Contact')}}">Contact</a></li>
-                <li ><a href="{{url('/QA')}}">Instruction</a></li>
-                <li><a href="{{url('/Reports')}}">Reports</a></li>
+                <li><a href="{{url('/')}}">Home</a></li>
+                <li><a href="{{url('/Contact')}}">Contact</a></li>
+                <li><a href="{{url('/QA')}}">Instruction</a></li>
+
                 @if(Session::has('user'))
 
+                    @if(Session::get('user')->title==='admin')
+                        <li><a href="{{url('Companies')}}">
+                                Companies Management
+                            </a></li>
+                        @else
+                        <li><a href="{{url('/Reports')}}">Reports</a></li>
                     @if(Session::has('user')&&Session::get('user')->title==='manager')
-                        <li> <a  href="{{url('BugsAssign')}}"  >
-                                Management  @if(Session::has('OpenBugNumber')&&Session::get('OpenBugNumber')!==0)<span style="color:white;background-color:rgba(117, 119, 129, 0.83);"
-                                                class="badge">
+                        <li><a href="{{url('BugsAssign')}}">
+                                Management @if(Session::has('OpenBugNumber')&&Session::get('OpenBugNumber')!==0)<span
+                                        style="color:white;background-color:rgba(117, 119, 129, 0.83);"
+                                        class="badge">
 
                                         {{Session::get('OpenBugNumber')}}
 
@@ -69,16 +43,17 @@
                                 @endif
                             </a></li>
                     @else
-                        <li> <a  href="{{url('Projects')}}"  >
-                               Check Information
+                        <li><a href="{{url('Projects')}}">
+                                Check Information
                             </a></li>
                     @endif
 
 
                     @if(Session::get('user')->title!=='developer')
                         <li><a href="{{url('/Bugs/Run')}}">Create Tests/Enter Bugs
-                                @if(Session::get('user')->UnifinishedTestNumber()!==0)      <span style="color:white;background-color:rgba(117, 119, 129, 0.83);"
-                                      class="badge">
+                                @if(Session::get('user')->UnifinishedTestNumber()!==0)      <span
+                                        style="color:white;background-color:rgba(117, 119, 129, 0.83);"
+                                        class="badge">
 
                                         {{Session::get('user')->UnifinishedTestNumber()}}
 
@@ -87,21 +62,21 @@
                     @endif
 
                     <li><a href="{{url('/Bugs/MyWork')}}">My Bugs
-                            @if(Session::has('MyNumber')&&Session::get('MyNumber')!==0) <span style="color:white;background-color:rgba(117, 119, 129, 0.83);"
-                                  class="badge">
-
+                            @if(Session::has('MyNumber')&&Session::get('MyNumber')!==0) <span
+                                    style="color:white;background-color:rgba(117, 119, 129, 0.83);"
+                                    class="badge">
                                     {{Session::get('MyNumber')}}
-
-
                             </span>  @endif
                         </a></li>
                     <li><a href="#" title="Manage">Hi {{Session::get('user')->fullName}}</a></li>
+                    @endif
                     <li>
                         <form action="{{route('Logout')}}" method="post" id="logoutForm" class="navbar-right">
                             @csrf
                             <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
                         </form>
                     </li>
+
                 @else
                     <li><a href="{{ route('myLogin') }}">Log in</a></li>
                 @endif
@@ -113,9 +88,7 @@
 
 
 </div>
-<script  type="text/javascript">
-
-
+<script type="text/javascript">
 
 
 </script>

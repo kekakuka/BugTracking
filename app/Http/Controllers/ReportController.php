@@ -7,18 +7,19 @@ use App\Project;
 use App\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Session;
 
 class ReportController extends Controller
 {
     public function index()
     {
-       // AuthController::IsUser();
-$Projects=Project::all();
+        AuthController::IsUser();
+        $Projects= Session::get('user')->BelongMyCompany(Project::all());
         return view('Reports.index',compact('Projects'));
     }
     public function StaffReport(Request $request)
     {
-     //   AuthController::IsUser();
+        AuthController::IsUser();
         if (isset($_GET['moreThanDate'])&&($_GET['moreThanDate']!='')){
             $moreThanDate= $_GET['moreThanDate'];
 
@@ -33,16 +34,14 @@ $Projects=Project::all();
             $lessThanDate=date('2099-12-31');
         }
 
-
-
-        $staffs=Staff::all();
+        $staffs= Session::get('user')->BelongMyCompany(Staff::all());
         return view('Reports.StaffReport',compact('staffs','moreThanDate','lessThanDate'));
 
     }
 
     public function TesterReport(Request $request)
     {
-     //   AuthController::IsUser();
+       AuthController::IsUser();
         if (isset($_GET['moreThanDate'])&&($_GET['moreThanDate']!='')){
             $moreThanDate= $_GET['moreThanDate'];
 
@@ -57,8 +56,6 @@ $Projects=Project::all();
             $lessThanDate=date('2099-12-31');
         }
         if (isset($_GET['project_id'])&&($_GET['project_id']!=0)){
-
-
             $selectProject= $_GET['project_id'];
 $projectName=Project::find($selectProject)->name;
         }
@@ -75,14 +72,15 @@ $projectName=Project::find($selectProject)->name;
                 $staffs->push($astaff);
             }
         }
-
+        $projects= Session::get('user')->BelongMyCompany($projects);
+        $staffs= Session::get('user')->BelongMyCompany($staffs);
         return view('Reports.TesterReport',compact('staffs','projects','moreThanDate','lessThanDate','selectProject','projectName'));
 
     }
     public function TestingProjectReport(Request $request,$id)
     {
 
-      //  AuthController::IsUser();
+       AuthController::IsUser();
         if (isset($_GET['moreThanDate'])&&($_GET['moreThanDate']!='')){
             $moreThanDate= $_GET['moreThanDate'];
 
@@ -140,7 +138,7 @@ $projectName=Project::find($selectProject)->name;
     public function ProjectReport(Request $request,$id)
     {
 
-      //  AuthController::IsUser();
+       AuthController::IsUser();
         if (isset($_GET['moreThanDate'])&&($_GET['moreThanDate']!='')){
           $moreThanDate= $_GET['moreThanDate'];
         }

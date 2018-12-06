@@ -7,13 +7,15 @@ use App\Subsystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 class SubsystemController extends Controller
 {
     public function index()
     {
         AuthController::IsUser();
-        $Subsystems = Subsystem::orderbyDesc('id')->paginate(15);;
+        $AllSubsystems = Subsystem::all()->sortByDesc('id');
+        $Subsystems=  Session::get('user')->BelongMyCompany($AllSubsystems)->paginate(15);
         return view('Subsystems.index', compact('Subsystems'));
     }
 
@@ -21,6 +23,7 @@ class SubsystemController extends Controller
     {
         AuthController::IsManager();
         $projects=Project::all();
+        $projects=  Session::get('user')->BelongMyCompany($projects);
         return view('Subsystems.Create',compact('projects'));
     }
 
@@ -52,6 +55,7 @@ class SubsystemController extends Controller
         AuthController::IsManager();
         $Subsystem =Subsystem::find($id);
         $projects=Project::all();
+        $projects=  Session::get('user')->BelongMyCompany($projects);
         return view('Subsystems.Edit',compact('Subsystem','projects'));
     }
 

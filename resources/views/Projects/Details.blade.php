@@ -36,16 +36,16 @@
     <div>
         <a href="{{url('Projects/')}}">Back to List</a>
         <hr>
-        @if(Session::get('user')->title==='manager')
-        <form method="post" action="{{url('Projects/Delete/'.$Project->id)}}">
-            @csrf
-            <label>Delete Password
-                <input type="password" name="password"  />
-            </label>
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+        {{--@if(Session::get('user')->title==='manager')--}}
+        {{--<form method="post" action="{{url('Projects/Delete/'.$Project->id)}}">--}}
+            {{--@csrf--}}
+            {{--<label>Delete Password--}}
+                {{--<input type="password" name="password"  />--}}
+            {{--</label>--}}
+            {{--<input type="submit" value="Delete" class="btn btn-default" /> |--}}
 
-        </form>
-        @endif
+        {{--</form>--}}
+        {{--@endif--}}
 
     </div>
 

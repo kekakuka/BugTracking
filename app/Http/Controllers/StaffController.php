@@ -7,13 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 class StaffController extends Controller
 {
     public function index()
     {
         AuthController::IsUser();
-        $staffs = Staff::paginate(15);
+        $staffs = Staff::all();
+        $staffs=Session::get('user')->BelongMyCompany( $staffs);
+        $staffs =  $staffs->paginate(15);
         return view('Staff.index', compact('staffs'));
     }
 
@@ -70,6 +73,7 @@ class StaffController extends Controller
             'userName' => 'required|max:100|alpha_num|unique:staff',
             'fullName' => 'required|max:100',
             'password' => 'required|string|min:4|confirmed',
+
         ]);
 
         if ($validator->fails()) {
@@ -81,7 +85,8 @@ class StaffController extends Controller
             'userName' => $_POST['userName']
             ,  'fullName' => $_POST['fullName']
             ,  'title' => $_POST['title']
-            ,  'password' => $_POST['password']
+            ,  'password' => $_POST['password'],
+             'company_id' => Session::get('user')->company_id
         ]);
         $Staff->save();
         return redirect('Staff');

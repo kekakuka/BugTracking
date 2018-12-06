@@ -25,7 +25,9 @@ class BugController extends Controller
         AuthController::IsNotDeveloper();
         $Testsuites = Testsuite::all()->sortByDesc('id');
         $SingleTestsNumber=0;
-        foreach (Test::all() as $item) {
+        $Testsuites=Session::get('user')->BelongMyCompany($Testsuites);
+        $Tests=Session::get('user')->BelongMyCompany(Test::all());
+        foreach ( $Tests as $item) {
             if ($item->status==='waiting'&&$item->testsuite_id===null){
                 $SingleTestsNumber++;
             }
@@ -37,7 +39,9 @@ class BugController extends Controller
     public function index(Request $request)
     {
         AuthController::IsUser();
-        $Bugs = Bug::orderbyDesc('id')->paginate(15);
+        $Bugs = Bug::all()->sortByDesc('id');
+        $Bugs=Session::get('user')->BelongMyCompany($Bugs)->paginate(15);
+
         return view('Bugs.index', compact('Bugs'));
     }
 
@@ -45,8 +49,8 @@ class BugController extends Controller
     {
         AuthController::IsUser();
         $myBugs = new Collection();
-        $Bugassigns = Bugassign::all();
-        $staffs = Staff::all();
+        $Bugassigns=Session::get('user')->BelongMyCompany(Bugassign::all());
+        $staffs=Session::get('user')->BelongMyCompany( Staff::all());
         foreach ($Bugassigns as $bugassign) {
             if (($bugassign->status === 'assigned')
                 && $bugassign->staff_id === Session::get('user')->id) {
@@ -62,6 +66,7 @@ class BugController extends Controller
         AuthController::IsManager();
         $Bugs = new Collection();
         $AllBugs = Bug::all();
+        $AllBugs= Session::get('user')->BelongMyCompany($AllBugs);
         foreach ($AllBugs as $bug) {
             if ($bug->state === 'open' || $bug->state === 'reOpened') {
                 $Bugs->push($bug);
@@ -77,6 +82,7 @@ class BugController extends Controller
         $date = date_format(Carbon::tomorrow(), 'Y-m-d');
         $bug = Bug::find($id);
         $staffs = DB::table('staff')->where('title', '=', 'developer')->get();
+        $staffs= Session::get('user')->BelongMyCompany($staffs);
         return view('Bugs.Assign', compact('bug', 'staffs', 'date'));
     }
 
@@ -130,6 +136,7 @@ class BugController extends Controller
         $bug = Bugassign::find($id);
         if($bug->staff_id===Session::get('user')->id&&$bug->status==='assigned'){
         $staffs = Staff::all();
+            $staffs= Session::get('user')->BelongMyCompany($staffs);
         return view('Bugs.MyBugAssign', compact('bug', 'staffs'));}
         abort(404,'Sorry, the page you are looking for could not be found.');
     }

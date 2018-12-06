@@ -7,20 +7,23 @@ use App\Usecase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 class TestcaseController extends Controller
 {
     public function index()
     {
         AuthController::IsUser();
-        $Testcases = Testcase::orderbyDesc('id')->paginate(15);;
+
+        $AllTestcases = Testcase::all()->sortByDesc('id');
+        $Testcases=  Session::get('user')->BelongMyCompany($AllTestcases)->paginate(15);
         return view('Testcases.index', compact('Testcases'));
     }
 
     public function Create()
     {
         AuthController::IsManager();
-        $Usecases=Usecase::all();
+        $Usecases=  Session::get('user')->BelongMyCompany(Usecase::all());
         return view('Testcases.Create',compact('Usecases'));
     }
 
@@ -51,8 +54,7 @@ class TestcaseController extends Controller
     {
         AuthController::IsManager();
         $Testcase =Testcase::find($id);
-        $Usecases=Usecase::all();
-
+        $Usecases=  Session::get('user')->BelongMyCompany(Usecase::all());
         return view('Testcases.Edit',compact('Testcase','Usecases'));
     }
 

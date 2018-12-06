@@ -8,7 +8,13 @@ use App\BugDate;
 
 class Project extends Model
 {
-    protected $fillable = ['name', 'description', 'status'];
+    protected $fillable = ['name', 'description', 'status','company_id'];
+
+
+    public function company()
+    {
+        return $this->belongsTo('App\Company', 'company_id','id');
+    }
 
     public function subsystems(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

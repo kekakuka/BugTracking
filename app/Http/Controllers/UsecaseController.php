@@ -7,19 +7,23 @@ use App\Usecase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 class UsecaseController extends Controller
 {
     public function index()
     {  AuthController::IsUser();
-        $Usecases = Usecase::orderbyDesc('id')->paginate(15);;
+
+
+        $AllUsecases = Usecase::all()->sortByDesc('id');
+        $Usecases=  Session::get('user')->BelongMyCompany($AllUsecases)->paginate(15);
         return view('Usecases.index', compact('Usecases'));
     }
 
     public function Create()
     {
         AuthController::IsManager();
-        $Subsystems=Subsystem::all();
+        $Subsystems=  Session::get('user')->BelongMyCompany(Subsystem::all());
         return view('Usecases.Create',compact('Subsystems'));
     }
 
@@ -50,8 +54,7 @@ class UsecaseController extends Controller
     {
         AuthController::IsManager();
         $Usecase =Usecase::find($id);
-        $Subsystems=Subsystem::all();
-
+        $Subsystems=  Session::get('user')->BelongMyCompany(Subsystem::all());
         return view('Usecases.Edit',compact('Usecase','Subsystems'));
     }
 

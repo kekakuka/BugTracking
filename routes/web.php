@@ -37,6 +37,17 @@ Route::prefix('Projects')->group(function () {
     Route::post('/EditPost/{id}', 'ProjectController@EditPost');
 });
 
+
+Route::prefix('Companies')->group(function () {
+    Route::get('/', 'CompanyController@index');
+    Route::post('/Create', 'CompanyController@CreatePost');
+    Route::get('/Details/{id}', 'CompanyController@Details');
+    Route::post('/Delete/{id}', 'CompanyController@DeletePost');
+    Route::get('/Create', 'CompanyController@Create');
+});
+
+
+
 Route::prefix('Subsystems')->group(function () {
     Route::get('/', 'SubsystemController@index');
     Route::post('/Create', 'SubsystemController@CreatePost');

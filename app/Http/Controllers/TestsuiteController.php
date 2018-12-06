@@ -24,7 +24,8 @@ class TestsuiteController extends Controller
     public function index()
     {
         AuthController::IsUser();
-        $Testsuites = Testsuite::orderbyDesc('id')->paginate(15);
+        $AllTestsuites = Testsuite::all()->sortByDesc('id');
+        $Testsuites=  Session::get('user')->BelongMyCompany($AllTestsuites)->paginate(15);
         return view('Testsuites.index', compact('Testsuites'));
     }
 
@@ -32,18 +33,23 @@ class TestsuiteController extends Controller
     public function CreateSingle()
     {
         AuthController::IsNotDeveloper();
-        $testcases = Testcase::all();
+        $testcases=  Session::get('user')->BelongMyCompany(Testcase::all());
         $settings = Setting::all();
-        $ALLtests=Test::all();
+        $ALLtestsOfCom=Session::get('user')->BelongMyCompany(Test::all());
         $tests=new Collection();
-        foreach ($ALLtests as $test){
+        foreach ($ALLtestsOfCom as $test){
             if($test->testsuite_id===null){
                 $tests->push($test);
             }
         }
         $tests=$tests->reverse();
         $tests=$tests->paginate(15);
-        return view('Testsuites.CreateSingle', compact('testcases','settings','tests'));
+        $stsuccess='';
+        if(Session::has('stsuccess')){
+            $stsuccess=Session::get('stsuccess');
+        }
+        Session::forget('stsuccess');
+        return view('Testsuites.CreateSingle', compact('testcases','settings','tests','stsuccess'));
     }
 
 
@@ -188,9 +194,10 @@ class TestsuiteController extends Controller
     public function TakeSingle()
     {
         AuthController::IsNotDeveloper();
-        $ALLtests=Test::all();
+
+        $ALLtestsOfCom=Session::get('user')->BelongMyCompany(Test::all());
         $tests=new Collection();
-        foreach ($ALLtests as $test){
+        foreach ($ALLtestsOfCom as $test){
             if($test->testsuite_id===null&&$test->status==='waiting'){
                 $tests->push($test);
             }
@@ -204,7 +211,7 @@ class TestsuiteController extends Controller
     public function Create()
     {
         AuthController::IsManager();
-        $projects = Project::all();
+        $projects=  Session::get('user')->BelongMyCompany(Project::all());
         $settings = Setting::all();
         return view('Testsuites.Create', compact('projects','settings'));
     }
@@ -236,7 +243,7 @@ class TestsuiteController extends Controller
     {
         AuthController::IsManager();
         $Testsuite = Testsuite::find($id);
-        $projects = Project::all();
+        $projects=  Session::get('user')->BelongMyCompany(Project::all());
         return view('Testsuites.Edit', compact('Testsuite', 'projects'));
     }
 
@@ -302,7 +309,8 @@ Session::put('user',Staff::find( $newid));}
         AuthController::IsNotDeveloper();
         $Testsuite = Testsuite::find($id);
         $testcases = new Collection();
-        foreach (Testcase::all() as $testcase) {
+        $AlltestcasesOfCom=  Session::get('user')->BelongMyCompany(Testcase::all());
+        foreach ($AlltestcasesOfCom as $testcase) {
             if ($testcase->usecase->subsystem->project->id === $Testsuite->project_id) {
                 $has=false;
                 foreach ($Testsuite->tests as $test){

@@ -14,11 +14,11 @@
                 @csrf
                 <div class="form-group">
                     <label  class="control-label">Project Name</label>
-                    </span>  <input name="name" value="{{ old('name') }}" class="form-control" />
+                   <input name="name" value="{{ old('name') }}" class="form-control" />
                 </div>
                 <div class="form-group">
                     <label  class="control-label">Description</label>
-                    </span>  <textarea style="height: 150px" name="description"  class="form-control" >{{ old('description') }}</textarea>
+                   <textarea style="height: 150px" name="description"  class="form-control" >{{ old('description') }}</textarea>
                 </div>
 
                 @if ($errors->any())

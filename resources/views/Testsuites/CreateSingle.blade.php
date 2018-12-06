@@ -7,9 +7,9 @@
 
     <a href="{{url('/Bugs/Run')}}">Back to List</a>
     <hr/>
-    @if(Session::has('stsuccess'))<div class="alert alert-success alert-dismissible" role="alert">
+    @if($stsuccess!=='')<div class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-        {{Session::get('stsuccess')}}
+        {{$stsuccess}}
     </div>
     @endif
     <div class="row">

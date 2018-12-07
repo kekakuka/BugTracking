@@ -30,6 +30,7 @@ class StaffController extends Controller
     {
         AuthController::IsManager();
         $staff = Staff::find($id);
+        AuthController::SameCompany(  $staff );
 //        $t='';
 //        $d='';
 //        $m='';
@@ -96,6 +97,7 @@ class StaffController extends Controller
     {
         AuthController::IsUser();
         $staff = Staff::find($id);
+        AuthController::SameCompany(  $staff );
         $unfinishedBugAssign=new Collection();
         foreach ($staff->bugassigns as $bugassign) {
             if (($bugassign->status === 'assigned')
@@ -104,7 +106,7 @@ class StaffController extends Controller
             }
         }
         $staffs=new Collection();
-        $allStaff = Staff::all();
+        $allStaff = Session::get('user')->BelongMyCompany(Staff::all());
         foreach ($allStaff as $otherStaff) {
             if ($staff->userName!==$otherStaff->userName){
                if($staff->title==='developer'&&$staff->title===$otherStaff->title){

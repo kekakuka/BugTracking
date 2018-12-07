@@ -79,8 +79,13 @@ class BugController extends Controller
     public function Assign($id)
     {
         AuthController::IsManager();
-        $date = date_format(Carbon::tomorrow(), 'Y-m-d');
+
         $bug = Bug::find($id);
+       AuthController::SameCompany($bug);
+        if($bug->state!=='open'||$bug->state!=='reOpened'){
+            abort(404,'Sorry, the page you are looking for could not be found.');
+        }
+        $date = date_format(Carbon::tomorrow(), 'Y-m-d');
         $staffs = DB::table('staff')->where('title', '=', 'developer')->get();
         $staffs= Session::get('user')->BelongMyCompany($staffs);
         return view('Bugs.Assign', compact('bug', 'staffs', 'date'));
@@ -130,13 +135,11 @@ class BugController extends Controller
 
     public function StaffAssign(Request $request, $id)
     {
-
         AuthController::IsUser();
-
         $bug = Bugassign::find($id);
-        if($bug->staff_id===Session::get('user')->id&&$bug->status==='assigned'){
-        $staffs = Staff::all();
-            $staffs= Session::get('user')->BelongMyCompany($staffs);
+        if($bug->staff_id===Session::get('user')->id&&$bug->status==='assigned')
+        {
+            $staffs= Session::get('user')->BelongMyCompany(Staff::all());
         return view('Bugs.MyBugAssign', compact('bug', 'staffs'));}
         abort(404,'Sorry, the page you are looking for could not be found.');
     }
@@ -337,13 +340,13 @@ class BugController extends Controller
     {
         AuthController::IsNotDeveloper();
         $testsuite=Testsuite::find($id);
+        AuthController::SameCompany($testsuite);
         $tests = $testsuite->tests;
         return view('Bugs.Create', compact('tests','testsuite'));
     }
 
     public function CreatePost(Request $request,$id)
     {
-
         AuthController::IsNotDeveloper();
         $validatorTest = Validator::make($request->all(), [
             'test_id'=>'required',
@@ -426,6 +429,7 @@ class BugController extends Controller
     {
         AuthController::IsManager();
         $Bug = Bug::find($id);
+        AuthController::SameCompany($Bug);
         return view('Bugs.Edit', compact('Bug'));
     }
 
@@ -476,7 +480,7 @@ class BugController extends Controller
     {
         AuthController::IsUser();
         $Bug = Bug::find($id);
-
+        AuthController::SameCompany($Bug);
         return view('Bugs.Details', compact('Bug'));
     }
 }

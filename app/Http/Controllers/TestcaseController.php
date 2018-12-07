@@ -54,6 +54,7 @@ class TestcaseController extends Controller
     {
         AuthController::IsManager();
         $Testcase =Testcase::find($id);
+        AuthController::SameCompany( $Testcase);
         $Usecases=  Session::get('user')->BelongMyCompany(Usecase::all());
         return view('Testcases.Edit',compact('Testcase','Usecases'));
     }
@@ -82,7 +83,7 @@ class TestcaseController extends Controller
     {
         AuthController::IsUser();
         $Testcase =Testcase::find($id);
-
+        AuthController::SameCompany( $Testcase);
         return view('Testcases.Details', compact('Testcase'));
     }
 }

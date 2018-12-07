@@ -54,6 +54,7 @@ class UsecaseController extends Controller
     {
         AuthController::IsManager();
         $Usecase =Usecase::find($id);
+        AuthController::SameCompany( $Usecase);
         $Subsystems=  Session::get('user')->BelongMyCompany(Subsystem::all());
         return view('Usecases.Edit',compact('Usecase','Subsystems'));
     }
@@ -82,7 +83,7 @@ class UsecaseController extends Controller
     {
         AuthController::IsUser();
         $Usecase =Usecase::find($id);
-
+        AuthController::SameCompany( $Usecase);
         return view('Usecases.Details', compact('Usecase'));
     }
 }

@@ -32,41 +32,41 @@ class ProjectController extends Controller
         return view('Projects.Create');
     }
 
-    public function DeletePost($id, Request $request)
-    {
-
-        AuthController::IsManager();
-        if ($_POST['password'] === '654321') {
-            $project = Project::find($id);
-            foreach ($project->subsystems as $subsystem) {
-                foreach ($subsystem->usecases as $usecase) {
-                    foreach ($usecase->testcases as $testcase) {
-                        foreach ($testcase->tests as $test) {
-                            foreach ($test->bugs as $bug) {
-                                foreach ($bug->bugassigns as $bugassign) {
-                                    Bugassign::destroy($bugassign->id);
-                                }
-                                foreach ($bug->bugcomments as $bugcomment) {
-                                    Bugcomment::destroy($bugcomment->id);
-                                }
-                                Bug::destroy($bug->id);
-                            }
-                            Test::destroy($test->id);
-                        }
-                        TestCase::destroy($testcase->id);
-                    }
-                    Usecase::destroy($usecase->id);
-                }
-                Subsystem::destroy($subsystem->id);
-            }
-            foreach ($project->testsuites as $testsuite) {
-                Testsuite::destroy($testsuite->id);
-            }
-            Project::destroy($id);
-        }
-        $Projects = Project::all()->sortByDesc('id');
-        return view('Projects.index', compact('Projects'));
-    }
+//    public function DeletePost($id, Request $request)
+//    {
+//
+//        AuthController::IsManager();
+//        if ($_POST['password'] === '654321') {
+//            $project = Project::find($id);
+//            foreach ($project->subsystems as $subsystem) {
+//                foreach ($subsystem->usecases as $usecase) {
+//                    foreach ($usecase->testcases as $testcase) {
+//                        foreach ($testcase->tests as $test) {
+//                            foreach ($test->bugs as $bug) {
+//                                foreach ($bug->bugassigns as $bugassign) {
+//                                    Bugassign::destroy($bugassign->id);
+//                                }
+//                                foreach ($bug->bugcomments as $bugcomment) {
+//                                    Bugcomment::destroy($bugcomment->id);
+//                                }
+//                                Bug::destroy($bug->id);
+//                            }
+//                            Test::destroy($test->id);
+//                        }
+//                        TestCase::destroy($testcase->id);
+//                    }
+//                    Usecase::destroy($usecase->id);
+//                }
+//                Subsystem::destroy($subsystem->id);
+//            }
+//            foreach ($project->testsuites as $testsuite) {
+//                Testsuite::destroy($testsuite->id);
+//            }
+//            Project::destroy($id);
+//        }
+//        $Projects = Project::all()->sortByDesc('id');
+//        return view('Projects.index', compact('Projects'));
+//    }
 
     public function CreatePost(Request $request)
     {
@@ -93,6 +93,7 @@ class ProjectController extends Controller
     public function Edit($id)
     {
         AuthController::IsManager();
+        AuthController::SameCompany(Project::find($id));
         $Project = DB::table('projects')->where('id', $id)->first();
         return view('Projects.Edit', compact('Project'));
     }
@@ -120,6 +121,7 @@ class ProjectController extends Controller
     public function Details($id)
     {
         AuthController::IsUser();
+        AuthController::SameCompany(Project::find($id));
         $Project = DB::table('projects')->where('id', $id)->first();
         return view('Projects.Details', compact('Project'));
     }

@@ -53,7 +53,9 @@ class SubsystemController extends Controller
     public function Edit($id)
     {
         AuthController::IsManager();
+
         $Subsystem =Subsystem::find($id);
+        AuthController::SameCompany($Subsystem);
         $projects=Project::all();
         $projects=  Session::get('user')->BelongMyCompany($projects);
         return view('Subsystems.Edit',compact('Subsystem','projects'));
@@ -81,8 +83,9 @@ class SubsystemController extends Controller
     public function Details($id)
     {
         AuthController::IsUser();
-        $Subsystem =Subsystem::find($id);
 
+        $Subsystem =Subsystem::find($id);
+        AuthController::SameCompany($Subsystem);
         return view('Subsystems.Details', compact('Subsystem'));
     }
 }

@@ -243,6 +243,7 @@ class TestsuiteController extends Controller
     {
         AuthController::IsManager();
         $Testsuite = Testsuite::find($id);
+        AuthController::SameCompany($Testsuite);
         $projects=  Session::get('user')->BelongMyCompany(Project::all());
         return view('Testsuites.Edit', compact('Testsuite', 'projects'));
     }
@@ -271,6 +272,7 @@ class TestsuiteController extends Controller
     {
         AuthController::IsUser();
         $Testsuite = Testsuite::find($id);
+        AuthController::SameCompany($Testsuite);
 $tests=$Testsuite->tests->reverse();
 $tests=$tests->paginate(15);
         return view('Testsuites.Details', compact('Testsuite','tests'));
@@ -293,6 +295,7 @@ Session::put('user',Staff::find( $newid));}
     {
         AuthController::IsNotDeveloper();
         $Testsuite = Testsuite::find($id);
+        AuthController::SameCompany($Testsuite);
         $thetests=$Testsuite->tests->reverse();
         $tests=new Collection();
         foreach ($thetests as $thetest){
@@ -308,6 +311,7 @@ Session::put('user',Staff::find( $newid));}
     {
         AuthController::IsNotDeveloper();
         $Testsuite = Testsuite::find($id);
+        AuthController::SameCompany($Testsuite);
         $testcases = new Collection();
         $AlltestcasesOfCom=  Session::get('user')->BelongMyCompany(Testcase::all());
         foreach ($AlltestcasesOfCom as $testcase) {

@@ -81,6 +81,7 @@ $projectName=Project::find($selectProject)->name;
     {
 
        AuthController::IsUser();
+        AuthController::SameCompany(Project::find($id));
         if (isset($_GET['moreThanDate'])&&($_GET['moreThanDate']!='')){
             $moreThanDate= $_GET['moreThanDate'];
 
@@ -139,6 +140,7 @@ $projectName=Project::find($selectProject)->name;
     {
 
        AuthController::IsUser();
+       AuthController::SameCompany(Project::find($id));
         if (isset($_GET['moreThanDate'])&&($_GET['moreThanDate']!='')){
           $moreThanDate= $_GET['moreThanDate'];
         }

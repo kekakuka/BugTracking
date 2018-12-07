@@ -26,7 +26,7 @@
                     <select style="width:120%;" name="usecase_id" class="form-control">
                         @foreach($Usecases as $Usecase)
                             @if($Usecase->Subsystem->project->status==='testing')
-                            <option value="{{$Usecase->id}}">{{$Usecase->id}}: {{$Usecase->name}}   | - - |  Subsystem: {{$Usecase->subsystem->name}} | - - |  Project: {{$Usecase->subsystem->project->name}}</option>
+                            <option value="{{$Usecase->id}}">Usecase{{$Usecase->id}}: {{$Usecase->name}}   | - - |  Subsystem: {{$Usecase->subsystem->name}} | - - |  Project: {{$Usecase->subsystem->project->name}}</option>
 @endif
                                 @endforeach
                     </select>

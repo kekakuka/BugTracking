@@ -41,8 +41,9 @@ Route::prefix('Projects')->group(function () {
 Route::prefix('Companies')->group(function () {
     Route::get('/', 'CompanyController@index');
     Route::post('/Create', 'CompanyController@CreatePost');
-    Route::get('/Details/{id}', 'CompanyController@Details');
+    Route::get('/Details/{id}', 'CompanyController@Details')->name('CompanyDetails');
     Route::post('/Delete/{id}', 'CompanyController@DeletePost');
+    Route::post('/Clear/{id}', 'CompanyController@ClearPost');
     Route::get('/Create', 'CompanyController@Create');
 });
 

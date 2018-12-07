@@ -7,12 +7,18 @@
     <div>
 
         <hr />
-        <dl class="dl-horizontal">
+        <dl style="font-size: 18px" class="dl-horizontal">
             <dt>
                Company Name
             </dt>
             <dd>
                 {{ $Company->companyName}}
+            </dd>
+            <dt>
+                First Manager
+            </dt>
+            <dd>
+                {{ $Company->staffs[0]->userName}}
             </dd>
             <dt>
                 Description
@@ -60,19 +66,41 @@
 
 
         </dl>
-    </div>
+    </div>@if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div>
-        <a href="{{url('Companies/')}}">Back to List</a>
+        <a style="font-size: 18px" href="{{url('Companies/')}}">Back to List</a>
         <hr>
-        @if(Session::get('user')->title==='admin')
-        <form method="post" action="{{url('Companies/Delete/'.$Company->id)}}">
+
+        @if(Session::get('user')->title==='admin'&&$Company->id!==1)
+            <div >
+
+                <span style="font-size: 18px;" class="text-warning">Note : Delete means that all related data of the company will be deleted.<br>Clear means that only the company and the first manager will be not deleted.</span>
+            </div><br>
+            <form style="font-size: 18px;" method="post" action="{{url('Companies/Clear/'.$Company->id)}}">
+                @csrf
+                <label>Admin Password
+                    <input type="password" name="clearPassword"  />
+                </label>
+                <input type="submit" value="Clear The  Company " class="btn btn-default" />
+
+            </form><br>
+        <form style="font-size: 18px;" method="post" action="{{url('Companies/Delete/'.$Company->id)}}">
             @csrf
-            <label>Delete Password
+            <label>Admin Password
                 <input type="password" name="password"  />
             </label>
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete The Company" class="btn btn-default" />
 
         </form>
+
         @endif
 
     </div>

@@ -19,7 +19,7 @@ class CreateSubsystemsTable extends Migration
             $table->string('description',500)->nullable();
             $table->string('name',100);
             $table->unsignedInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }
 

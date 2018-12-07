@@ -20,7 +20,7 @@ class CreateProjectsTable extends Migration
             $table->string('description',500)->nullable();
             $table->string('name',100);
             $table->unsignedInteger('company_id')->default(1);
-            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
         });
     }
 

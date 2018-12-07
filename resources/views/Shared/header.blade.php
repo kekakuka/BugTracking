@@ -68,7 +68,7 @@
                                     {{Session::get('MyNumber')}}
                             </span>  @endif
                         </a></li>
-                    <li><a href="#" title="Manage">Hi {{Session::get('user')->fullName}}</a></li>
+                    <li><a href="#" title="Manage">Hi {{Session::get('user')->userName}}</a></li>
                     @endif
                     <li>
                         <form action="{{route('Logout')}}" method="post" id="logoutForm" class="navbar-right">

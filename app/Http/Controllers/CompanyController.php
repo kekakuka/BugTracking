@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\Project;
 use App\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 class CompanyController extends Controller
 {
@@ -62,37 +64,46 @@ class CompanyController extends Controller
     public function DeletePost($id, Request $request)
     {
 
-        AuthController::IsManager();
-        if ($_POST['password'] === '654321') {
-            $project = Project::find($id);
-            foreach ($project->subsystems as $subsystem) {
-                foreach ($subsystem->usecases as $usecase) {
-                    foreach ($usecase->testcases as $testcase) {
-                        foreach ($testcase->tests as $test) {
-                            foreach ($test->bugs as $bug) {
-                                foreach ($bug->bugassigns as $bugassign) {
-                                    Bugassign::destroy($bugassign->id);
-                                }
-                                foreach ($bug->bugcomments as $bugcomment) {
-                                    Bugcomment::destroy($bugcomment->id);
-                                }
-                                Bug::destroy($bug->id);
-                            }
-                            Test::destroy($test->id);
-                        }
-                        TestCase::destroy($testcase->id);
-                    }
-                    Usecase::destroy($usecase->id);
-                }
-                Subsystem::destroy($subsystem->id);
-            }
-            foreach ($project->testsuites as $testsuite) {
-                Testsuite::destroy($testsuite->id);
-            }
-            Project::destroy($id);
+        AuthController::IsAdmin();
+        if ($_POST['password'] === Session::get('user')->password) {
+
+            Company::destroy($id);
+            $Companies = Company::all();
+            return view('Companies.index', compact('Companies'));
         }
-        $Companies = Company::all();
-        return view('Companies.index', compact('Companies'));
+        $vali='Wrong password';
+        return redirect('Companies/Details/'.$id)
+            ->withErrors($vali)
+            ->withInput();
+
+    }
+
+    public function ClearPost($id, Request $request)
+    {
+
+        AuthController::IsAdmin();
+        if ($_POST['clearPassword'] === Session::get('user')->password) {
+$Company=Company::find($id);
+$count=0;
+foreach ($Company->projects as $project){
+    Project::destroy($project->id);
+}
+            foreach ($Company->staffs as $staff){
+               $count++;
+               if ($count===1){
+                   continue;
+               }
+               else{
+                   Staff::destroy($staff->id);
+               }
+            }
+            return redirect('Companies/Details/'.$id);
+        }
+        $vali='Wrong password';
+        return redirect('Companies/Details/'.$id)
+            ->withErrors($vali)
+            ->withInput();
+
     }
 
     public function Details($id)

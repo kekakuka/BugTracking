@@ -25,9 +25,9 @@ class CreateTestsTable extends Migration
             $table->unsignedInteger('setting_id');
             $table->unsignedInteger('staff_id')->nullable();
             $table->unsignedInteger('testsuite_id')->nullable()->default(null);
-            $table->foreign('testsuite_id')->references('id')->on('testsuites');
-            $table->foreign('testcase_id')->references('id')->on('testcases');
-            $table->foreign('staff_id')->references('id')->on('staff');
+            $table->foreign('testsuite_id')->references('id')->on('testsuites')->onDelete('cascade');
+            $table->foreign('testcase_id')->references('id')->on('testcases')->onDelete('cascade');
+            $table->foreign('staff_id')->references('id')->on('staff')->onDelete('cascade');
             $table->foreign('setting_id')->references('id')->on('settings');
         });
     }

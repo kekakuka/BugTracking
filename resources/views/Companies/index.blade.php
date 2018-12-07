@@ -10,16 +10,19 @@
         <a href="{{url('Companies/Create')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Create New</a>
             @endif
     </p>
-    <table class="table">
+    <table style="font-size: 17px" class="table">
         <thead>
         <tr>
             <th>
-                Company ID
+               ID
             </th>
             <th>
             Company Name
             </th>
-            <th style="width:48%">
+            <th>
+               First Manager Account
+            </th>
+            <th style="max-width:48%">
              Description
             </th>
 
@@ -35,14 +38,16 @@
             <td>
                 {{ $Company->companyName}}
             </td>
-
+            <td>
+                {{ $Company->staffs[0]->userName}}
+            </td>
             <td >
                 {{ $Company->description}}
             </td>
 
             <td>
 
-                <a href="{{url('Companies/Details/'.$Company->id)}}" class="btn btn-info">Details</a>
+                <a href="{{url('Companies/Details/'.$Company->id)}}" class="btn btn-warning">Details/Delete</a>
             </td>
         </tr>
        @endforeach

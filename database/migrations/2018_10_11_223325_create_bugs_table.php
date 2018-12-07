@@ -25,7 +25,7 @@ class CreateBugsTable extends Migration
             $table->date('actualFixDate')->nullable();
             $table->enum('taxonomy', ['functional','system', 'process', 'data', 'code', 'documentation', 'standards', 'other', 'duplicate', 'NAP', 'badUnit', 'RCN', 'unknown'])->nullable();
             $table->unsignedInteger('test_id');
-            $table->foreign('test_id')->references('id')->on('tests');
+            $table->foreign('test_id')->references('id')->on('tests')->onDelete('cascade');
         });
     }
 

@@ -20,8 +20,8 @@ class CreateStaffTable extends Migration
             $table->string('fullName', 100);
             $table->enum('title', ['manager', 'tester','developer','admin'])->default('tester');
             $table->string('password', 50);
-            $table->unsignedInteger('company_id')->default(1);
-            $table->foreign('company_id')->references('id')->on('companies');
+            $table->unsignedInteger('company_id')->nullable();
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->rememberToken();
         });
     }

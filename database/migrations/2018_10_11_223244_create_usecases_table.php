@@ -19,7 +19,7 @@ class CreateUsecasesTable extends Migration
             $table->string('description',500)->nullable();
             $table->string('name',100);
             $table->unsignedInteger('subsystem_id');
-            $table->foreign('subsystem_id')->references('id')->on('subsystems');
+            $table->foreign('subsystem_id')->references('id')->on('subsystems')->onDelete('cascade');
         });
     }
 

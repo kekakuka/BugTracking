@@ -19,7 +19,7 @@ class CreateTestcasesTable extends Migration
             $table->string('description',500)->nullable();
             $table->string('name',100);
             $table->unsignedInteger('usecase_id');
-            $table->foreign('usecase_id')->references('id')->on('usecases');
+            $table->foreign('usecase_id')->references('id')->on('usecases')->onDelete('cascade');
         });
     }
 

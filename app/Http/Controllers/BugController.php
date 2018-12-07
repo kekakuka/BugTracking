@@ -82,7 +82,7 @@ class BugController extends Controller
 
         $bug = Bug::find($id);
        AuthController::SameCompany($bug);
-        if($bug->state!=='open'||$bug->state!=='reOpened'){
+        if($bug->state!=='open'&&$bug->state!=='reOpened'){
             abort(404,'Sorry, the page you are looking for could not be found.');
         }
         $date = date_format(Carbon::tomorrow(), 'Y-m-d');

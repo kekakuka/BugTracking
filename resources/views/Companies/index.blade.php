@@ -22,10 +22,10 @@
             <th>
                First Manager Account
             </th>
-            <th style="max-width:48%">
-             Description
+            <th >
+            Staff Number
             </th>
-
+            <th>Projects Number</th>
             <th></th>
         </tr>
         </thead>
@@ -42,7 +42,10 @@
                 {{ $Company->staffs[0]->userName}}
             </td>
             <td >
-                {{ $Company->description}}
+                {{ $Company->staffs->count()}}
+            </td>
+            <td >
+                {{ $Company->projects->count()}}
             </td>
 
             <td>

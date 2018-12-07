@@ -82,7 +82,7 @@
         @if(Session::get('user')->title==='admin'&&$Company->id!==1)
             <div >
 
-                <span style="font-size: 18px;" class="text-warning">Note : Delete means that all related data of the company will be deleted.<br>Clear means that only the company and the first manager will be not deleted.</span>
+                <span style="font-size: 18px;" class="text-warning">Note: Clear means that all related data of the company will be deleted except the company itself and the first manager. <br>Delete means that the company and all related data of the company will be deleted.</span>
             </div><br>
             <form style="font-size: 18px;" method="post" action="{{url('Companies/Clear/'.$Company->id)}}">
                 @csrf

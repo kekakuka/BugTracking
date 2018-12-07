@@ -37,6 +37,13 @@ class Staff extends Model
             }
              return $newList;
          }
+        if($itemList[0]->title) {
+            foreach ($itemList as $item){
+                if($item->company_id===$this->company_id)
+                {  $newList->push($item);}
+            }
+            return $newList;
+        }
         if($itemList[0]->project_id) {
             foreach ($itemList as $item){
                 if($item->project->company_id===$this->company_id){

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class CompanyController extends Controller
 {
@@ -26,21 +28,32 @@ class CompanyController extends Controller
     {
         AuthController::IsAdmin();
         $validator = Validator::make($request->all(), [
-            'name' => 'required|max:100',
+            'companyName' => 'required|max:100|unique:companies',
             'description' => 'max:500',
+            'userName' => 'required|max:100|alpha_num|unique:staff',
+            'fullName' => 'required|max:100',
+            'password' => 'required|string|min:4|confirmed'
         ]);
 
         if ($validator->fails()) {
-            return redirect('Projects/Create')
+            return redirect('Companies/Create')
                 ->withErrors($validator)
                 ->withInput();
         }
-        $Project = new Project([
-            'name' => $_POST['name']
+        $Company = new Company([
+            'companyName' => $_POST['companyName']
             , 'description' => $_POST['description']
-            , 'company_id' => Session::get('user')->company_id
         ]);
-        $Project->save();
+        $Company->save();
+        $Staff = new Staff([
+            'userName' => $_POST['userName']
+            ,  'fullName' => $_POST['fullName']
+            ,  'title' => 'manager'
+            ,  'password' => $_POST['password'],
+            'company_id' => $Company->id
+        ]);
+        $Staff->save();
+
         return redirect('Companies');
     }
 
@@ -85,7 +98,7 @@ class CompanyController extends Controller
     public function Details($id)
     {
         AuthController::IsAdmin();
-        $Company = DB::table('companies')->where('id', $id)->first();
+        $Company = Company::find($id);
         return view('Companies.Details', compact('Company'));
     }
 

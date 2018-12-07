@@ -345,6 +345,13 @@ Session::put('user',Staff::find( $newid));}
                 ->withErrors($validator)
                 ->withInput();
         }
+        $Testsuite = Testsuite::find($id);
+        foreach ($Testsuite->tests as $test){
+            if ($test->testcase_id==$_POST['testcase_id'])
+                return redirect()->route('testsuiteSet', ['id' => $id]);
+
+        }
+
         $Test = new Test([
             'testcase_id' => $_POST['testcase_id']
             , 'setting_id' => Testsuite::find($id)->setting_id

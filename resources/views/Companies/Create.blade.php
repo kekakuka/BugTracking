@@ -18,14 +18,14 @@
                 </div>
                 <div class="form-group">
                     <label  class="control-label">Description</label>
-                <textarea style="height: 150px" name="description"  class="form-control" >{{ old('description') }}</textarea>
+                <textarea style="height: 100px" name="description"  class="form-control" >{{ old('description') }}</textarea>
                 </div>
                 <div class="form-group">
-                    <label  class="control-label">Chief Manager UserName</label>
+                    <label  class="control-label">First Manager UserName</label>
                     </span>  <input name="userName" value="{{ old('userName') }}" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label  class="control-label">Chief Manager Password</label>
+                    <label  class="control-label">Manager Password</label>
                     <input type="password" name="password" value="{{ old('password') }}" class="form-control" />
                 </div>
                 <div class="form-group">
@@ -33,7 +33,7 @@
                     </span> <input id="password-confirm" type="password" name="password_confirmation" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label  class="control-label">Chief  Manager Full Name</label>
+                    <label  class="control-label">First  Manager Full Name</label>
                     </span>  <input name="fullName" value="{{ old('fullName') }}" class="form-control" />
                 </div>
 

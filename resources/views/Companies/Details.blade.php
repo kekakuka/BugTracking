@@ -20,9 +20,42 @@
             <dd >
                 {{ $Company->description}}
             </dd>
-
-
-
+            <dt>
+                Projects
+            </dt>
+            <dd >
+                {{ $Company->companyDetails()['projectNumber']}}
+            </dd>
+            <dt>
+                Staff
+            </dt>
+            <dd >
+                {{ $Company->companyDetails()['staffNumber']}}
+            </dd>
+            <dt>
+                Test Suites
+            </dt>
+            <dd >
+                {{ $Company->companyDetails()['testsuiteNumber']}}
+            </dd>
+            <dt>
+               TestCases
+            </dt>
+            <dd >
+                {{ $Company->companyDetails()['testcaseNumber']}}
+            </dd>
+            <dt>
+                Bugs
+            </dt>
+            <dd >
+                {{ $Company->companyDetails()['bugNumber']}}
+            </dd>
+            <dt>
+                Bug Assigns
+            </dt>
+            <dd >
+                {{ $Company->companyDetails()['bugAssignNumber']}}
+            </dd>
 
 
 

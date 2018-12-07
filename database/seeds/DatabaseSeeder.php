@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TestSeeder::class);
         $this->call(BugSeeder::class);
         $this->call(BugassignSeeder::class);
+
     }
 }

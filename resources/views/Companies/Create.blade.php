@@ -29,7 +29,7 @@
                     <input type="password" name="password" value="{{ old('password') }}" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="ConfirmPassword">ConfirmPassword</label>
+                    <label for="ConfirmPassword">Confirm Password</label>
                     </span> <input id="password-confirm" type="password" name="password_confirmation" class="form-control" />
                 </div>
                 <div class="form-group">

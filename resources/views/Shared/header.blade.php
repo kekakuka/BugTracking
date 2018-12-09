@@ -29,47 +29,49 @@
                         <li><a href="{{url('Companies')}}">
                                 Companies Management
                             </a></li>
-                        @else
+                    @else
                         <li><a href="{{url('/Reports')}}">Reports</a></li>
-                    @if(Session::has('user')&&Session::get('user')->title==='manager')
-                        <li><a href="{{url('BugsAssign')}}">
-                                Management @if(Session::has('OpenBugNumber')&&Session::get('OpenBugNumber')!==0)<span
-                                        style="color:white;background-color:rgba(117, 119, 129, 0.83);"
-                                        class="badge">
+                        @if(Session::has('user')&&Session::get('user')->title==='manager')
+                            <li><a href="{{url('BugsAssign')}}">
+                                    Management @if(Session::has('OpenBugNumber')&&Session::get('OpenBugNumber')!==0)
+                                        <span
+                                                style="color:white;background-color:rgba(117, 119, 129, 0.83);"
+                                                class="badge">
 
                                         {{Session::get('OpenBugNumber')}}
 
                             </span>
-                                @endif
-                            </a></li>
-                    @else
-                        <li><a href="{{url('Projects')}}">
-                                Check Information
-                            </a></li>
-                    @endif
+                                    @endif
+                                </a></li>
+                        @else
+                            <li><a href="{{url('Projects')}}">
+                                    Check Information
+                                </a></li>
+                        @endif
 
 
-                    @if(Session::get('user')->title!=='developer')
-                        <li><a href="{{url('/Bugs/Run')}}">Create Tests/Enter Bugs
-                                @if(Session::get('user')->UnifinishedTestNumber()!==0)      <span
-                                        style="color:white;background-color:rgba(117, 119, 129, 0.83);"
-                                        class="badge">
+                        @if(Session::get('user')->title!=='developer')
+                            <li><a href="{{url('/Bugs/Run')}}">Create Tests/Enter Bugs
+                                    @if(Session::get('user')->UnifinishedTestNumber()!==0)      <span
+                                            style="color:white;background-color:rgba(117, 119, 129, 0.83);"
+                                            class="badge">
 
                                         {{Session::get('user')->UnifinishedTestNumber()}}
 
                             </span> @endif</a></li>
 
-                    @endif
+                        @endif
 
-                    <li><a href="{{url('/Bugs/MyWork')}}">My Bugs
-                            @if(Session::has('MyNumber')&&Session::get('MyNumber')!==0) <span
-                                    style="color:white;background-color:rgba(117, 119, 129, 0.83);"
-                                    class="badge">
+                        <li><a href="{{url('/Bugs/MyWork')}}">My Bugs
+                                @if(Session::has('MyNumber')&&Session::get('MyNumber')!==0) <span
+                                        style="color:white;background-color:rgba(117, 119, 129, 0.83);"
+                                        class="badge">
                                     {{Session::get('MyNumber')}}
                             </span>  @endif
-                        </a></li>
-                    <li><a href="#" title="Manage">Hi {{Session::get('user')->userName}}</a></li>
+                            </a></li>
+
                     @endif
+                        <li><a href="{{route('ChangePassword')}}" title="Manage">Hi {{Session::get('user')->userName}}{{Session::get('user')->companyName()}}</a></li>
                     <li>
                         <form action="{{route('Logout')}}" method="post" id="logoutForm" class="navbar-right">
                             @csrf

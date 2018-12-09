@@ -76,7 +76,7 @@ class LoginController extends Controller
 //       }
         $user=DB::table('staff')->where('userName', '=', $request->input('userName'))->first();
         if ($user===null||$user->password!==$request->input('password')){
-            $loginMessage='Please Enter the right Email and Password';
+            $loginMessage='Please Enter the right Account and Password';
 
             return view('auth.login',compact('loginMessage'));
         }

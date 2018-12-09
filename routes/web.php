@@ -47,7 +47,10 @@ Route::prefix('Companies')->group(function () {
     Route::get('/Create', 'CompanyController@Create');
 });
 
-
+Route::prefix('Manage')->group(function () {
+    Route::post('/PasswordPost', 'ManageController@PasswordPost')->name('PasswordPost');
+    Route::get('/ChangePassword', 'ManageController@ChangePassword')->name('ChangePassword');
+});
 
 Route::prefix('Subsystems')->group(function () {
     Route::get('/', 'SubsystemController@index');

@@ -196,7 +196,17 @@ class Staff extends Model
         return $result;
 
     }
+    public function companyName()
+    {
+        if($this->company_id){
+     $company=Company::find($this->company_id);
+        return '('.$company->companyName.')';
+        }
+     else{
+         return '';
+     }
 
+    }
 
     public function tBugsAssigns($moreThanDate,$lessThanDate,$project_id)
     {

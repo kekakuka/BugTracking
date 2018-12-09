@@ -5,7 +5,7 @@
     <ul style="font-size: 15px;" class="nav nav-pills nav-stacked">
         @if(Session::has('user'))
             @if(Session::get('user')->title==='manager')
-                <li class="waitForActive"><a onclick="func(this)"  href="{{url('/BugsAssign')}}">Bugs Assign<span style="margin-top: -2px; color:white;background-color:rgba(117, 119, 129, 0.83);"
+                <li class="waitForActive"><a onclick="func(this)"  href="{{url('/BugsAssign')}}">BugsAssign<span style="margin-top: -2px; color:white;background-color:rgba(117, 119, 129, 0.83);"
                                                                                                                  class="badge">@if(Session::has('OpenBugNumber')){{Session::get('OpenBugNumber')}}
                             @endif
                             </span></a></li>

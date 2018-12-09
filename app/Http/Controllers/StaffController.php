@@ -71,7 +71,7 @@ class StaffController extends Controller
     {
         AuthController::IsManager();
         $validator = Validator::make($request->all(), [
-            'userName' => 'required|max:100|alpha_num|unique:staff',
+            'userName' => 'required|max:12|alpha_num|unique:staff',
             'fullName' => 'required|max:100',
             'password' => 'required|string|min:4|confirmed',
 

@@ -30,9 +30,9 @@ class CompanyController extends Controller
     {
         AuthController::IsAdmin();
         $validator = Validator::make($request->all(), [
-            'companyName' => 'required|max:100|unique:companies',
+            'companyName' => 'required|max:12|unique:companies|alpha_num',
             'description' => 'max:500',
-            'userName' => 'required|max:100|alpha_num|unique:staff',
+            'userName' => 'required|max:12|alpha_num|unique:staff',
             'fullName' => 'required|max:100',
             'password' => 'required|string|min:4|confirmed'
         ]);

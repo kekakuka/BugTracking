@@ -7,7 +7,7 @@
     <div>
 
         <hr />
-        <dl style="font-size: 18px" class="dl-horizontal">
+        <dl style="font-size: 19px" class="dl-horizontal">
             <dt>
                Company Name
             </dt>
@@ -100,7 +100,11 @@
             <input type="submit" value="Delete The Company" class="btn btn-default" />
 
         </form>
+@else
+            <div >
 
+                <span style="font-size: 18px;" class="text-warning">Note: The example company cannot be deleted.</span>
+            </div>
         @endif
 
     </div>

@@ -57,7 +57,7 @@
             <div  id="collapse5" class="panel-collapse collapse in">
               <article  style="font-size: 20px;padding: 25px 25px 25px 25px ;">Admin can create company and the first manager for the new company at the same time.
                   <br>
-                  Admin can delete company and all related data of the company deleted as well.
+                  Admin can delete company and all related data of the company is deleted as well.
                   <br>
                   <br>
                   Manager can hire staff(manager/tester/developer) of the company.

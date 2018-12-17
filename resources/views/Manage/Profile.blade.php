@@ -10,7 +10,7 @@
     <div class="row">
 
 
-        <div class="col-md-10 col-md-push-1 col-sm-push-3 col-xs-push-4 mainPart" style="margin-top: 1%">
+        <div class="col-md-8 col-md-push-2 col-sm-push-4 col-xs-push-4 mainPart" style="margin-top: 1%;">
             <div class="panel panel-default">
                 <div class="panel-heading"
                      style="background: linear-gradient(rgba(163, 165, 165, 0.1),rgba(123, 125, 125, 0.1))!important;height: 50px;">
@@ -20,7 +20,7 @@
 
                     </ul>
                 </div>
-                <div style="padding: 2% 5% 5% 5%;">
+                <div style="padding: 2% 5%;">
                     <h4>Change My Profile</h4>
                     @if(Session::has('PassSuccess'))
                         <div class="alert alert-success alert-dismissible" role="alert">
